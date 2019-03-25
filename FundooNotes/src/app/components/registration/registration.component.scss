@@ -1,0 +1,116 @@
+//css for registration page
+.forMedia{
+  padding-top: 35px;
+}
+
+.basic-container {
+  padding: 150px;
+  
+}
+.example-container {
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .example-card{
+      width: 500px;
+    background-color: rgb(255, 255, 255);
+    
+    padding: 12px;
+    padding-top: 0.5px;
+    padding-bottom: 0.5px;
+  }
+  .example-container {
+    width: 100%;
+    
+  }
+  .example-name {
+  padding: 0px;
+  color:black;
+    display: flex;
+    justify-content: center;
+    width: 300px;
+    font-size: 20px;
+  }
+  
+  .example-button{
+    display: flex;
+    justify-content:space-between;
+    padding: 10px;
+  
+  }
+  
+  .example-name-link{
+  padding: 20px;
+  color: rgb(226, 7, 226);
+    display: flex;
+    justify-content: start;
+    width: 200px;
+    
+  }
+  .example-header{
+    display: flex;
+    justify-content:center;
+  }
+  .example-name-main{
+    padding-top : 30px;
+    color:#1a73e8;
+    display: flex;
+    justify-content: center;
+    width: 300px;
+    font-size: 16px;
+  }
+  .example-color{
+    color: rgb(226, 7, 226);
+  }
+  .example-align{
+    display: flex;
+    justify-content: space-between;
+    
+  }
+  .example-radio{
+    display : flex;
+    justify-content:center;
+    
+
+  }
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+  .button-colour{
+    background-color: #1a73e8;
+  }
+  .button-name{
+    color: white;
+  }
+  .name-link{
+    color: #1a73e8;
+  }
+  $mat-card-border-radius: 13px !default;
+.mat-card {
+  border-radius: $mat-card-border-radius;}
+  //media query for mobile view
+  @media(max-width:540px){
+  
+    mat-card{
+      max-width: 27rem;
+    }
+   
+  
+      body { 
+        font-family: Roboto, Arial, sans-serif;
+        width: 200px;
+        
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      .example-align{
+        display: flex;
+        width: 1px;
+        justify-content: space-between;
+      }
+  }
+  .example-mat-toggle{
+    width: 50%;
+    font-family: Roboto, Arial, sans-serif;
+  }

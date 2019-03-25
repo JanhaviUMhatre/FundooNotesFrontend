@@ -1,0 +1,29 @@
+<div fxLayout="row wrap"  fxLayoutAlign=" center center" >
+
+        <div *ngFor="let note of data ">
+            
+          
+                <div fxLayout="row wrap" fxLayoutAlign="center center">
+                        <div class="cards">
+                        <mat-card class="card-width" [ngStyle]="{'backgroundColor': note.color}" >
+                            <div fxLayout="column" fxLayoutAlign=" space-around center">
+                        
+                        
+           <div class="title" [style.fontSize.px]=21 > {{note.title}}</div>
+         
+          
+           <div class="description">{{note.description}}</div> 
+           
+           <div  fxLayoutAlign="start" >
+     
+              
+                <button mat-icon-button matTooltip="Delete" (click)="delete(note)">
+                    <mat-icon style="font-size: 17px" class="mat-18 changeColor">delete
+                      </mat-icon></button>
+                     </div>
+</div>
+    </mat-card></div>
+</div>
+    </div>
+</div>
+   

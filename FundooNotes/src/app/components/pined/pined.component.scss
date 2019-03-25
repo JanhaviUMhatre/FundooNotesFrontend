@@ -1,0 +1,83 @@
+@import "../../styles/material.scss";
+
+
+.card-width{
+    width:200px;
+    margin-left: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    height: 120px;
+}
+//$mat-card-border-radius: 11px !default;
+
+.mat-card {
+
+    display: block;
+    border-radius: $mat-card-border-radius;}
+.title {
+    margin-top: 6px;
+    margin-bottom: 6px;
+   
+}
+.changeColor{
+    color: rgb(54, 54, 54);
+}
+// .alignment{
+//     padding-top: 5px;
+ 
+//     padding-right: 10px;
+    
+// }
+.alignment{
+    display:none;}
+    mat-card:hover{
+    
+          .alignment{
+             display:block;
+            
+          }
+    }
+.trash-align{
+    padding-top: 200px;
+   }
+   .cards{
+       padding-left: 35px;
+       padding-right: 35px;
+
+   }
+   .field-size{
+       margin-left: 20px;
+       margin-right: 20px;
+       width:200px;
+       font-size: 11px;
+   }
+   .label-align{
+    margin-left: 10px;
+    
+   }
+   .mat-menu-item {
+    width:500px;
+   
+        font-size: 11px;
+    position: relative;}
+    .menu-list{
+        padding-left: 1px;
+    }
+    .cardWidth{
+        width:500px;
+        margin-left: 15px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    @media (max-width: 600px) {
+        .cardWidth{
+            width:250px;
+            margin-left: 15px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+      }
+    mat-chip {
+        opacity: 0.6;
+        max-width:auto;
+      }

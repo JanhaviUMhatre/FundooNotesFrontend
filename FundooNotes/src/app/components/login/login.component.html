@@ -1,0 +1,70 @@
+<html>
+  <body>
+    <!-- login form -->
+    <form [formGroup]="loginForm" >
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutAlign.xs="center center" >
+        <!-- material card -->
+<mat-card class="example-card" [class.mat-elevation-z6]="!isActive">
+  <!-- card header -->
+    <mat-card-header class="example-header">
+    <!-- card title -->
+        <mat-card-title class="example-name-main">
+          <p>
+            <span style='color: blue'>F</span>
+            <span style='color: red'>U</span>
+            <span style='color: orange'>N</span>
+            <span style='color: blue'>D</span>
+            <span style='color: green'>O</span>
+            <span style='color: red'>O</span>
+            <span style='color: blue'>N</span>
+            <span style='color: orange'>O</span>
+            <span style='color: blue'>T</span>
+            <span style='color: green'>E</span>
+            <span style='color: red'>S</span>
+            <span style='color: orange'>A</span>
+            <span style='color: blue'>P</span>
+            <span style='color: green'>P</span>
+          </p>
+        </mat-card-title>
+        <!-- card subtitle -->
+        <mat-card-subtitle class="example-name">SIGN IN</mat-card-subtitle>
+         
+       <!-- end of subtitle -->
+        </mat-card-header>
+<!-- end of card header -->
+        <div class="example-container">
+          <!-- email/username -->
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input type="email" formControlName="email" matInput placeholder="Email" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
+        
+      </mat-form-field>
+      <!-- password -->
+      <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Enter your password" formControlName="password"  [type]="hide ? 'password' : 'text'" required>
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
+         
+        </mat-form-field>
+        <!-- card footer -->
+        <mat-card-footer>
+          <!-- reset password link -->
+        <mat-card-subtitle class="example-name-link" routerLink="/reset">forgot password?</mat-card-subtitle></mat-card-footer>
+        <mat-card-actions class="example-button">
+          <!-- registration button -->
+          <button mat-button class="name-link" routerLink="/registration">Register Here</button>
+          <!-- login button -->
+          <button [disabled]="!loginForm.valid"  (click)="onSubmit()" aria-label="Show an example snack-bar" mat-raised-button class="button-colour"><a class="button-name">SIGN IN</a></button>
+           
+          </mat-card-actions>
+          
+        </div>
+        <!-- end of material card -->
+    </mat-card>
+    </div>
+    <!-- end of form -->
+  </form>
+  </body>
+    </html>

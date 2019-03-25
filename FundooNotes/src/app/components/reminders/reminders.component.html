@@ -1,0 +1,53 @@
+    
+
+  <div fxLayout="row wrap" fxFlex="90" fxLayoutAlign="center center" >
+    
+       
+  <div *ngFor="let note of data">
+      <div *ngIf="note.isDeleted===false">
+          <!-- <div *ngIf="note.isPined===true">
+              <div *ngIf="note.isPined===false"> -->
+    <mat-card class="card-width" [ngStyle]="{'backgroundColor': note.color}" [class.mat-elevation-z0]="!isActive" >
+        <div fxLayout="column" >
+  
+        
+            <div class="title" [style.fontSize.px]=16 (click)="openDialog(note)"> {{note.title}}</div>
+          
+           
+  
+  <div class="description">{{note.description}}</div> 
+  <mat-chip-list >
+        <div *ngFor="let col of note.collaborators">
+            <div class="alignbutton">
+                <button  mat-mini-fab color="accent" (click)="openDialogCollaborate(note.user,note.id,col.email,col.userId)">{{col.email | slice:0:1}}
+                        <!-- <mat-icon matChipRemove (click)="removecollaborator(note.id,col.userId)">cancel</mat-icon> -->
+                </button></div>
+            </div>
+  </mat-chip-list>
+    <mat-chip-list>
+
+      <div *ngFor="let labels of note.noteLabels">
+
+        <mat-chip>{{labels.label}}
+
+          <mat-icon matChipRemove (click)="deletelabelforever(labels,note)">cancel</mat-icon>
+
+        </mat-chip>
+      </div>
+    </mat-chip-list>
+  <!-- <div class="description">{{note.reminder | date:'medium'}}</div>  -->
+  <!-- <div class="title" [style.fontSize.px]=11> {{note.noteLabels.label}}</div> -->
+  <!-- <button mat-icon-button matTooltip="Archive" (click)="archive(note)">
+      <mat-icon style="font-size: 17px" class="mat-18 changeColor">archive</mat-icon></button> -->
+  
+        <div class="alignment">
+                <app-footermenu [data]="note"></app-footermenu>
+              </div>
+     
+     
+    </div> 
+  </mat-card>
+  </div></div></div>
+  
+  
+  

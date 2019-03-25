@@ -1,0 +1,51 @@
+@import "../../styles/material.scss";
+
+
+.card-width{
+    width:200px;
+    margin-left: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+//$mat-card-border-radius: 11px !default;
+
+.mat-card {
+
+    display: block;
+    border-radius: $mat-card-border-radius;}
+.title {
+    margin-top: 6px;
+    margin-bottom: 6px;
+   
+}
+.changeColor{
+    color: rgb(54, 54, 54);
+}
+.alignment{
+    padding-top: $padding-top;
+    padding-right: $padding-right
+    
+}
+.alignment{
+    display:none;}
+    mat-card:hover{
+    
+          .alignment{
+             display:block;
+            
+          }
+    }
+.trash-align{
+ padding-top: 200px;
+}
+.cards{
+    padding-left: 60px;
+    padding-right: 10px;
+}
+button{ display:none}
+mat-card:hover{
+
+  button{
+     display:block
+  }
+}

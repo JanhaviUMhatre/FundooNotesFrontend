@@ -1,0 +1,99 @@
+/* css for login page */
+
+main{
+  display: flex;
+}
+
+body { 
+  font-family: Roboto, Arial, sans-serif;
+  width: 400px;
+  padding-left: 420px;
+  padding-right: 200px;
+  padding-top: 95px;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.example-card{
+  background-color: rgb(255, 255, 255)
+}
+
+.example-container {
+  width: 100%;
+}
+
+.example-name {
+padding: 10px;
+color:black;
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  font-size: 20px;
+}
+
+.example-button{
+  display: flex;
+  justify-content:space-between;
+  padding-left: 5px;
+  padding-right: 15px;
+  padding-top: 15px;
+}
+
+.example-name-link{
+padding: 20px;
+color: #1a73e8;
+  display: flex;
+  justify-content: start;
+  width: 200px;
+  padding-top: 1px;
+}
+.example-header{
+  display: flex;
+  justify-content:center;
+}
+.example-name-main{
+  padding: 10px;
+color:#1a73e8;
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  font-size: 16px;
+}
+.example-color{
+  color: black
+}
+
+.name-link{
+  color: #1a73e8;
+}
+
+.button-name{
+  color: white;
+}
+$mat-card-border-radius: 13px !default;
+.mat-card {
+  border-radius: $mat-card-border-radius;}
+.button-colour{
+  background-color: #1a73e8;
+}
+.mat-form-field-appearance-outline {
+
+      border-top-color: #1a73e8;
+    }
+  
+// media query for mobile view
+@media(max-width:425px){
+  
+  body { 
+    font-family: Roboto, Arial, sans-serif;
+    width: 270px;
+    
+    padding-left: 20px;
+    padding-right: 50px;
+  }
+  
+}

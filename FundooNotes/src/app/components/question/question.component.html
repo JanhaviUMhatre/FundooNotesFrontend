@@ -1,0 +1,56 @@
+<div fxLayoutAlign="center center">
+  <mat-card>
+    <mat-card-title>{{title}}</mat-card-title>
+    <mat-card-subtitle>{{description}}</mat-card-subtitle>
+    <mat-divider>
+    </mat-divider>
+    <mat-card-title class="titlecard">question asked</mat-card-title>
+    <mat-card-subtitle innerHtml="{{q}}" class="labelsizee">
+    </mat-card-subtitle>
+  </mat-card>
+</div>
+<div *ngFor="let i of queans">
+   
+  <div fxLayout="column" fxLayoutAlign="center center" [ngClass]="{'editorclasss': queans===null}">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <!-- <div  *ngFor="let j of i.user"> -->
+      <div class="account">
+
+
+        <img src="http://34.213.106.173/{{i.user.imageUrl}}" class="accountButton">
+
+      </div>
+
+      <mat-label innerHtml="{{i.message}}" class="labelsizee"></mat-label>
+      <div class="details">
+        {{i.user.firstName}},
+        {{i.createdDate |  date:'medium'}}</div>
+      <mat-icon (click)="showDiv(i.id)">reply</mat-icon>
+      <button mat-button (click)="like(i.id)"><mat-icon>thumb_up_alt</mat-icon></button>
+      <!-- <star-rating-comp [starType]="'icon'" ></star-rating-comp> -->
+      <!-- <star-rating-comp [starType]="'svg'" ></star-rating-comp> -->
+      
+      <star-rating value="5" checkedcolor="blue" uncheckedcolor="black" size="24px"  readonly="false" (rate)="onRate($event,i.id)"></star-rating>
+      <div *ngFor="let j of i.rate">
+      <mat-label>overall rating :{{ j.rate}}</mat-label>
+      <!-- </div> -->
+
+    </div>
+  </div>
+</div>
+</div>
+<div fxLayout="column" fxLayoutAlign="space-between center" class="editor" *ngIf="flag===false">
+  <textarea [froalaEditor] [(froalaModel)]="message" value="Reply"></textarea>
+  <div fxLayoutAlign="end">
+
+    <button mat-button (click)="replyMessage()">reply</button>
+  </div>
+</div>
+<div fxLayout="column" fxLayoutAlign="space-between center" class="editor">
+  <textarea [froalaEditor] [(froalaModel)]="question" value="asked"
+    [ngClass]="{'editorclass': queans===null}"></textarea>
+  <div fxLayoutAlign="end">
+
+    <button mat-button (click)="getquestion()">ask</button>
+  </div>
+</div>

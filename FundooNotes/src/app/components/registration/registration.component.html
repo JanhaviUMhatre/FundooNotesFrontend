@@ -1,0 +1,109 @@
+<html>
+ 
+ <div class="forMedia">
+    <!-- registration form -->
+    <div fxLayout.xs="row wrap" fxLayoutAlign="space-around center" >
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      
+       <!-- material card  -->
+<mat-card class="example-card" [class.mat-elevation-z6]="!isActive">
+<!-- card header -->
+    <mat-card-header class="example-header">
+    <!-- card title -->
+        <mat-card-title class="example-name-main">
+          <p>
+            <span style='color: blue'>F</span>
+            <span style='color: red'>U</span>
+            <span style='color: orange'>N</span>
+            <span style='color: blue'>D</span>
+            <span style='color: green'>O</span>
+            <span style='color: red'>O</span>
+            <span style='color: blue'>N</span>
+            <span style='color: orange'>O</span>
+            <span style='color: blue'>T</span>
+            <span style='color: green'>E</span>
+            <span style='color: red'>S</span>
+            <span style='color: orange'>A</span>
+            <span style='color: blue'>P</span>
+            <span style='color: green'>P</span>
+          </p>
+        </mat-card-title>
+         <!--card subtitle  -->
+        <mat-card-subtitle class="example-name">Create Account</mat-card-subtitle>
+         
+       <!-- end of subtitle -->
+        </mat-card-header>
+        
+<!-- end of header -->
+        <div class="example-container">
+        
+          <div class="example-align">
+<!-- firstname -->
+
+<mat-form-field appearance="outline">
+  <mat-label>Firstname</mat-label>
+  <input formControlName="firstName" matInput placeholder="Firstname" required>
+  <mat-error *ngIf="firstName.invalid">{{getErrorMessage()}}</mat-error>
+</mat-form-field>
+
+<!-- lastname -->
+      <mat-form-field appearance="outline">
+          <mat-label>Lastname</mat-label>
+          <input formControlName="lastName" matInput placeholder="Lastname" required>
+          <mat-error *ngIf="lastName.invalid">{{getErrorMessageLast()}}</mat-error>
+        </mat-form-field>
+      </div>
+    
+<!-- phonenumber -->
+      <mat-form-field appearance="outline">
+          <mat-label>Phonenumber</mat-label>
+          <input formControlName="phoneNumber" type="text" matInput placeholder="Phonenumber" required>
+          <mat-error *ngIf="phoneNumber.invalid">{{getErrorMessageNumber()}}</mat-error>
+        </mat-form-field>
+
+  
+<!-- email -->
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" type="email" matInput placeholder="email" required />
+            <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
+          </mat-form-field>
+<!-- password -->
+          <div class="example-align">
+      <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input formControlName="password" matInput placeholder="Enter your password"  [type]="hide ? 'password' : 'text'" required />
+          <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>   
+          
+        </mat-form-field>
+<!-- confirm password -->
+        <mat-form-field appearance="outline">
+            <mat-label>Confirm Password</mat-label>
+            <input formControlName="confirmPassword" matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required>
+            <mat-error *ngIf="confirmPassword.invalid">{{getErrorPasswordConfirm()}}</mat-error> 
+            
+          </mat-form-field>
+        </div>
+
+<!-- service type -->
+         <!-- <mat-radio-group formControlName="service" class = "example-radio"> <a>Service Type : </a>
+          <mat-radio-button value="basic">Basic</mat-radio-button> 
+          <mat-radio-button value="advance">Advance</mat-radio-button>
+        </mat-radio-group> -->
+        <mat-button-toggle-group formControlName="service" class="example-mat-toggle" name="serviceType" aria-label="Service Type">
+          <mat-button-toggle value="basic"><b>Basic</b></mat-button-toggle>
+          <mat-button-toggle value="advance"><b>Advance</b></mat-button-toggle>
+        </mat-button-toggle-group>
+        <mat-card-actions class="example-button">
+            <button mat-button routerLink="/login" class="name-link">sign in instead</button>
+            <button [disabled]="!registrationForm.valid" aria-label="Show an example snack-bar" mat-raised-button class="button-colour"><a class="button-name">SIGN UP</a></button>
+          </mat-card-actions>
+        </div>
+    </mat-card>
+  <!-- end of material card -->
+    
+</form>
+</div>
+<!-- end of form -->
+</div>
+    </html>

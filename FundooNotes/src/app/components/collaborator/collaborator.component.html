@@ -1,0 +1,22 @@
+<div fxLayout="column" class="dialog">
+  
+  <mat-label class="fontsizelabel dialog ">Collaborator</mat-label>
+  <mat-divider  class="dialog"></mat-divider>
+<mat-label class="emailsize">{{data.email}}</mat-label>
+<div fxLayout="column" fxFlex=40>
+<mat-label>{{data.collaborator}}
+  <mat-icon (click)="removecollaborator()">cancel</mat-icon>
+</mat-label></div>
+<input matInput placeholder="enter email" class="emailsize"  [ngModel]="word" (ngModelChange)="serachEmail($event)" [matAutocomplete]="auto">
+<mat-autocomplete #auto="matAutocomplete" >
+    <mat-option *ngFor="let option of emails" [value]="option.email">
+      {{option.email}}
+    </mat-option>
+  </mat-autocomplete> 
+  
+
+  <div class="button-align" fxLayout="row wrap" fxLayoutAlign="end end">
+      <!-- <button mat-button  (click)="onNoClick()">close</button> -->
+  <button mat-button  (click)="addcollaborator()">save</button>
+</div>
+ </div>

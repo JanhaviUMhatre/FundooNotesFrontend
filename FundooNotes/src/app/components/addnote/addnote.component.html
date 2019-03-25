@@ -1,0 +1,178 @@
+
+<div fxLayout="row" fxLayoutAlign="space-around" >
+
+      
+        <mat-card class="card-width"  (click)="showDiv()" *ngIf="flag===false && colab===true" style="margin:2em;"  [class.mat-elevation-z4]="!isActive">
+            <div fxLayout="row" fxLayoutAlign="space-around center" >
+            <input matInput placeholder="Take a note.." [style.fontSize.px]=15>
+            <button mat-icon-button matTooltip="New note with drawing">
+                <mat-icon style="font-size: 20px" class="mat-18 changeColor">
+                   check_box
+                   </mat-icon ></button>
+            <button mat-icon-button matTooltip="New List">
+                <mat-icon style="font-size: 20px" class="mat-18 changeColor">brush</mat-icon>
+               </button>
+               <button mat-icon-button matTooltip="New List">
+                  <mat-icon style="font-size: 20px" class="mat-18 changeColor">crop_original</mat-icon>
+                 </button>
+              
+          </div>
+        </mat-card>
+     
+
+       
+          <mat-card class="new-card" *ngIf="flag===true && colab===true" style="margin:2em;"  [class.mat-elevation-z8]="!isActive" [ngStyle]="{'backgroundColor': color}">
+              <div fxLayout="column" fxLayoutAlign="space-around">
+            <div fxLayout="row" fxLayoutAlign="space-around center" >
+              <input matInput placeholder="Title.." [formControl]="title" [style.fontSize.px]=15>
+              <button class="pinIcon" mat-icon-button matTooltip="Pin/Unpin Note" (click)="pin()">
+                <ng-container *ngIf="pinValue===false">
+                    <mat-icon style="font-size: 20px" class="mat-18 changeColor" svgIcon="unpinIcon"></mat-icon>
+                </ng-container>
+                <ng-container *ngIf="pinValue===true">
+                    <mat-icon style="font-size: 20px" class="mat-18 changeColor" svgIcon="pinIcon"></mat-icon>
+                </ng-container>
+              </button>
+            </div>
+              
+                    <input matInput placeholder="Take a note..." [formControl]="description" [style.fontSize.px]=13 style="margin:0em; padding-top: 10px" *ngIf="listItem===true">
+                  
+                        <div *ngIf="listItem===false">
+                                <mat-checkbox>{{item}}</mat-checkbox>
+                        <input matInput placeholder="List item" [formControl]="item" [style.fontSize.px]=13 style="margin:0em; padding-top: 10px" >
+                    </div>
+                    <!-- <app-footermenu></app-footermenu> -->
+                   
+                    <!-- <mat-chip-list> -->
+                                <!-- <div *ngFor="label of labeldata; i = index"> -->
+                            <!-- <mat-chip>{{labeldata}}</mat-chip> -->
+                        <!-- </div> -->
+                          <!-- </mat-chip-list> -->
+                    <div class="alignment">
+                        <button mat-icon-button matTooltip="Remind me" [matMenuTriggerFor]="menu">
+                            <mat-icon style="font-size: 20px" class="mat-18 changeColor">add_alert</mat-icon></button>
+                            <mat-menu #menu="matMenu" [overlapTrigger]="false">
+                                       
+                                <mat-label class="label-align">Reminder:</mat-label>
+                                <button mat-menu-item> Later Today : 8 PM
+                                  </button>
+                                  <button mat-menu-item> Tomorrow : 8 AM
+                                      </button>
+                                      <button mat-menu-item> Next Week :Monday, 8 AM
+                                          </button>
+                                          <button mat-menu-item [matMenuTriggerFor]="peekDate"> Peek date and time
+                                              </button>
+                                          <mat-menu #peekDate="matMenu">
+                                                  <div fxLayout="column" fxFlex="auto" fxLayoutAlign="space-around center" >
+                                                  <mat-form-field class="field-size">
+                                                          <input matInput [matDatepicker]="picker" [formControl]="date" [style.fontSize.px]=12>
+                                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                          <mat-datepicker #picker></mat-datepicker>
+                                                        </mat-form-field>
+                                                      
+                                                        <mat-form-field class="field-size">
+                                                            <mat-label>Time</mat-label>
+                                                            <mat-select matInput [formControl]="time"  value="1:00 PM" (click)="stopPropagation($event)">
+                                                              <mat-option value="8 AM">MORNING 8 AM</mat-option>
+                                                              <mat-option value="1 PM">AFTERNOON 1 PM</mat-option>
+                                                              <mat-option value="6 PM">EVENING 6 PM</mat-option>
+                                                              <mat-option value="8 PM">NIGHT 8 PM</mat-option>
+                                                              
+                                                            </mat-select>
+                                                          </mat-form-field>
+                                                       
+                                                        <button mat-button>done</button></div>
+                                                </mat-menu>
+                                  </mat-menu>  
+                            <button mat-icon-button matTooltip="Collaborator" (click)="opencollaborator()">
+                                <mat-icon style="font-size: 20px" class="mat-18 changeColor">person_add
+                                  </mat-icon></button>
+                     
+                      <button mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu">
+                          <mat-icon style="font-size: 20px" class="mat-18 changeColor">color_lens</mat-icon></button>
+                      
+                          <button mat-icon-button matTooltip="Archive" (click)="archive()">
+                                <ng-container *ngIf="pinValue===false">
+                      <mat-icon style="font-size: 20px" class="mat-18 changeColor">archive</mat-icon></ng-container>
+                      <ng-container *ngIf="pinValue===true">
+                            <mat-icon style="font-size: 20px" class="mat-18 changeColor">archive</mat-icon></ng-container>
+                    </button>
+                      
+                         
+                              <button mat-icon-button matTooltip="New List">
+                                  <mat-icon style="font-size: 20px" class="mat-18 changeColor">crop_original</mat-icon>
+                                 </button> 
+                                 <button mat-icon-button matTooltip="more" [matMenuTriggerFor]="moreMenu">
+                                    <mat-icon style="font-size: 20px" class="mat-18 changeColor">more_vert
+                                </mat-icon></button>
+                                <button mat-icon-button matTooltip="Undo" [matMenuTriggerFor]="moreMenu">
+                                    <mat-icon style="font-size: 20px" class="mat-18 changeColor">undo
+                                </mat-icon></button>
+                                <button mat-icon-button matTooltip="Redo" [matMenuTriggerFor]="moreMenu">
+                                    <mat-icon style="font-size: 20px" class="mat-18 changeColor">redo
+                                </mat-icon></button>
+                               
+                                <button mat-button class="button-align" (click)="createNote()">Close</button>
+                        </div>
+                        <mat-menu #colorMenu="matMenu"  class="colorMenu" [overlapTrigger]="false">
+                  
+                            <ng-template matMenuContent let-note="note">
+                                <div fxLayout="row wrap" fxLayoutAlign="end
+                                 center" fxFlex="90">
+                              <div *ngFor="let color of colorCode">
+                               
+                                <button mat-icon-button [ngStyle]="{'color': color.colorCode}" (click)="changeColor(color.colorCode)">
+                          
+                                  <mat-icon  style="font-size: 40px"  class="colorIcons">fiber_manual_record</mat-icon>
+                          
+                                </button>
+                              
+                              </div>
+                          </div>
+                            </ng-template>
+                          
+                          </mat-menu>
+                          <mat-menu #moreMenu="matMenu"  class="moreMenu" [overlapTrigger]="false">
+                            <button mat-menu-item [style.fontSize.px]=14 class="changeColor" (click)="addItem()">Add label</button>
+                              <button mat-menu-item [style.fontSize.px]=14 class="changeColor" [matMenuTriggerFor]="labelMenu">Add label</button>
+                              <mat-menu #labelMenu="matMenu" [overlapTrigger]="true">
+                                    <mat-label class="field-size">add label : </mat-label>
+                                    <div fxLayout="column" fxLayoutAlign="start start" >
+                                   
+                                          <div *ngFor="let labels of label; let i = index">
+                                            <mat-checkbox class="field-size" value={{labels.label}} (click)="addinglabel(labels.id)" (click)=stopPropagation($event)>{{labels.label}}</mat-checkbox>
+                                          </div></div>
+                                        
+                            </mat-menu>
+                            
+                            
+                            </mat-menu>
+                  </div>
+          </mat-card>
+          <mat-card class="new-card"  *ngIf="colab===false" style="margin:2em;"  [class.mat-elevation-z4]="!isActive">
+                <div fxLayout="column wrap" >
+                <mat-card-title >Collaborator</mat-card-title>
+                
+                <div fxLayout="row wrap" fxLayoutAlign="start center">
+                        
+                        <button mat-mini-fab color="primary">{{email | slice:0:1}}</button>
+                  <mat-label  class="emailpadding">{{email}}(owner)</mat-label>
+                  </div>
+                  <div fxLayout="row wrap" fxLayoutAlign="start center">
+                  <button mat-mini-fab color="primary">{{word | slice:0:1}}</button>
+                  <input matInput placeholder="enter email" class="emailsize emailpadding"  [ngModel]="word" (ngModelChange)="serachEmail($event)" [matAutocomplete]="auto"></div>
+            <mat-autocomplete #auto="matAutocomplete" >
+             <mat-option *ngFor="let option of emails" [value]="option.email">
+                    {{option.email}}
+                    </mat-option>
+                    </mat-autocomplete> 
+                    <div class="buttonn-align" fxLayout="row wrap" fxLayoutAlign="end end">
+                            <!-- <button mat-button  (click)="onNoClick()">close</button> -->
+                        <button mat-button  (click)="opencollaborator()">save</button>
+                      </div> 
+              </div>
+            </mat-card>
+      
+</div>
+
+<app-notes></app-notes>
