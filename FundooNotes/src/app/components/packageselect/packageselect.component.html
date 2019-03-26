@@ -1,0 +1,23 @@
+<mat-toolbar>
+<!-- <mat-toolbar-row> -->
+    <div fxLayout="row wrap" fxLayoutAlign="start center" >
+
+ <mat-label>Advance pack details</mat-label>
+
+
+  <p>$ 6.99/month</p>
+
+ </div>
+ <!-- </mat-toolbar-row> -->
+</mat-toolbar>
+<div fxLayoutAlign="center center" >
+<mat-tab-group>
+    <mat-tab label="First"> Feature 1 </mat-tab>
+    <mat-tab label="Second"> Feature 2 </mat-tab>
+    <mat-tab label="Third"> Feature 3 </mat-tab>
+  </mat-tab-group>
+</div>
+  <div fxLayout="row wrap" fxLayoutAlign="space-around end" class="buttons">
+  <button mat-raised-button>Remove</button>
+  <button mat-raised-button [routerLink]="['newregister']" (click)="onNoClick()">Proceed to checkout</button>
+  </div>

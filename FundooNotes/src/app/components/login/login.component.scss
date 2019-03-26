@@ -6,10 +6,10 @@ main{
 
 body { 
   font-family: Roboto, Arial, sans-serif;
-  width: 400px;
-  padding-left: 420px;
-  padding-right: 200px;
-  padding-top: 95px;
+  //  width: 400px;
+  // padding-left: 420px;
+  // padding-right: 200px;
+  // padding-top: 95px;
 }
 
 .example-container {
@@ -76,7 +76,8 @@ color:#1a73e8;
 }
 $mat-card-border-radius: 13px !default;
 .mat-card {
-  border-radius: $mat-card-border-radius;}
+  border-radius: $mat-card-border-radius;
+}
 .button-colour{
   background-color: #1a73e8;
 }
@@ -96,4 +97,12 @@ $mat-card-border-radius: 13px !default;
     padding-right: 50px;
   }
   
+}
+.divider{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.cardsection{
+  background-color: #dfdfdf;
+
 }

@@ -43,6 +43,7 @@ import {
   MatTreeModule,
 } from '@angular/material';
 import { LabelsComponent } from './components/labels/labels.component';
+import { PackageselectComponent } from './components/packageselect/packageselect.component';
 
 
 
@@ -92,6 +93,7 @@ import { LabelsComponent } from './components/labels/labels.component';
       ],
       entryComponents: [
         LabelsComponent,
+        PackageselectComponent
       ]
  
     

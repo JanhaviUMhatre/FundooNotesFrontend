@@ -1,0 +1,27 @@
+
+{
+    "details": [
+    {
+    "card_id": 1,
+    "title": "$ 99 per month",
+    "service_type": "Advance",
+    "features": [{
+    "Pricing": "$ 99 per month",
+    "Ability_to_add": "ability to add title,description,",
+    "more": "images,labels,archive",
+    "and":"colors,collaborate"
+    }]
+    },
+    {
+    "card_id": 2,
+    "title": "$ 49 per month",
+    "service_type": "Basic",
+    "features": [{
+    "Pricing": "$ 49 per month",
+    "Ability_to_add": "ability to add title,description",
+    "more":  "delete,archive",
+    "and":" collaborate"
+    }]
+    }
+    ]
+    }

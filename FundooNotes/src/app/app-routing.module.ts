@@ -18,6 +18,9 @@ import { RemindersComponent } from './components/reminders/reminders.component';
 import { DemoComponent } from './components/demo/demo.component';
 import { QuestionComponent } from './components/question/question.component';
 import { HomeComponent } from './components/home/home.component';
+import { NewloginComponent } from './components/newlogin/newlogin.component';
+import { NewregisterComponent } from './components/newregister/newregister.component';
+
 const routes: Routes = [
     {
         path : 'registration',
@@ -34,6 +37,14 @@ const routes: Routes = [
       {
         path : 'login',
         component : LoginComponent
+      },
+      {
+        path : 'newlogin',
+        component : NewloginComponent
+      },
+      {
+        path : 'newregister',
+        component : NewregisterComponent
       },
       {
         path : 'profile',

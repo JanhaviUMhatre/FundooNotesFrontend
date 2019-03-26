@@ -1,0 +1,38 @@
+mat-toolbar{
+    background-color: #f7bb00;
+    height:48px;
+}
+/deep/ .mat-dialog-container {
+    box-shadow: 0 11px 15px -7px rgba(0,0,0,.2), 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12);
+    display: block;
+    padding: 24px;
+    border-radius: 9px;
+    box-sizing: border-box;
+    overflow: auto;
+    outline: 0;
+    width: 480px;
+    height: 200px;
+    min-height: inherit;
+    max-height: inherit;
+    padding: 0px;
+}
+mat-label{
+    color: white;
+}
+p{
+    font-size: 15px;
+    color: white;
+    padding-left: 40px;
+}
+button{
+    background-color:  #3880eb;
+    color: white;
+  
+}
+mat-tab-group{
+    width:500px;
+}
+.buttons{
+    margin-top: 40px;
+}
+

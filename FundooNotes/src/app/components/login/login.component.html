@@ -6,6 +6,7 @@
         <!-- material card -->
 <mat-card class="example-card" [class.mat-elevation-z6]="!isActive">
   <!-- card header -->
+  <div fxLayout="column" fxFlex=80 fxLayoutAlign="center center">
     <mat-card-header class="example-header">
     <!-- card title -->
         <mat-card-title class="example-name-main">
@@ -60,6 +61,11 @@
            
           </mat-card-actions>
           
+        </div>
+        </div>
+        <mat-divider [vertical]="true" class="divider"></mat-divider>
+        <div fxFlex class="cardsection" fxLayoutAlign="space-between center">
+<app-newlogin></app-newlogin>
         </div>
         <!-- end of material card -->
     </mat-card>

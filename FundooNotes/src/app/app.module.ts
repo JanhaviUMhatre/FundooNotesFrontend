@@ -41,6 +41,9 @@ import { AuthGuard } from './auth.guard'
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { RatingModule } from 'ng-starrating';
 import { HomeComponent } from './components/home/home.component';
+import { PackageselectComponent } from './components/packageselect/packageselect.component';
+import { NewloginComponent } from './components/newlogin/newlogin.component';
+import { NewregisterComponent } from './components/newregister/newregister.component';
 
 
 @NgModule({
@@ -87,6 +90,12 @@ import { HomeComponent } from './components/home/home.component';
     QuestionComponent,
    
     HomeComponent,
+   
+    PackageselectComponent,
+   
+    NewloginComponent,
+   
+    NewregisterComponent,
   ],
   imports: [AppRoutingModule,
     FroalaEditorModule.forRoot(),
