@@ -20,6 +20,7 @@ import { QuestionComponent } from './components/question/question.component';
 import { HomeComponent } from './components/home/home.component';
 import { NewloginComponent } from './components/newlogin/newlogin.component';
 import { NewregisterComponent } from './components/newregister/newregister.component';
+import { PackagecardComponent } from './components/packagecard/packagecard.component';
 
 const routes: Routes = [
     {
@@ -49,6 +50,10 @@ const routes: Routes = [
       {
         path : 'profile',
         component : ProfileComponent
+      },
+      {
+        path : 'packagecard',
+        component : PackagecardComponent
       },
       {
         path : 'dashboard',

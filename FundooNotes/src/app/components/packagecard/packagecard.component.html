@@ -1,7 +1,7 @@
-<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="150px" fxFlexOffset="150px"  class="cards" >
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="150px" fxFlexOffset="35px"  class="cards" >
   <div *ngFor="let i of details">
     
- <div class="zoom"  (click)="selectservice(i.service_type)"> <mat-card class="bottom"><mat-card ><mat-label class="label" >{{i.title}}</mat-label>
+ <div class="zoom"  (click)="openDialoge()"> <mat-card class="bottom"><mat-card ><mat-label class="label" >{{i.title}}</mat-label>
 <p class="paragraph">{{i.service_type}}</p>
 <mat-list role="list">
   <div *ngFor="let j of i.features">

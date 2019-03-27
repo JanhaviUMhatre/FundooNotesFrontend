@@ -22,7 +22,7 @@
                <mat-chip-list >
                     <div *ngFor="let col of note.collaborators">
                         <div class="alignbutton">
-                            <button  mat-mini-fab color="accent" (click)="openDialogCollaborate(note.user,note.id,col.email,col.userId)">{{col.email | slice:0:1}}
+                            <button  mat-mini-fab [class.mat-elevation-z2]="!isActive" [ngStyle]="{'backgroundColor': note.color}" (click)="openDialogCollaborate(note.user,note.id,col.email,col.userId)">{{col.email | slice:0:1}}
                             </button></div>
                         </div>
               </mat-chip-list>

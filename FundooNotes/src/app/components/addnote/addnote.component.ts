@@ -15,6 +15,7 @@ import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { NoteService } from 'src/app/services/notes/note.service';
 import { NotesComponent } from '../notes/notes.component';
+import { addCheckList } from 'src/app/models/createnote.model';
 
 @Component({
   selector: 'app-addnote',
@@ -54,7 +55,7 @@ export class AddnoteComponent implements OnInit {
   //note : CreateNote =new CreateNote;
   date = new FormControl('');
   time = new FormControl('');
-  item = new FormControl('')
+  // item = new FormControl('')
   title = new FormControl('')
   description = new FormControl('')
   remindData: { "reminder": any[]; };
@@ -65,9 +66,13 @@ export class AddnoteComponent implements OnInit {
   userId: any;
   label: any;
   addedlabel: any[] = [];
+  itemDataarray: any[] = [];
   labeldata: number;
   collab: string;
   listItem = true;
+  item: any;
+  itemData: { "itemName": any; "status": (url?: string, target?: string, features?: string, replace?: boolean) => Window; };
+  addCheckList: any;
   constructor(private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer, private snackBar: MatSnackBar, private svc: NoteService
   ) {
@@ -176,9 +181,13 @@ export class AddnoteComponent implements OnInit {
       "userId": this.userId,
 
     }
-    let itemData = {
-      "itemName": this.item.value, "status": open
-    }
+
+    this.addCheckList = new addCheckList();
+this.addCheckList.itemName = this.item;
+this.addCheckList.status = "open";
+
+console.log(this.addCheckList);
+    this.itemDataarray.push(this.addCheckList)
     //this.collab=JSON.stringify(this.collaboratorData)
     console.log("collaboration data", this.collaboratorData)
     this.noteData = {
@@ -196,7 +205,7 @@ export class AddnoteComponent implements OnInit {
         "userId": this.userId
       }),
       "labelIdList": JSON.stringify(this.addedlabel),
-      "noteCheckLists": [{ "itemName": this.item.value, "status": open }]
+      "checklist": JSON.stringify(this.itemDataarray)
     }
 
     if (this.noteData.title != null || this.noteData.description != null) {
@@ -222,7 +231,9 @@ export class AddnoteComponent implements OnInit {
     this.color = color;
 
   }
-
+  addtochecklist($event){
+    this.item=$event
+  }
   getLabelsDashboard() {
     this.svc.getLabels().subscribe(
       (response) => {

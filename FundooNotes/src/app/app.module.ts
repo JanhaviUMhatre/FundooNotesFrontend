@@ -44,6 +44,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PackageselectComponent } from './components/packageselect/packageselect.component';
 import { NewloginComponent } from './components/newlogin/newlogin.component';
 import { NewregisterComponent } from './components/newregister/newregister.component';
+import { PackagecardComponent } from './components/packagecard/packagecard.component';
 
 
 @NgModule({
@@ -96,6 +97,8 @@ import { NewregisterComponent } from './components/newregister/newregister.compo
     NewloginComponent,
    
     NewregisterComponent,
+   
+    PackagecardComponent,
   ],
   imports: [AppRoutingModule,
     FroalaEditorModule.forRoot(),

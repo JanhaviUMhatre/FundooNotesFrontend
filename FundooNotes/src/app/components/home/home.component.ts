@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PackageselectComponent } from '../packageselect/packageselect.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { HttpClient } from '@angular/common/http'; 
+import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 export class HomeComponent implements OnInit {
   details: any;
 
-  constructor(public dialog: MatDialog,private http: HttpClient) { }
+  constructor(public dialog: MatDialog,private http: HttpClient,private cart:CartService) { }
 
   ngOnInit() {
     this.getJson();
@@ -30,9 +31,10 @@ export class HomeComponent implements OnInit {
     
   }
   getJson(){
-    this.http.get("./assets/mydata.json").subscribe(
-      (data)=>{console.log("success",data);
-      this.details=data['details']
+    this.http.get('http://34.213.106.173/api/user/service').subscribe(
+      (Response)=>{console.log("success",Response);
+      },
+      (error)=>{console.log("error",error);
       }
     )
   }

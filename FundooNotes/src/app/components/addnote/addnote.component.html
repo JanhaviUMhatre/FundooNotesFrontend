@@ -39,7 +39,7 @@
                   
                         <div *ngIf="listItem===false">
                                 <mat-checkbox>{{item}}</mat-checkbox>
-                        <input matInput placeholder="List item" [formControl]="item" [style.fontSize.px]=13 style="margin:0em; padding-top: 10px" >
+                        <input matInput placeholder="List item" [ngModel]="item" (ngModelChange)="addtochecklist($event)" [style.fontSize.px]=13 style="margin:0em; padding-top: 10px" >
                     </div>
                     <!-- <app-footermenu></app-footermenu> -->
                    
@@ -133,7 +133,7 @@
                           
                           </mat-menu>
                           <mat-menu #moreMenu="matMenu"  class="moreMenu" [overlapTrigger]="false">
-                            <button mat-menu-item [style.fontSize.px]=14 class="changeColor" (click)="addItem()">Add label</button>
+                            <button mat-menu-item [style.fontSize.px]=14 class="changeColor" (click)="addItem()">Add checklist</button>
                               <button mat-menu-item [style.fontSize.px]=14 class="changeColor" [matMenuTriggerFor]="labelMenu">Add label</button>
                               <mat-menu #labelMenu="matMenu" [overlapTrigger]="true">
                                     <mat-label class="field-size">add label : </mat-label>

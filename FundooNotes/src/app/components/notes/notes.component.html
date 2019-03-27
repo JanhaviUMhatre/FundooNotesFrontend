@@ -30,7 +30,7 @@
            <mat-chip-list >
             <div *ngFor="let col of note.collaborators">
                 <div class="alignbutton">
-                    <button  mat-mini-fab color="accent" (click)="openDialogCollaborate(note.user,note.id,col.email,col.userId)">{{col.email | slice:0:1}}
+                    <button  mat-mini-fab [ngStyle]="{'backgroundColor': note.color}" (click)="openDialogCollaborate(note.user,note.id,col.email,col.userId)" [class.mat-elevation-z2]="!isActive">{{col.email | slice:0:1}}
                             <!-- <mat-icon matChipRemove (click)="removecollaborator(note.id,col.userId)">cancel</mat-icon> -->
                     </button></div>
                 </div>
@@ -158,6 +158,6 @@
                 </ng-template>
               </mat-menu>
 </div> -->
-<div class="alignment">
+<div class="alignment"  fxLayoutAlign="end end">
     <app-footermenu [data]="note"></app-footermenu>
   </div>

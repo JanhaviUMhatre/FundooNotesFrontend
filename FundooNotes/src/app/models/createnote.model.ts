@@ -3,3 +3,9 @@ export class CreateNote {
     "description":string;
     
 }
+export class addCheckList{
+    itemName: string;
+    status: string;
+    isDeleted: boolean;
+    notesId:string; 
+    }

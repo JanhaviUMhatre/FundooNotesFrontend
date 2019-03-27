@@ -23,6 +23,7 @@ import { RegisterModel } from 'src/app/models/register.model';
 export class RegistrationComponent implements OnInit {
   user: RegisterModel = new RegisterModel();
   isActive = false;
+  service: any;
 
   constructor( private uservice : UserServiceService,private router: Router,private formBuilder:FormBuilder) { }
   
@@ -84,4 +85,9 @@ getErrorPasswordConfirm(){
   
 }
 
+
+receiveMessage($event) {
+  this.service = $event
+  console.log("from register---",this.service)
+}
 }
