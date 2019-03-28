@@ -1,20 +1,23 @@
 <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="150px" fxFlexOffset="150px"  class="cards" >
   <div *ngFor="let i of details">
     
- <div class="zoom"  (click)="selectservice(i.service_type)"> <mat-card class="bottom"><mat-card ><mat-label class="label" >{{i.title}}</mat-label>
-<p class="paragraph">{{i.service_type}}</p>
-<mat-list role="list">
-  <div *ngFor="let j of i.features">
+ <div class="zoom"  (click)="selectservice(i.service_type)"> <mat-card class="bottom"><mat-card ><mat-label class="label" >${{i.price}}/Month</mat-label>
+<p class="paragraph">{{i.name}}</p>
+<!-- <mat-list role="list">
+ 
  
   
-    <mat-list-item role="listitem" class="fontlist">{{j.Pricing}}</mat-list-item>
-    <mat-list-item role="listitem" class="fontlist">{{j.Ability_to_add}} {{j.more}} {{j.and}}</mat-list-item>
-  
+    <mat-list-item role="listitem" class="fontlist">{{i.description}}</mat-list-item>
+   
 
 
-</div>
-</mat-list>
-<div class="allign"  fxLayoutAlign="end center" >selected</div>
+</mat-list> -->
+<ul>
+  <li>
+    {{i.description}}
+  </li>
+</ul>
+<!-- <div class="allign"  fxLayoutAlign="end center" >selected</div> -->
   </mat-card></mat-card></div>
  
     </div></div>

@@ -15,9 +15,11 @@ export class PackagecardComponent implements OnInit {
     this.getJson()
   }
   getJson(){
-    this.http.get("./assets/mydata.json").subscribe(
-      (data)=>{console.log("success",data);
-      this.details=data['details']
+    this.http.get('http://34.213.106.173/api/user/service').subscribe(
+      (Response)=>{console.log("success",Response);
+      this.details=Response['data']['data']
+      },
+      (error)=>{console.log("error",error);
       }
     )
   }

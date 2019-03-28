@@ -6,7 +6,7 @@
     margin-left: 15px;
     margin-top: 15px;
     margin-bottom: 15px;
-    height: 120px;
+   height: 120px;
 }
 //$mat-card-border-radius: 11px !default;
 
@@ -29,7 +29,7 @@
     
 // }
 .alignment{
-display:none;}
+display:none !important;}
 mat-card:hover{
 
       .alignment{
@@ -61,7 +61,7 @@ mat-card:hover{
 //      display:block;
     
 //   }
-//}
+// }
    .label-align{
     margin-left: 10px;
     
@@ -96,8 +96,8 @@ mat-card:hover{
       }
     .alignbutton{
         padding-top: 4px;
-        padding-bottom: 6px;
-       
+        padding-bottom: 4px;
+       margin-bottom: -4px;
     }
     mat-fab{
         font-size: 5px;

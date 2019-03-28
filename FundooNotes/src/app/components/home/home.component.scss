@@ -17,7 +17,7 @@ mat-card{
     .label{
         font-size: 11px;
     }
-    
+  
 }
 .cardalign{
     padding-left: 60px;
@@ -58,7 +58,7 @@ mat-card{
    
   }
   .label{
-      font-size: 12px;
+      font-size: 28px;
   }
   .paragraph{
       color: #3880eb;
@@ -69,12 +69,11 @@ mat-card{
   }
   .allign{
       
-   position: relative;
-   top:35px;
-   right:20px;
-
-      color: white;
-      font-size: 20px;
+    position: fixed;
+    top: 459px;
+    color: white;
+    font-size: 20px;
+    padding-left: 60px;
   }
   .signin{
       padding-top: 90px;

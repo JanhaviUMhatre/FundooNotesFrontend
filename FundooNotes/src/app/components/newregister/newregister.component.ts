@@ -17,12 +17,16 @@ export class NewregisterComponent implements OnInit {
   ngOnInit() {
     this.getJson()
   }
-  getJson(){
-    this.http.get("./assets/mydata.json").subscribe(
-      (data)=>{console.log("success",data);
-      this.details=data['details']
-      }
-    )
+
+    getJson(){
+      this.http.get('http://34.213.106.173/api/user/service').subscribe(
+        (Response)=>{console.log("success",Response);
+        this.details=Response['data']['data']
+        },
+        (error)=>{console.log("error",error);
+        }
+      )
+
   }
   selectservice(service){
 console.log("this is service",service)

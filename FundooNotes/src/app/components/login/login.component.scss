@@ -107,7 +107,7 @@ $mat-card-border-radius: 13px !default;
   background-color: #dfdfdf;
 
 }
-/deep/ .mat-form-field-appearance-outline .mat-form-field-flex {
+mat-form-field-appearance-outline mat-form-field-flex {
   padding: 0 .75em 0 .75em;
   margin-top: -.25em;
   position: relative;

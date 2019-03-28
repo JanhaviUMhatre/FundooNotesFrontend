@@ -6,6 +6,10 @@ import { BehaviorSubject, Subject, Observable } from 'rxjs';
 })
 export class ViewService {
 //pin
+
+private labelname = new BehaviorSubject("");
+labelName=this.labelname.asObservable();
+
 private pinSource = new BehaviorSubject("false");
   currentpin = this.pinSource.asObservable();
 
@@ -41,5 +45,8 @@ private pinSource = new BehaviorSubject("false");
     this.pinSource.next(msgPin)
   }
 
+  sendlabelname(namelabel:string){
+    this.labelname.next(namelabel)
+  }
 
 }

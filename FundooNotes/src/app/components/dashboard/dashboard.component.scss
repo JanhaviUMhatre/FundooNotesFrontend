@@ -189,7 +189,10 @@
 //   padding-left: 110px;
 
 // }
-
+.material-icons{
+  position: relative;
+  
+}
 .sidenavBar {
   position: absolute;
   min-width: 300px;
@@ -291,8 +294,32 @@ padding-top: 3px;
  .searchbar{
      padding-top: 3px;
      padding-left: 1px;
-     min-width: 60px;
+     min-width: 100px;
  }
+ .dashboardTitle{
+     display: none;
+ }
+ .searchdiv{
+    border:none;
+    outline:none;
+    background: rgba(0,0,0,0.04);
+    height:40px;
+    border-radius: 8px;
+    max-width:100px;
+    
+    }
+    .search{
+        border:none;
+        outline:none;
+        background: rgba(0,0,0,0);
+        height:40px;
+        border-radius: 8px;
+        // margin-left: 150px;
+        padding-left: 4px;
+        margin-top: -1px;
+        max-width:100px;
+
+        }
  .listview{
      display:none;
  }
@@ -305,3 +332,24 @@ padding-top: 3px;
 .editlabel{
     width:500px;
 }
+.search{
+    border:none;
+    outline:none;
+    background: rgba(0,0,0,0);
+    height:40px;
+    border-radius: 8px;
+    // margin-left: 150px;
+    padding-left: 4px;
+    margin-top: -1px;
+    min-width: 500px;
+    }
+
+    .searchdiv{
+        border:none;
+        outline:none;
+        background: rgba(0,0,0,0.04);
+        height:40px;
+        border-radius: 8px;
+       min-width: 500px;
+        
+        }

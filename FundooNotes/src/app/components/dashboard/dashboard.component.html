@@ -156,18 +156,27 @@
       </div>
       <div class="dashboardTitle" *ngIf="headerName==null">fundooNotes</div>
       <div class="dashboardTitle">{{headerName}}</div>
-       
-       <mat-form-field  appearance="outline" [style.fontSize.px]=13  class="searchbar" > 
+ <!-- <mat-form-field  appearance="outline" [style.fontSize.px]=13  class="searchbar" > 
         <input matInput type="text" [(ngModel)]="Search" 
         placeholder="search" [style.fontSize.px]=18 (keyup)="lookFor()" (click)="openSearch()">
         <mat-icon matSuffix [style.fontSize.px]=12 >close</mat-icon>
-      </mat-form-field>
+      </mat-form-field> -->
+      <div class="searchdiv"  >
+          <button mat-icon-button>
+          <mat-icon>search</mat-icon>
+          </button>
+          <input  class="search" matInput
+          placeholder="search" [style.fontSize.px]="18" [(ngModel)]="Search" (keyup)="lookFor()" (click)="openSearch()" autocomplete="off">
+          </div>
       <button mat-icon-button>
         <mat-icon class="mat-18">refresh</mat-icon>
       </button>
       <button mat-icon-button class="listview">
         <mat-icon class="mat-18" (click)="changeView()">{{icon}}</mat-icon>
       </button>
+      <button mat-icon-button class="listview">
+         <img src="../../../assets/Icons/outline-shopping_cart-24px.svg">
+        </button>
       <div  class="account">
          
           <div [matMenuTriggerFor]="menu"  >
@@ -204,7 +213,7 @@
             <mat-nav-list class="sideNavList">       
                 <div>
                   
-    <button mat-button [routerLink]="['addNote']" (click)="headerName='fundooNote'" [ngClass]="{'sideNavListItems': headerName!='fundooNote', 'sideNavlistItemsColored': headerName=='fundooNote'}">
+    <button mat-button [routerLink]="['addNote']" (click)="headerName='fundooNotes'" [ngClass]="{'sideNavListItems': headerName!='fundooNotes', 'sideNavlistItemsColored': headerName=='fundooNotes'}">
         <mat-icon>lightbulb_outline</mat-icon> Notes
         </button>
                 </div>
@@ -221,7 +230,7 @@
                     <mat-icon>edit</mat-icon>Edit Labels
                   </button> -->
                   <div *ngFor="let labels of label; let i = index">
-                  <button mat-button (click)="getIdlabel(labels)" (click)="headerName='labels'" [ngClass]="{'sideNavListItems': headerName!='Labels', 'sideNavlistItemsColored': headerName=='Labels'}">
+                  <button mat-button (click)="getIdlabel(labels)" (click)="labelname(labels.label)" [routerLink]="['addlabel']" (click)="headerName='labels'" [ngClass]="{'sideNavListItems': headerName!='Labels', 'sideNavlistItemsColored': headerName=='Labels'}">
                     <mat-icon>label_outline</mat-icon> {{labels.label}}
                   </button>
                 </div>

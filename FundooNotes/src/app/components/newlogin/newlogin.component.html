@@ -1,4 +1,5 @@
 <div class="card"  fxLayoutAlign="center center" >
+    <form [formGroup]="loginForm" >
 <mat-card>
 <mat-grid-list cols="2" rowHeight=100%>
   <mat-grid-tile class="logincard">
@@ -22,18 +23,20 @@
       </p>
     </mat-card-title>
     <mat-card-subtitle class="example-name">SIGN IN</mat-card-subtitle>
+    
     <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input type="email"  matInput placeholder="Email" required>
-  
-        
+        <input type="email"  matInput placeholder="Email" formControlName="email" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
+
       </mat-form-field>
       <!-- password -->
       <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required>
+          <input matInput placeholder="Enter your password"  formControlName="password" [type]="hide ? 'password' : 'text'" required>
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
- 
+          <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
+
         </mat-form-field>
        
         <mat-card-footer >
@@ -43,10 +46,10 @@
               <div class="example-button">
                   <!-- <div fxLayout="row" fxLayoutAlign="space-between " > -->
           <button mat-button class="name-link" routerLink="/registration">Register Here</button>
-          <button  aria-label="Show an example snack-bar" mat-raised-button class="button-colour"><a class="button-name">SIGN IN</a></button>
+          <button [disabled]="!loginForm.valid"  (click)="onSubmit()" aria-label="Show an example snack-bar" mat-raised-button class="button-colour"><a class="button-name">SIGN IN</a></button>
         <!-- </div> -->
                   </div>
-        
+      
         </div>
   </mat-grid-tile>
   <mat-divider [vertical]="true"></mat-divider>
@@ -56,4 +59,5 @@
   </mat-grid-tile>
   
 </mat-grid-list>
-</mat-card></div>
+</mat-card>
+</form></div>

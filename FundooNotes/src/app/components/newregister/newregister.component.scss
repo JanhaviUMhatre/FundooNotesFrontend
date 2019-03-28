@@ -80,20 +80,23 @@ mat-card{
   height: inherit;
   margin-left: -9px;
 }
-.allign{
-    
- position: relative;
- top:35px;
- right:20px;
+// .allign{
 
-    color: white;
-    font-size: 20px;
-    margin-top: -19px;
-    margin-right: -35px;
-}
+      
+//     position: fixed;
+//     top: 459px;
+//     color: white;
+//     font-size: 20px;
+//     padding-left: 60px;
+  
+// }
 .signin{
     padding-top: 90px;
     font-size: 20px;
     color: #3880eb;
 
+}
+li{
+  font-size: 10px;
+  color: #808080;
 }

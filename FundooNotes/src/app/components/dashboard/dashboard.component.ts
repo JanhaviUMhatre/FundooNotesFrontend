@@ -139,6 +139,7 @@ export class DashboardComponent implements OnInit {
   constructor(private view: ViewService ,private svc :NoteService,public dialog: MatDialog,private router: Router,private ser : SearchService) { }
 
   ngOnInit() {
+    
     this.getImage()
     this.getLabelsDashboard()
    // this.responsedata = this.view.loginResponse().subscribe(message =>  this.data = message);
@@ -213,5 +214,8 @@ deletelabelforever(labels){
         (error)=>{console.log("error",error)}
     )
 }
-
+labelname(name){
+    console.log("selected label",name)
+    this.view.sendlabelname(name)
+}
 }

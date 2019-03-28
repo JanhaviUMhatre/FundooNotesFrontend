@@ -11,6 +11,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http/http.service';
 import { environment } from 'src/environments/environment';
+import { ViewService } from '../viewservice/view.service';
 
 
 
@@ -22,8 +23,9 @@ export class NoteService {
   baseUrl = environment.baseUrl;
   url: any;
 
-  constructor(private user: HttpService) { }
 
+  constructor(private user: HttpService) { }
+ 
 
   createnote(userData) {
     console.log(userData);
@@ -87,5 +89,11 @@ export class NoteService {
   }
   deletenoteLabels(url, userData) {
     return this.user.PostForm(this.baseUrl + url, userData)
+  }
+
+  getLabelNote(labelname){
+ 
+    return this.user.PostForm(this.baseUrl+'notes/getNotesListByLabel/'+labelname,labelname)
+    
   }
 }

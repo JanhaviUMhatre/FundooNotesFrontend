@@ -117,7 +117,7 @@ export class NotesComponent implements OnInit {
     //this.view.currentlabel.subscribe(label => this.label = label)
     //this.view.currentEmail.subscribe(word => this.word = word)
     this.getLabelsDashboard()
- 
+
 
   }
 
@@ -450,5 +450,4 @@ export class NotesComponent implements OnInit {
   }
 
 }
-
 

@@ -61,6 +61,10 @@ const routes: Routes = [
         canActivate : [AuthGuard],
         children:[
           {
+            path:'addlabel',
+            component:AddlabelComponent
+          },
+          {
             path: '',
             component:AddnoteComponent
           },
@@ -136,10 +140,7 @@ const routes: Routes = [
         path:'footer',
         component:FootermenuComponent
       },
-      {
-        path:'addlabel',
-        component:AddlabelComponent
-      }
+    
 ];
 @NgModule({
     imports:[RouterModule.forRoot(routes)],
