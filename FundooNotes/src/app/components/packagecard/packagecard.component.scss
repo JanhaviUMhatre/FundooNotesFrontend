@@ -43,18 +43,20 @@ mat-card{
     transition: transform .2s;
 
 }
-.zoom:hover {
+// .zoom:hover {
  
-    transform: scale(1.1); 
-    .bottom{
+//     transform: scale(1.1); 
    
-        background-color: #f7bb00;
-       
-      }
-  }
+//   }
   .bottom{
    
     background-color: #acacac;
+   
+  }
+  .bottomselected{
+   
+    background-color: #f7bb00;
+    transform: scale(1.1); 
    
   }
   .label{
@@ -102,3 +104,4 @@ mat-card{
       font-size: 12px;
       color: #808080;
   }
+  

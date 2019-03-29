@@ -9,7 +9,7 @@
 <div fxLayout="column" >
 <div fxLayout="row" fxLayoutAlign="space-around center" class="cards" >
   <div *ngFor="let i of details">
- <div class="zoom" (click)="openDialoge()"> <mat-card class="bottom"><mat-card ><mat-label class="label" >${{i.price}}/month</mat-label>
+ <div class="zoom" (click)="openDialoge()" (click)="sharevalues(i)"> <mat-card class="bottom"><mat-card ><mat-label class="label" >${{i.price}}/month</mat-label>
 <p class="paragraph">{{i.name}}</p>
 <ul>
  

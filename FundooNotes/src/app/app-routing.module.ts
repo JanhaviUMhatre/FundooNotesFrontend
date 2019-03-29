@@ -21,6 +21,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NewloginComponent } from './components/newlogin/newlogin.component';
 import { NewregisterComponent } from './components/newregister/newregister.component';
 import { PackagecardComponent } from './components/packagecard/packagecard.component';
+import { CartComponent } from './components/cart/cart.component';
 
 const routes: Routes = [
     {
@@ -31,10 +32,10 @@ const routes: Routes = [
         path : '',
         component : HomeComponent
       },
-      // {
-      //   path : '',
-      //   component : LoginComponent
-      // },
+      {
+        path : 'home',
+        component : HomeComponent
+      },
       {
         path : 'login',
         component : LoginComponent
@@ -67,6 +68,10 @@ const routes: Routes = [
           {
             path: '',
             component:AddnoteComponent
+          },
+          {
+            path:'cart',
+            component:CartComponent
           },
           {
             path:'addNote',

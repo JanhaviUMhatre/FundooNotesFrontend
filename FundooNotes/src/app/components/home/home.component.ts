@@ -39,4 +39,8 @@ export class HomeComponent implements OnInit {
       }
     )
   }
+
+  sharevalues(card){
+    this.cart.sendinfocard(card)
+  }
 }

@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material';
 import { UserServiceService } from 'src/app/services/userServices/user-service.service';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: 'app-newlogin',
@@ -16,7 +17,9 @@ export class NewloginComponent implements OnInit {
   details: any;
   user: LoginModel = new LoginModel(); //object of login model
   data:any;
-  constructor(private view: ViewService,private snackBar: MatSnackBar,
+  servicename:string;
+  info: string;
+  constructor(private view: ViewService,private snackBar: MatSnackBar,private cart: CartService,
     // private Auth : AuthService,
      private svc : UserServiceService,private router: Router,private formBuilder: FormBuilder,private http:HttpClient) { }
      loginForm = this.formBuilder.group({
@@ -28,11 +31,14 @@ export class NewloginComponent implements OnInit {
     });
   ngOnInit() {
     this.getJson()
+    this.cart.cards.subscribe(info => this.info = info)
   }
   getJson(){
     this.http.get('http://34.213.106.173/api/user/service').subscribe(
       (Response)=>{console.log("success",Response);
       this.details=Response['data']['data']
+      this.servicename=this.info['name']
+      console.log("-----------------",this.servicename)
       },
       (error)=>{console.log("error",error);
       }

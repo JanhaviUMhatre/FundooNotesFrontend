@@ -8,6 +8,9 @@
        <!-- material card  -->
 <mat-card class="example-card" [class.mat-elevation-z6]="!isActive">
 <!-- card header -->
+<div fxLayout="row" fxLayoutAlign="end center" class=buttoncart >
+<button mat-flat-button class=cartbutton routerLink="/home">Go to cart</button>
+</div>
     <mat-card-header class="example-header">
     <!-- card title -->
         <mat-card-title class="example-name-main">
@@ -28,6 +31,8 @@
             <span style='color: green'>P</span>
           </p>
         </mat-card-title>
+       
+        
          <!--card subtitle  -->
         <mat-card-subtitle class="example-name">Create Account</mat-card-subtitle>
          

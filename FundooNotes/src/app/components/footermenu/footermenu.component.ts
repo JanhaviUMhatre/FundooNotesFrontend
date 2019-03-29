@@ -54,6 +54,7 @@ export class FootermenuComponent implements OnInit {
   deleteData: { "isDeleted": boolean; "noteIdList": any[]; };
   addlabel: { "noteId": any; "lableId": any; };
   time = new FormControl('')
+  date=new FormControl('')
   datanote: any;
   constructor(private que: QuestionService, private router: Router, public dialog: MatDialog, private svc: NoteService, private http: HttpClient) { }
 
@@ -209,10 +210,10 @@ export class FootermenuComponent implements OnInit {
     )
   }
 
-  // reminder() {
+  reminder() {
 
-  //   let now = new Date();
-  //   console.log(now)
-  // }
+    let now = new Date();
+    console.log(now)
+  }
  
 }
