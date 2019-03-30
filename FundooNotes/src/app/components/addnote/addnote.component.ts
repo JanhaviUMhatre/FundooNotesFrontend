@@ -73,6 +73,7 @@ export class AddnoteComponent implements OnInit {
   item: any;
   itemData: { "itemName": any; "status": (url?: string, target?: string, features?: string, replace?: boolean) => Window; };
   addCheckList: any;
+  newdate: Date;
   constructor(private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer, private snackBar: MatSnackBar, private svc: NoteService
   ) {
@@ -169,7 +170,26 @@ export class AddnoteComponent implements OnInit {
     this.addedlabel.push(labels)
     console.log(this.addedlabel)
   }
-
+  laterToday(){
+    this.newdate = new Date();
+    this.newdate.setHours(8);
+    this.newdate.setMinutes(0);
+    this.newdate.setSeconds(0);
+    console.log(this.newdate);}
+    tommorow(){
+      this.newdate=new Date();
+      this.newdate.setDate(1);
+      this.newdate.setMonth(3)
+      this.newdate.setHours(8)
+      this.newdate.setMinutes(0);
+      this.newdate.setSeconds(0);
+      console.log( this.newdate);}
+      nextweek(){
+        const newdate=new Date();
+        newdate.setHours(168)
+        newdate.setMinutes(362);
+        newdate.setSeconds(0);
+        console.log(newdate)}
   //main function to create note
   createNote() {
 
@@ -196,7 +216,7 @@ console.log(this.addCheckList);
       "isPined": this.pinValue,
       "isArchived": this.archiveValue,
       "color": this.color,
-      "reminder": [this.date.value, this.time.value],
+      "reminder":  this.newdate,
       //"collaberators":JSON.stringify([this.collaboratorData]),
       "collaberators": JSON.stringify({
         "firstName": this.firstName,

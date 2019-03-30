@@ -39,7 +39,14 @@
   <!-- <div class="title" [style.fontSize.px]=11> {{note.noteLabels.label}}</div> -->
   <!-- <button mat-icon-button matTooltip="Archive" (click)="archive(note)">
       <mat-icon style="font-size: 17px" class="mat-18 changeColor">archive</mat-icon></button> -->
-  
+      <mat-chip-list >
+        <mat-chip [removable]="removable">{{note.reminder |  date:'medium'}}
+               
+                    <mat-icon matChipRemove>cancel</mat-icon>
+              
+        </mat-chip>
+
+      </mat-chip-list>
         <div class="alignment">
                 <app-footermenu [data]="note"></app-footermenu>
               </div>

@@ -97,6 +97,10 @@ export class HttpService {
     }
     return this.http.get(url,httpOptions)
   }
+  public PostNormalMethod(url:any,data:any){
+    return this.http.post(url,data)
+
+  }
   public loggIn()
   {
     return !!localStorage.getItem("token");

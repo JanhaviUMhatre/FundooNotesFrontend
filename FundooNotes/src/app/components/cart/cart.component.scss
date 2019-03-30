@@ -1,37 +1,62 @@
+@import "../../styles/colors.scss";
+
 .fundoobutton{
-    background-color: #f7ba33;
+    background-color: $yellow;
     border-radius: 55px;
-    color: white;
+    color: $white;
 }
 mat-horizontal-stepper{
-    width:500px;
+    max-width:500px;
     padding-top: 15px;
     padding-left: 15px;
     height: 1px;
     margin-top: -32px;
 }
+/deep/ .mat-progress-bar-buffer {
+    background-color: black;
+}
+mat-progress-bar{
+    max-width:500px;
+    padding-top: 15px;
+    padding-left: 15px;
+    height: 1px;
+    // margin-top: -32px;
+}
+.widthforshopping{
+    max-width: 900px;
+}
+.icononbar{
+    margin: -1;
+    margin-left: -505px;
+}
+.changeicon{
+    margin-left: -290px;
+}
+.changeicons{
+    margin-left: -20px;
+}
 .headings{
     padding-top: 10px;
 }
 h5{
-    color: gray;
+    color: $gray;
 }
 /deep/ .mat-horizontal-content-container {
     overflow: hidden;
     padding: 0 0px 0px 0px;
-    width:700px;
+    max-width:700px;
 }
 .cardwidth{
-    width: 600px;
+    max-width: 600px;
     border-radius: 10px;
  
 }
 .innercard{
-    width: 60px;
+    max-width: 60px;
     height: 60px;
-    background-color: #949494;
+    background-color: $gray;
     border-radius: 10px;
-    color: white;
+    color: $white;
     
 }
 .servicename{
@@ -40,7 +65,7 @@ h5{
 .packdetails{
     font-size: 20px;
     padding-left: 15px;
-    color: #3b86ff;
+    color: $bluebutton;
 }
   
 .bottommenu{
@@ -60,33 +85,34 @@ mat-label{
 .paycard{
    
     background-color: #f3f3f3;
-    width: 150px;
+    max-width: 150px;
     height: 50px;
     padding-top: 10px;
 }
 .buttonpay{
-    width: 162px;
-    background-color: #3b86ff;
-    color: white;
-    
+    max-width: 162px;
+    background-color: $bluebutton;
+    color: $white;
+ 
 }
 p{
     font-size: 11px;
 }
 .pricecolor{
-    color: #c96e58;
+    color: $cartprice;
     font-size: 14px;
 }
+
 .divideralign{
     padding-top: 10px;
 }
 .boxinfo{
     margin-top: 21px;
-    width: 100px;
+    max-width: 100px;
     height: 100px;
-    background-color: #949494;
+    background-color: $gray;
     border-radius: 10px;
-    color: white;
+    color: $white;
     margin-bottom: 21px;
 }
 .sername{
@@ -94,20 +120,20 @@ p{
     padding-top: 15px;
 }
 .desclass{
-    width:100px;
+    max-width:100px;
    
 }
 .hidepara{
-    color: white;
+    color: $white;
 }
 
 /deep/ .mat-step-header .mat-step-icon {
-    background-color: #f7ba33;
-    color: #fff;
+    background-color: $yellow;
+    color: $white;
 }
 .placeorder{
 height: 100px;
-max-width:250px;
+max-width:350px;
 background-color: #f3f3f3;
 margin-top: 15px;
 border: 1px solid;
@@ -115,4 +141,7 @@ border-color: #b9b7b7;
 }
 .alignment{
     padding-top: 10px;
+}
+.pendingcolor{
+    color: $bluebutton;
 }

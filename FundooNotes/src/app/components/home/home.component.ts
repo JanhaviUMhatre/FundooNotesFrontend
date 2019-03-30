@@ -3,6 +3,8 @@ import { PackageselectComponent } from '../packageselect/packageselect.component
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { HttpClient } from '@angular/common/http'; 
 import { CartService } from 'src/app/services/cart/cart.service';
+import { CartServiceService } from 'src/app/services/cart/cart-service.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +13,10 @@ import { CartService } from 'src/app/services/cart/cart.service';
 })
 export class HomeComponent implements OnInit {
   details: any;
-
-  constructor(public dialog: MatDialog,private http: HttpClient,private cart:CartService) { }
+  productId: any;
+  baseUrl = environment.baseUrl;
+  productdetails: any;
+  constructor(public dialog: MatDialog,private http: HttpClient,private cart:CartService,private carts:CartServiceService) { }
 
   ngOnInit() {
     this.getJson();
@@ -21,6 +25,7 @@ export class HomeComponent implements OnInit {
     
       const dialogRef = this.dialog.open(PackageselectComponent,
         {
+        
          
         });
   
@@ -41,6 +46,18 @@ export class HomeComponent implements OnInit {
   }
 
   sharevalues(card){
-    this.cart.sendinfocard(card)
+    
+    console.log(card['id']);
+    this.productId=card['id']
+    this.carts.addtocart({"productId":this.productId}).subscribe(
+      (response)=>{console.log("success home",response);
+      this.productdetails=response['data']['details']['product']
+      console.log("productdetails....",this.productdetails)
+      this.cart.sendinfocard(this.productdetails)
+      },
+      (error)=>{console.log("error",error);
+      }
+    )
+    
   }
 }

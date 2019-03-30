@@ -77,14 +77,14 @@
           <div class="example-align">
       <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input type="password" formControlName="password" matInput placeholder="Enter your password"  [type]="hide ? 'password' : 'password'" required />
+          <input type="password" formControlName="password" matInput placeholder="Enter your password"  [type]="hide ? 'text' : 'password'" required />
           <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>   
           
         </mat-form-field>
 <!-- confirm password -->
         <mat-form-field appearance="outline">
             <mat-label>Confirm Password</mat-label>
-            <input type="password" formControlName="confirmPassword" matInput placeholder="Enter your password" [type]="hide ? 'password' : 'password'" required>
+            <input type="password" formControlName="confirmPassword" matInput placeholder="Enter your password" [type]="hide ? 'text' : 'password'" required>
             <mat-error *ngIf="confirmPassword.invalid">{{getErrorPasswordConfirm()}}</mat-error> 
             
           </mat-form-field>

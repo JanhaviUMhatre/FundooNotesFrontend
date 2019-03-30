@@ -1,17 +1,17 @@
 <div fxLayout="row wrap" fxLayoutAlign="space-between center">
 
   <button mat-icon-button matTooltip="Remind me" [matMenuTriggerFor]="menu">
-     <img  class="fundooIcon" src="../../../assets/Icons/outline-add_alert-24px.svg">
+    <img class="fundooIcon" src="../../../assets/Icons/outline-add_alert-24px.svg">
   </button>
   <mat-menu #menu="matMenu" [overlapTrigger]="false">
 
 
     <mat-label class="label-align">Reminder:</mat-label>
-    <button mat-menu-item (click)="reminder()"> Later Today : 8 PM
+    <button mat-menu-item (click)="laterToday()"> Later Today : 8 PM
     </button>
-    <button mat-menu-item> Tomorrow : 8 AM
+    <button mat-menu-item (click)="tommorow()"> Tomorrow : 8 AM
     </button>
-    <button mat-menu-item> Next Week :Monday, 8 AM
+    <button mat-menu-item (click)="nextweek()"> Next Week :Monday, 8 AM
     </button>
     <button mat-menu-item [matMenuTriggerFor]="pickDate">
       <mat-icon [style.fontSize.px]=20>alarm</mat-icon> Pick date and time
@@ -19,10 +19,10 @@
     <mat-menu #pickDate="matMenu">
       <div fxLayout="column" fxLayoutAlign="space-around center">
         <mat-form-field class="field-size">
-                                      <input matInput [matDatepicker]="picker" [formControl]="date" [style.fontSize.px]=12>
-                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                      <mat-datepicker #picker></mat-datepicker>
-                                    </mat-form-field>
+          <input matInput [matDatepicker]="picker" [formControl]="date" [style.fontSize.px]=12>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
 
         <mat-form-field class="field-size">
           <mat-label>Time</mat-label>
@@ -35,21 +35,21 @@
           </mat-select>
         </mat-form-field>
 
-        <button mat-button >done</button>
+        <button mat-button>done</button>
       </div>
     </mat-menu>
 
   </mat-menu>
   <button mat-icon-button matTooltip="Collaborator" (click)="openDialogCollaborate()">
-      <img  class="fundooIcon" src="../../../assets/Icons/outline-person_add-24px.svg">
-      </button>
+    <img class="fundooIcon" src="../../../assets/Icons/outline-person_add-24px.svg">
+  </button>
   <button mat-icon-button matTooltip="Archive" (click)="archive()">
-      <img  class="fundooIcon" src="../../../assets/Icons/outline-archive-24px.svg">
+    <img class="fundooIcon" src="../../../assets/Icons/outline-archive-24px.svg">
   </button>
 
 
   <button mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu">
-      <img  class="fundooIcon" src="../../../assets/Icons/outline-color_lens-24px.svg">  </button>
+    <img class="fundooIcon" src="../../../assets/Icons/outline-color_lens-24px.svg"> </button>
   <mat-menu #colorMenu="matMenu" class="colorMenu" [overlapTrigger]="false">
 
     <ng-template matMenuContent let-note="note">
@@ -68,7 +68,7 @@
 
 
   <button mat-icon-button matTooltip="more" [matMenuTriggerFor]="moreMenu">
-      <img  class="fundooIcon" src="../../../assets/Icons/outline-more_vert-24px.svg">
+    <img class="fundooIcon" src="../../../assets/Icons/outline-more_vert-24px.svg">
   </button>
   <mat-menu #moreMenu="matMenu" [overlapTrigger]="false">
     <button mat-menu-item [style.fontSize.px]=13 [matMenuTriggerFor]="labelMenu">

@@ -54,11 +54,11 @@
                             <mat-menu #menu="matMenu" [overlapTrigger]="false">
                                        
                                 <mat-label class="label-align">Reminder:</mat-label>
-                                <button mat-menu-item> Later Today : 8 PM
+                                <button mat-menu-item (click)="laterToday()"> Later Today : 8 PM
                                   </button>
-                                  <button mat-menu-item> Tomorrow : 8 AM
+                                  <button mat-menu-item (click)="tommorow()"> Tomorrow : 8 AM
                                       </button>
-                                      <button mat-menu-item> Next Week :Monday, 8 AM
+                                      <button mat-menu-item (click)="nextweek()"> Next Week :Monday, 8 AM
                                           </button>
                                           <button mat-menu-item [matMenuTriggerFor]="peekDate"> Peek date and time
                                               </button>

@@ -9,7 +9,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class CartComponent implements OnInit {
 isActive=false;
-
+flag=false;
+nextflag=false;
   info: string;
   price: any;
   name: any;
@@ -25,5 +26,11 @@ getInfocard(){
   this.price=this.info['price']
   this.name=this.info['name']
   this.description=this.info['description']
+}
+checkout(){
+  this.flag=!this.flag
+}
+place(){
+  this.nextflag=!this.nextflag
 }
 }

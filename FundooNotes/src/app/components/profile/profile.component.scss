@@ -57,6 +57,9 @@ body {
     .name-link{
     color: #1a73e8;
     }
+    .colorheading{
+        color: #1a73e8;
+    }
     
     .mat-form-field-appearance-outline {
     
@@ -86,6 +89,7 @@ body {
         padding-top: 5px;
        
     }
+   
     .addimage{
        font-size:17px;
        margin-right: -88px;
@@ -119,4 +123,18 @@ body {
     }
     button{
         margin-bottom: 100px;
+    }
+    .uploadcolor{
+        background-color: #1a73e8;
+        color:white;
+    }
+    .cancelcolor{
+        background-color: #f3f3f3;
+        
+    }
+    .buttonalign{
+        padding-top: 40px;
+    }
+    .imageopacity{
+        opacity: 0.5;
     }

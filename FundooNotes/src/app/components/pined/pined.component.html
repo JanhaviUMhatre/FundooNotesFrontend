@@ -26,14 +26,14 @@
                             </button></div>
                         </div>
               </mat-chip-list>
-              <!-- <mat-chip-list >
+              <mat-chip-list >
                     <mat-chip [removable]="removable">{{note.reminder |  date:'medium'}}
                            
-                                <mat-icon matChipRemove (click)="deletelabelforever(labels,note)">cancel</mat-icon>
+                                <mat-icon matChipRemove>cancel</mat-icon>
                           
                     </mat-chip>
 
-                  </mat-chip-list> -->
+                  </mat-chip-list>
                <mat-chip-list >
     
             <div *ngFor="let labels of note.noteLabels">

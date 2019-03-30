@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
   // fileToUpload= new FormControl('')
   selectedFile: any
   fileToUpload: File = null;
-  
+  flag=false;
   profileForm: FormGroup;
   error: string;
   fileUpload = {status: '', message: '', filePath: ''};
@@ -37,7 +37,9 @@ export class ProfileComponent implements OnInit {
     });
   }
   
-  
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 
 
 // onSelectedFile(event) {
@@ -61,6 +63,7 @@ export class ProfileComponent implements OnInit {
 // }
 onSelectedFile(event){
   this.imageChangedEvent = event;
+  this.flag=!this.flag
 }
 imageCropped(event: ImageCroppedEvent) {
   this.croppedImage = event.file}
@@ -72,6 +75,7 @@ imageCropped(event: ImageCroppedEvent) {
             this.selectedFile=response['status'].imageUrl;
             localStorage.setItem('imageUrl',this.selectedFile)
             console.log("file",this.selectedFile)
+            this.onNoClick()
             //this.router.navigate(['/dashboard']);
           },
             

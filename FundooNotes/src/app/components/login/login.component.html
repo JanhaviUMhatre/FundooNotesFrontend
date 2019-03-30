@@ -44,7 +44,7 @@
       <!-- password -->
       <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input matInput placeholder="Enter your password" formControlName="password"  [type]="hide ? 'password' : 'text'" required>
+          <input matInput placeholder="Enter your password" formControlName="password"  [type]="hide ? 'text' : 'password'" required>
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
          

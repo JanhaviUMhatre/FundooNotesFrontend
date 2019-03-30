@@ -7,7 +7,7 @@
 // * @since 15-2-2019
 // *
 // ***********************************************************************************
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CreateNote } from 'src/app/models/createnote.model';
@@ -56,7 +56,8 @@ export class FootermenuComponent implements OnInit {
   time = new FormControl('')
   date=new FormControl('')
   datanote: any;
-  constructor(private que: QuestionService, private router: Router, public dialog: MatDialog, private svc: NoteService, private http: HttpClient) { }
+  remindData: { "reminder": any[]; "noteIdList": any[]; };
+  constructor( private snackBar: MatSnackBar,private que: QuestionService, private router: Router, public dialog: MatDialog, private svc: NoteService, private http: HttpClient) { }
 
 
   ngOnInit() {
@@ -209,11 +210,72 @@ export class FootermenuComponent implements OnInit {
       (error) => { console.log("error", error); }
     )
   }
-
-  reminder() {
-
-    let now = new Date();
-    console.log(now)
+  openSnackBarReminder() {
+    this.snackBar.open("reminder added!!", 'OK', {
+      duration: 3000
+    });
   }
- 
+  laterToday(){
+const newdate = new Date();
+newdate.setHours(8);
+newdate.setMinutes(0);
+newdate.setSeconds(0);
+console.log(newdate);
+this.remindData = {
+  "reminder": [newdate], "noteIdList": [this.data.id]
+
+}
+this.svc.remindMe(this.remindData).subscribe(
+  (response) => {
+    console.log("success", response);
+    this.openSnackBarReminder()
+
+  },
+  (error) => { console.log("error", error); }
+
+)
+  }
+  tommorow(){
+   const newdate=new Date();
+   newdate.setDate(1);
+   newdate.setMonth(3)
+   newdate.setHours(8)
+   newdate.setMinutes(0);
+newdate.setSeconds(0);
+   console.log(newdate);
+   this.remindData = {
+    "reminder": [newdate], "noteIdList": [this.data.id]
+
+  }
+  this.svc.remindMe(this.remindData).subscribe(
+    (response) => {
+      console.log("success", response);
+      this.openSnackBarReminder()
+
+    },
+    (error) => { console.log("error", error); }
+
+  )
+   
+ }
+ nextweek(){
+  const newdate=new Date();
+  newdate.setHours(168)
+  newdate.setMinutes(362);
+  newdate.setSeconds(0);
+  console.log(newdate)
+  this.remindData = {
+    "reminder": [newdate], "noteIdList": [this.data.id]
+
+  }
+  this.svc.remindMe(this.remindData).subscribe(
+    (response) => {
+      console.log("success", response);
+      this.openSnackBarReminder()
+
+    },
+    (error) => { console.log("error", error); }
+
+  )
+ }
 }
