@@ -383,7 +383,7 @@ export class NotesComponent implements OnInit {
         'Authorization': localStorage.getItem('token')
       })
     }
-    this.http.post('http://34.213.106.173/api/notes/' + card.id + '/noteLabels',
+    this.http.post(+this.baseUrl+'notes/' + card.id + '/noteLabels',
       {
         "label": this.labels.value, "userId": card.userId,
         "isDeleted": card.isDeleted

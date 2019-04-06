@@ -9,16 +9,6 @@ mat-card{
     width: 190px;
 }
 
-@media(max-width:500px){
-    mat-card{
-        height:120px;
-        width: 90px;
-    }
-    .label{
-        font-size: 11px;
-    }
-  
-}
 .cardalign{
     padding-left: 60px;
   
@@ -81,3 +71,30 @@ mat-card{
       color: #3880eb;
 
   }
+
+@media(max-width:500px){
+    mat-card{
+        height:120px;
+        width: 90px;
+    }
+    .label{
+        font-size: 13px;
+    }
+    li{
+        padding-bottom: 15px;
+        color: #808080;
+       font-size: 10px;
+    }
+    .paragraph{
+        color: #3880eb;
+        margin-top: 0px;
+    }
+    .allign{
+      
+        position: fixed;
+        top: 459px;
+        color: white;
+        font-size: 20px;
+        padding-left: 60px;
+      }
+}

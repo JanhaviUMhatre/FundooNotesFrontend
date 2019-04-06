@@ -78,6 +78,7 @@
   .mat-radio-button ~ .mat-radio-button {
     margin-left: 16px;
   }
+ 
   .button-colour{
     background-color: #1a73e8;
   }
@@ -87,17 +88,22 @@
   .name-link{
     color: #1a73e8;
   }
+  .passwordfield{
+    display:block;
+  }
   $mat-card-border-radius: 13px !default;
 .mat-card {
   border-radius: $mat-card-border-radius;}
   //media query for mobile view
   @media(max-width:540px){
-  
+    
     mat-card{
-      max-width: 27rem;
+      max-width:300px;
     }
    
-  
+  .passwordfield{
+    width:200px;
+  }
       body { 
         font-family: Roboto, Arial, sans-serif;
         width: 200px;

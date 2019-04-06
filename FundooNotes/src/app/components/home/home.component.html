@@ -7,9 +7,10 @@
   <mat-label class="labelclass">which fundooNotes service package do you want?</mat-label>
 </div>
 <div fxLayout="column" >
-<div fxLayout="row" fxLayoutAlign="space-around center" class="cards" >
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="150px" fxLayoutAlign="space-around center" class="cards" >
   <div *ngFor="let i of details">
- <div class="zoom" (click)="openDialoge()" (click)="sharevalues(i)"> <mat-card class="bottom"><mat-card ><mat-label class="label" >${{i.price}}/month</mat-label>
+ <div class="zoom" (click)="openDialoge()" (click)="sharevalues(i)">
+    <mat-card class="bottom"><mat-card ><mat-label class="label" >${{i.price}}/month</mat-label>
 <p class="paragraph">{{i.name}}</p>
 <ul>
  
@@ -34,4 +35,3 @@
     </div></div>
         <mat-label fxLayoutAlign="space-around end" class="signin" [routerLink]="'/login'">Sign in instead</mat-label>
       </div>
-

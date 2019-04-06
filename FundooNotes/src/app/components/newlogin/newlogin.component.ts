@@ -7,6 +7,7 @@ import { UserServiceService } from 'src/app/services/userServices/user-service.s
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { CartService } from 'src/app/services/cart/cart.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-newlogin',
@@ -19,6 +20,9 @@ export class NewloginComponent implements OnInit {
   data:any;
   servicename:string;
   info: string;
+  breakpoint: number;
+  baseUrl = environment.baseUrl;
+
   constructor(private view: ViewService,private snackBar: MatSnackBar,private cart: CartService,
     // private Auth : AuthService,
      private svc : UserServiceService,private router: Router,private formBuilder: FormBuilder,private http:HttpClient) { }
@@ -27,14 +31,16 @@ export class NewloginComponent implements OnInit {
     email : [this.user.email, [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9._]+@[a-zA-Z]+.[a-zA-Z]+$')]],
     password : [this.user.password, [Validators.required, // password validation
       Validators.minLength(6)]],
+      cartId: [localStorage.getItem('cartId')]
     
     });
   ngOnInit() {
     this.getJson()
     this.cart.cards.subscribe(info => this.info = info)
+    this.breakpoint = (window.innerWidth <= 500) ? 1 : 2;
   }
   getJson(){
-    this.http.get('http://34.213.106.173/api/user/service').subscribe(
+    this.http.get(this.baseUrl+'user/service').subscribe(
       (Response)=>{console.log("success",Response);
       this.details=Response['data']['data']
       this.servicename=this.info['name']
@@ -95,5 +101,9 @@ password = new FormControl('', [Validators.required,Validators.minLength(6)]);
 getErrorMessagePassword() {
   return this.password.hasError('required') ? 'password should be of minimum 6 characters' : this.password.hasError('password') ? 'password should be of minimum 6 characters' :'';
 }
+onResize(event) {
+  this.breakpoint = (event.target.innerWidth <= 500) ? 1 : 2;
+}
+
 }
 

@@ -22,7 +22,7 @@ import { NewloginComponent } from './components/newlogin/newlogin.component';
 import { NewregisterComponent } from './components/newregister/newregister.component';
 import { PackagecardComponent } from './components/packagecard/packagecard.component';
 import { CartComponent } from './components/cart/cart.component';
-
+import { PinedComponent } from './components/pined/pined.component';
 const routes: Routes = [
     {
         path : 'registration',
@@ -80,6 +80,10 @@ const routes: Routes = [
           {
             path:'notes',
             component:NotesComponent
+          },
+          {
+            path:'pined',
+            component:PinedComponent
           },
           {
             path:'search',

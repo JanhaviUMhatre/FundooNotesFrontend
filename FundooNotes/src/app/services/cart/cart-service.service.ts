@@ -12,4 +12,10 @@ export class CartServiceService {
   addtocart(userData){
     return this.user.PostNormalMethod(this.baseUrl+'productcarts/addToCart',userData)
   }
+  placeorder(userData){
+    return this.user.postMethodJSON(this.baseUrl+'productcarts/placeOrder',userData)
+  }
+  mycart(){
+    return this.user.getForm(this.baseUrl+'productcarts/myCart')
+  }
 }

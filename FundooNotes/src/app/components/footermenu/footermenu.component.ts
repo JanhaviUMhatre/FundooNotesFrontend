@@ -155,7 +155,7 @@ export class FootermenuComponent implements OnInit {
         'Authorization': localStorage.getItem('token')
       })
     }
-    this.http.post('http://34.213.106.173/api/notes/' + this.data.id + '/noteLabels',
+    this.http.post(this.baseUrl+'notes/' + this.data.id + '/noteLabels',
       {
         "label": this.labels.value, "userId": this.data.userId,
         "isDeleted": this.data.isDeleted

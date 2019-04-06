@@ -1,83 +1,74 @@
-<!-- 
-
 <mat-toolbar class="toolbar">
-    
-    <div class="iconAndTitle">
-  <button mat-icon-button class="material-icons" (click)="sidenav.toggle()">
-    <mat-icon>menu</mat-icon> 
-  </button>
-
-  
-    <img class="fundooIcon" src="../../../assets/fundoo.png">
- 
-    <div class="example-title">
-   <div class="position-header">
-     <div class="dashboardTitle" *ngIf="headerName==null">fundoonotes</div>
-     <div class="dashboardTitle">{{headerName}}</div></div>
-    </div></div> 
-    
-    
-   
-      <div class="field-position">
-        <mat-form-field class="field" appearance="outline" [style.fontSize.px]=12 > 
-          
-          <input matInput type="text" class="searchInputBar" [(ngModel)]="Search" 
-          placeholder="search" [style.fontSize.px]=18 (keyup)="lookFor()" (click)="openSearch()">
-          <button mat-icon-button matSuffix>
-       <mat-icon  class="mat-18">search</mat-icon>
-      </button>
-        </mat-form-field>
-      </div>
-     
-   
-      <div fxLayout="row" fxLayoutAlign="space-evenly center" >
-        <div class="endtoolbar">
-        
-          <button mat-icon-button>
-            <mat-icon class="mat-18">refresh</mat-icon>
-          </button>
+  <div fxLayout="row" fxFlex=100  fxFlex.m=60  fxLayoutAlign="space-between center" >
+      <button mat-icon-button class="material-icons" (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon> 
+        </button>
+        <div>
+          <img  class="fundooIcon" src="../../../assets/fundoo.png" *ngIf="flagsearch===true">
         </div>
-       <div class="align-logout">
-          <button mat-icon-button>
+        <div class="dashboardTitle" *ngIf="headerName==null">fundooNotes</div>
+        <div class="dashboardTitle">{{headerName}}</div>
+        <button mat-icon-button class="serachbutton" *ngIf="flagsearch===true" (click)="changesearch()">
+          <mat-icon>search</mat-icon>
+          </button>
+        <div class="searchdiv" *ngIf="flagsearch===false"  >
+          <button mat-icon-button  (click)="changesearch()">
+          <mat-icon>search</mat-icon>
+          </button>
+          <input  class="search" matInput
+          placeholder="search" [style.fontSize.px]="18" [(ngModel)]="Search" (keyup)="lookFor()" (click)="openSearch()" autocomplete="off">
+          </div>
+          <div class="searchdivv"  >
+              <button mat-icon-button  (click)="changesearch()">
+              <mat-icon>search</mat-icon>
+              </button>
+              <input  class="searchh" matInput
+              placeholder="search" [style.fontSize.px]="18" [(ngModel)]="Search" (keyup)="lookFor()" (click)="openSearch()" autocomplete="off">
+              </div>
+          <button mat-icon-button class="listview">
               <mat-icon class="mat-18" (click)="changeView()">{{icon}}</mat-icon>
             </button>
-            
-        </div>
-     <div class="align-logout" class="account">
-       
-        <div [matMenuTriggerFor]="menu"  >
-            <img src="http://34.213.106.173/{{data}}" class="accountButton" >
-        </div>
-      </div></div>
-        <mat-menu #menu="matMenu" [overlapTrigger]="false">
-            <div fxLayout="column"  >
-            <div fxLayout="row wrap"  >
-         <div >
-            <img src="http://34.213.106.173/{{data}}"  class="profileButton" (click)="openDialog()">
-          </div>
-          <div  class="username">
-              <div fxLayout="column wrap" fxLayoutAlign="center center" >
-             <mat-label  [style.fontSize.px]=15>Pushkar Ishware</mat-label>
-             <mat-label [style.fontSize.px]=12>pushkar.ishware@gmail.com</mat-label>
-             </div>
+            <button mat-icon-button class="cart" [routerLink]="['cart']" (click)="callmycart()"  *ngIf="flagsearch===true">
+              <img src="../../../assets/Icons/outline-shopping_cart-24px.svg">
+             </button>
+             <div  class="account">
+           
+              <div [matMenuTriggerFor]="menu"  >
+                  <img src="http://34.213.106.173/{{data}}" class="accountButton"  *ngIf="flagsearch===true">
+              </div>
             </div>
+            <mat-menu #menu="matMenu" [overlapTrigger]="false">
+              <div fxLayout="column"  >
+              <div fxLayout="row wrap"  >
+           <div >
+              <img src="http://34.213.106.173/{{data}}"  class="profileButton" (click)="openDialog()">
             </div>
-            <mat-divider></mat-divider>
-            <button mat-raised-button (click)="signout()">Sign Out</button>
-            </div>
-          </mat-menu>
+            <div  class="username">
+                <div fxLayout="column wrap" fxLayoutAlign="center center" >
+               <mat-label  [style.fontSize.px]=15>Pushkar Ishware</mat-label>
+               <mat-label [style.fontSize.px]=12>pushkar.ishware@gmail.com</mat-label>
+               </div>
+              </div>
+              </div>
+              <mat-divider></mat-divider>
+              <button mat-raised-button (click)="signout()">Sign Out</button>
+              </div>
+            </mat-menu>
+  </div>
 
-      </mat-toolbar><mat-divider></mat-divider>
+</mat-toolbar>
 
-      
-      <mat-sidenav-container class="sidenavBar">
-          <mat-sidenav #sidenav mode="side" opened="true" style="min-width:50px;" class="sideNav">
-         
-            <mat-nav-list class="sideNavList">       
+  <mat-divider></mat-divider>
+  <mat-sidenav-container class="sidenavBar">
+    <mat-sidenav #sidenav mode="side" opened="true"  class="sideNav">
+      <mat-nav-list class="sideNavList">   
+          
+          <mat-nav-list class="sideNavList">       
               <div>
-                <button mat-button  [routerLink]="['addNote']" (click)="headerName='Notes'" [ngClass]="{'sideNavListItems': headerName!='Fundoo Notes', 'sideNavlistItemsColored': headerName=='Fundoo Notes'}">
-                  <mat-icon>lightbulb_outline</mat-icon> Notes
-                </button>
+                
+  <button mat-button [routerLink]="['addNote']" (click)="headerName='fundooNotes'" [ngClass]="{'sideNavListItems': headerName!='fundooNotes', 'sideNavlistItemsColored': headerName=='fundooNotes'}">
+      <mat-icon>lightbulb_outline</mat-icon> Notes
+      </button>
               </div>
         
               <div>
@@ -88,17 +79,17 @@
               <mat-divider></mat-divider>
               <div>
                 <mat-label class="label-example" [style.fontSize.px]=16>Labels</mat-label>
-      
+                
                 <div *ngFor="let labels of label; let i = index">
-                <button mat-button (click)="getIdlabel(labels)" (click)="headerName='labels'" [ngClass]="{'sideNavListItems': headerName!='Labels', 'sideNavlistItemsColored': headerName=='Labels'}">
+                <button mat-button (click)="getIdlabel(labels)" (click)="labelname(labels.label)" [routerLink]="['addlabel']" (click)="headerName='labels'" [ngClass]="{'sideNavListItems': headerName!='Labels', 'sideNavlistItemsColored': headerName=='Labels'}">
                   <mat-icon>label_outline</mat-icon> {{labels.label}}
                 </button>
               </div>
                 <button class="sideNavListItems" mat-button (click)="openModal(mytemplate)"> <mat-icon>edit</mat-icon>Edit Labels</button>
-
-    <ng-template #mytemplate>
+  
+    <ng-template #mytemplate class="editlabel">
         <div>
-
+  
             <h3>Edit Label</h3>
           <div>
             <div fxLayout="column" fxLayoutAlign="start start" >
@@ -107,10 +98,21 @@
               <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
                 <mat-icon [style.fontSize.px]=15> close</mat-icon>
               </button>
-</div>
-<div *ngFor="let labels of label; let i = index">
-  <mat-checkbox>{{labels.label}}</mat-checkbox>
-</div>
+  </div>
+  <div *ngFor="let labels of label; let i = index" >
+  <div fxLayout="row">
+  <button mat-button (click)="deletelabelforever(labels)">
+      <mat-icon [style.fontSize.px]=18>delete_outline</mat-icon>
+    </button>
+  <mat-form-field class="example-full-width">
+   
+    <input type="text" matInput [style.fontSize.px]=11 value={{labels.label}}>
+   
+  </mat-form-field>
+  <button mat-button >
+  <mat-icon [style.fontSize.px]=11>mode_edit_outline</mat-icon></button>
+  </div>
+  </div>
           </div>
           <div fxLayoutAlign="end" >
           <button mat-button>close</button></div>
@@ -133,164 +135,12 @@
               </div>  
                
             </mat-nav-list>  
-          </mat-sidenav> 
-          <mat-sidenav-content class="sideNavContent">
-              
-            <router-outlet ></router-outlet>
             
-        </mat-sidenav-content> 
-        </mat-sidenav-container>
-
-     -->
-
-
-     <mat-toolbar class="toolbar">
-      <div fxLayout="row"  fxFlex="100"   fxLayoutAlign="space-between center" >
-       
-    
-      <button mat-icon-button class="material-icons" (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon> 
-      </button>
-      <div>
-        <img  class="fundooIcon" src="../../../assets/fundoo.png">
-      </div>
-      <div class="dashboardTitle" *ngIf="headerName==null">fundooNotes</div>
-      <div class="dashboardTitle">{{headerName}}</div>
- <!-- <mat-form-field  appearance="outline" [style.fontSize.px]=13  class="searchbar" > 
-        <input matInput type="text" [(ngModel)]="Search" 
-        placeholder="search" [style.fontSize.px]=18 (keyup)="lookFor()" (click)="openSearch()">
-        <mat-icon matSuffix [style.fontSize.px]=12 >close</mat-icon>
-      </mat-form-field> -->
-      <div class="searchdiv"  >
-          <button mat-icon-button>
-          <mat-icon>search</mat-icon>
-          </button>
-          <input  class="search" matInput
-          placeholder="search" [style.fontSize.px]="18" [(ngModel)]="Search" (keyup)="lookFor()" (click)="openSearch()" autocomplete="off">
-          </div>
-      <button mat-icon-button>
-        <mat-icon class="mat-18">refresh</mat-icon>
-      </button>
-      <button mat-icon-button class="listview">
-        <mat-icon class="mat-18" (click)="changeView()">{{icon}}</mat-icon>
-      </button>
-      <button mat-icon-button class="listview" [routerLink]="['cart']">
-         <img src="../../../assets/Icons/outline-shopping_cart-24px.svg">
-        </button>
-      <div  class="account">
-         
-          <div [matMenuTriggerFor]="menu"  >
-              <img src="http://34.213.106.173/{{data}}" class="accountButton" >
-          </div>
-        </div>
-        <mat-menu #menu="matMenu" [overlapTrigger]="false">
-            <div fxLayout="column"  >
-            <div fxLayout="row wrap"  >
-         <div >
-            <img src="http://34.213.106.173/{{data}}"  class="profileButton" (click)="openDialog()">
-          </div>
-          <div  class="username">
-              <div fxLayout="column wrap" fxLayoutAlign="center center" >
-             <mat-label  [style.fontSize.px]=15>Pushkar Ishware</mat-label>
-             <mat-label [style.fontSize.px]=12>pushkar.ishware@gmail.com</mat-label>
-             </div>
-            </div>
-            </div>
-            <mat-divider></mat-divider>
-            <button mat-raised-button (click)="signout()">Sign Out</button>
-            </div>
-          </mat-menu>
-    
-        </div>
-    
-    </mat-toolbar>
-    <mat-divider></mat-divider>
-    
-    <mat-sidenav-container class="sidenavBar">
-      <mat-sidenav #sidenav mode="side" opened="true"  class="sideNav">
-        <mat-nav-list class="sideNavList">   
+      </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="sideNavContent">
             
-            <mat-nav-list class="sideNavList">       
-                <div>
-                  
-    <button mat-button [routerLink]="['addNote']" (click)="headerName='fundooNotes'" [ngClass]="{'sideNavListItems': headerName!='fundooNotes', 'sideNavlistItemsColored': headerName=='fundooNotes'}">
-        <mat-icon>lightbulb_outline</mat-icon> Notes
-        </button>
-                </div>
-          
-                <div>
-                  <button mat-button [routerLink]="['reminder']"  (click)="headerName='Reminders'" [ngClass]="{'sideNavListItems': headerName!='Reminders', 'sideNavlistItemsColored': headerName=='Reminders'}">
-                    <mat-icon>notifications_none</mat-icon> Reminders
-                  </button>
-                </div>
-                <mat-divider></mat-divider>
-                <div>
-                  <mat-label class="label-example" [style.fontSize.px]=16>Labels</mat-label>
-                  <!-- <button class="sideNavListItems" mat-button (click)="openDialog()">
-                    <mat-icon>edit</mat-icon>Edit Labels
-                  </button> -->
-                  <div *ngFor="let labels of label; let i = index">
-                  <button mat-button (click)="getIdlabel(labels)" (click)="labelname(labels.label)" [routerLink]="['addlabel']" (click)="headerName='labels'" [ngClass]="{'sideNavListItems': headerName!='Labels', 'sideNavlistItemsColored': headerName=='Labels'}">
-                    <mat-icon>label_outline</mat-icon> {{labels.label}}
-                  </button>
-                </div>
-                  <button class="sideNavListItems" mat-button (click)="openModal(mytemplate)"> <mat-icon>edit</mat-icon>Edit Labels</button>
-    
-      <ng-template #mytemplate class="editlabel">
-          <div>
-    
-              <h3>Edit Label</h3>
-            <div>
-              <div fxLayout="column" fxLayoutAlign="start start" >
-                <div fxLayout="row" fxLayoutAlign="space-between center" >
-                <input matInput type="text" placeholder="add label" [(ngModel)]="value">
-                <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-                  <mat-icon [style.fontSize.px]=15> close</mat-icon>
-                </button>
-    </div>
-    <div *ngFor="let labels of label; let i = index" >
-    <!-- <mat-checkbox>{{labels.label}}</mat-checkbox> -->
-    <div fxLayout="row">
-    <button mat-button (click)="deletelabelforever(labels)">
-        <mat-icon [style.fontSize.px]=18>delete_outline</mat-icon>
-      </button>
-    <mat-form-field class="example-full-width">
-     
-      <input type="text" matInput [style.fontSize.px]=11 value={{labels.label}}>
-     
-    </mat-form-field>
-    <button mat-button >
-    <mat-icon [style.fontSize.px]=11>mode_edit_outline</mat-icon></button>
-    </div>
-    </div>
-            </div>
-            <div fxLayoutAlign="end" >
-            <button mat-button>close</button></div>
-            </div>
-            
-            
-            </div>
-      </ng-template>
-                </div>
-                <mat-divider></mat-divider>
-                <div>
-                  <button mat-button [routerLink]="['archive']" (click)="headerName='Archive'" [ngClass]="{'sideNavListItems': headerName!='Archive', 'sideNavlistItemsColored': headerName=='Archive'}">
-                    <mat-icon>archive</mat-icon> Archive
-                  </button>
-                </div> 
-                <div>
-                  <button mat-button [routerLink]="['trash']" (click)="headerName='Trash'" [ngClass]="{'sideNavListItems': headerName!='Trash', 'sideNavlistItemsColored': headerName=='Trash'}">
-                    <mat-icon>delete</mat-icon> Trash
-                  </button>
-                </div>  
-                 
-              </mat-nav-list>  
-              
-        </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content class="sideNavContent">
-              
-        <router-outlet ></router-outlet>
-        
-    </mat-sidenav-content> 
-    </mat-sidenav-container>
+   <router-outlet></router-outlet>
+      
+  </mat-sidenav-content> 
+  </mat-sidenav-container>

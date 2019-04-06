@@ -20,6 +20,6 @@ export class CartService {
     return this.user.getFormData(this.baseUrl+'user/service/')
   }
   addtocart(userData){
-    return this.user.postMethodJSON(this.baseUrl+'productcarts/addToCart',userData)
+    return this.user.PostNormalMethod(this.baseUrl+'productcarts/addToCart',userData)
   }
 }

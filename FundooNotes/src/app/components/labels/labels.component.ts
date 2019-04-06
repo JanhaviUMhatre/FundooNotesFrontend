@@ -5,6 +5,7 @@ import { NoteService } from 'src/app/services/notes/note.service';
 import { FormControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-labels',
@@ -21,6 +22,7 @@ archivevalue=false;
 title = new FormControl(this.data.title)
 description = new FormControl(this.data.description)
 labels = new FormControl('')
+baseUrl = environment.baseUrl;
 
   archiveData: { "isArchived": boolean; "noteIdList": any[]; };
   id: any;
@@ -162,7 +164,7 @@ const httpOptions = {
     'Authorization':localStorage.getItem('token')
   })
 }
-this.http.post('http://34.213.106.173/api/notes/'+data.id+'/noteLabels',
+this.http.post(this.baseUrl+'notes/'+data.id+'/noteLabels',
 {"label":this.labels.value,"userId": data.userId,
 "isDeleted": data.isDeleted},httpOptions).subscribe(
   (response) => {console.log("success",response);

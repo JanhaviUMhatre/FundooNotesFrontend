@@ -108,11 +108,11 @@
       <div class="widthforshopping"  *ngIf="flag===false">
       <div fxLayout="row" fxLayoutAlign="space-between center">
         <h2 class="mat-h2">Shopping cart</h2>
-        <p class="hidepara">hiddennnnnnn</p>
+        <p class="hidepara">hiddennnnnnnnnnnnnnnnnnnnnnnnnnnn</p>
        
        <p>price</p>
        <p>validity</p>
-       <p class="hidepara">hiddennnnnnnnnnnnnnnnnnnn</p>
+       <p class="hidepara">hiddennnnnnnnnnnnnnnnnnnnnnnnnnnn</p>
           </div>
         <mat-divider></mat-divider>
         <div fxLayout="row" fxLayoutAlign="space-between start">
@@ -166,7 +166,7 @@
           <div fxLayout="row" fxLayoutAlign="center center" >
           <div fxLayout="column" fxLayoutAlign="center center" class="bottommenu">
         <mat-label> Delivery Address</mat-label>
-        <textarea></textarea>
+        <textarea [formControl]='address'></textarea>
         <h4 class="align">Payment Method : cash on delivery</h4>
       </div>
      
@@ -202,7 +202,7 @@
       <div fxLayout="column">
       <h4 class="mat-h4 pricecolor" >${{price}}</h4>
       <h4 class="mat-h4 pricecolor" > per month</h4>
-      <p class="pendingcolor" > pending</p></div>
+      <p class="pendingcolor">{{status}}</p></div>
     </div>
    <mat-divider></mat-divider>
   </div>

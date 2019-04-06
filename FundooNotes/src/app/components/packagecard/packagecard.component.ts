@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CartService } from 'src/app/services/cart/cart.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-packagecard',
@@ -11,6 +12,7 @@ export class PackagecardComponent implements OnInit {
   details: any;
   info: string;
   cartid: any;
+  baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient, private cart:CartService) { }
 
@@ -20,7 +22,7 @@ export class PackagecardComponent implements OnInit {
 
   }
   getJson(){
-    this.http.get('http://34.213.106.173/api/user/service').subscribe(
+    this.http.get(this.baseUrl+'user/service').subscribe(
       (Response)=>{console.log("success",Response);
       this.details=Response['data']['data']
       this.cartid=this.info['id']

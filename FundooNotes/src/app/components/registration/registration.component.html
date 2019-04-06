@@ -44,8 +44,8 @@
         
           <div class="example-align">
 <!-- firstname -->
-
-<mat-form-field appearance="outline">
+<div fxLayout.xs="column" >
+<mat-form-field appearance="outline" class="usernamefield">
   <mat-label>Firstname</mat-label>
   <input formControlName="firstName" matInput placeholder="Firstname" required>
   <mat-error *ngIf="firstName.invalid">{{getErrorMessage()}}</mat-error>
@@ -58,7 +58,7 @@
           <mat-error *ngIf="lastName.invalid">{{getErrorMessageLast()}}</mat-error>
         </mat-form-field>
       </div>
-    
+    </div>
 <!-- phonenumber -->
       <mat-form-field appearance="outline">
           <mat-label>Phonenumber</mat-label>
@@ -74,22 +74,23 @@
             <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
           </mat-form-field>
 <!-- password -->
-          <div class="example-align">
-      <mat-form-field appearance="outline">
+
+          <div class="example-align" fxLayout.xs="column">
+      <mat-form-field appearance="outline" class="passwordfield">
           <mat-label>Password</mat-label>
           <input type="password" formControlName="password" matInput placeholder="Enter your password"  [type]="hide ? 'text' : 'password'" required />
           <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>   
           
         </mat-form-field>
 <!-- confirm password -->
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline"  class="passwordfield">
             <mat-label>Confirm Password</mat-label>
             <input type="password" formControlName="confirmPassword" matInput placeholder="Enter your password" [type]="hide ? 'text' : 'password'" required>
             <mat-error *ngIf="confirmPassword.invalid">{{getErrorPasswordConfirm()}}</mat-error> 
             
           </mat-form-field>
         </div>
-
+    
 <!-- service type -->
          <!-- <mat-radio-group formControlName="service" class = "example-radio"> <a>Service Type : </a>
           <mat-radio-button value="basic">Basic</mat-radio-button> 

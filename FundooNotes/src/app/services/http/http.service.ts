@@ -16,19 +16,19 @@ export class HttpService {
 
   public registerUser(RegisterModel): Observable<any> {
     return this.http.post<RegisterModel>(
-      'http://34.213.106.173/api/user/userSignUp',
+      this.baseUrl+'user/userSignUp',
       RegisterModel
     );
   }
   public login(LoginModel): Observable<any> {
     return this.http.post<LoginModel>(
-      'http://34.213.106.173/api/user/login',
+      this.baseUrl+'user/login',
       LoginModel
     );
   }
   public forgotPassword(ForgotPassword): Observable<any> {
     return this.http.post<ForgotPassword>(
-      'http://34.213.106.173/api/user/reset-password',
+      this.baseUrl+'user/reset-password',
       ForgotPassword
     );
   }

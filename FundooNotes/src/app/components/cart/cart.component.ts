@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart/cart.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { CartServiceService } from 'src/app/services/cart/cart-service.service';
 
 @Component({
   selector: 'app-cart',
@@ -15,22 +16,63 @@ nextflag=false;
   price: any;
   name: any;
   description: any;
-  constructor(private cart:CartService,private _formBuilder: FormBuilder) { }
+  address= new FormControl('',[Validators.required])
+  cartId: string;
+  placeorderData: { "cartId": string; "address": any; };
+  status: any;
+  cartpack: any;
+  constructor(private cart:CartService,private _formBuilder: FormBuilder,private cartser:CartServiceService) { }
 
   ngOnInit() {
+    
     this.cart.cards.subscribe(info => this.info = info)
-    this.getInfocard()
+   
+    
+    this.callmycart()
   
   }
-getInfocard(){
-  this.price=this.info['price']
-  this.name=this.info['name']
-  this.description=this.info['description']
-}
+// getInfocard(){
+//   for(let k of this.info){
+//   // this.price=this.info['price']
+//   this.name=k['product'].name
+//   // this.description=this.info['description']
+//   this.status=k['status']
+
+// }
+//   //console.log("------------",this.info)
+// }
 checkout(){
   this.flag=!this.flag
 }
 place(){
+ 
+console.log(this.address.value)
+this.cartId=localStorage.getItem('cartId')
+this.placeorderData={"cartId":this.cartId,"address":this.address.value}
+this.cartser.placeorder(this.placeorderData).subscribe(
+  (response)=>{console.log("success",response);
   this.nextflag=!this.nextflag
+  },
+  (error)=>{console.log("error",error);
+  }
+)
+}
+callmycart(){
+  this.cartser.mycart().subscribe(
+      (Response)=>{console.log("success",Response);
+      this.cartpack=Response['data']
+      for(let i of Response['data']){
+          this.status=i.status
+          this.price=i.price
+          this.name=i.product.name
+          this.description=i.product.description
+          console.log("statusssss",this.status);
+          console.log("nameee",this.name);
+          
+      }
+      },
+      (error)=>{console.log("error",error);
+      }
+  )
 }
 }
