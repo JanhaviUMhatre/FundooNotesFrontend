@@ -57,6 +57,8 @@ export class FootermenuComponent implements OnInit {
   date=new FormControl('')
   datanote: any;
   remindData: { "reminder": any[]; "noteIdList": any[]; };
+  collaborator: any;
+  colUserid: any;
   constructor( private snackBar: MatSnackBar,private que: QuestionService, private router: Router, public dialog: MatDialog, private svc: NoteService, private http: HttpClient) { }
 
 
@@ -65,6 +67,11 @@ export class FootermenuComponent implements OnInit {
  
   }
   openDialogCollaborate(): void {
+    for(let i of this.data.collaborators){
+      this.collaborator=i.email
+      this.colUserid=i.userId
+    }
+
     const dialogRef = this.dialog.open(CollaboratorComponent,
       {
         data: {
@@ -73,18 +80,22 @@ export class FootermenuComponent implements OnInit {
           id: this.data.user.id,
           firstName: this.data.user.firstName,
           lastName: this.data.user.lastName,
-          userId: this.data.user.userId,
+          userId: this.data.userId,
+          collaborator:this.collaborator,
+          colUserid: this.colUserid
 
         }
-      });
-
+        
+      }
+      );
+console.log("data send--------",this.data)
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
 
     });
   }
   gotoquestion() {
-    console.log("clicked");
+    // console.log("clicked");
 
     // this.router.navigate(['/questions'])
     this.que.changeMessage(this.data.title)
@@ -92,36 +103,40 @@ export class FootermenuComponent implements OnInit {
     this.que.changeMessageArray(this.data.id)
   }
   archive() {
-    console.log(this.data.title)
-    console.log(this.data.isArchived)
+    // console.log(this.data.title)
+    // console.log(this.data.isArchived)
     this.data.isArchived = !this.data.isArchived
-    console.log(this.data.isArchived);
+    // console.log(this.data.isArchived);
     this.archiveData = {
       "isArchived": this.data.isArchived,
       "noteIdList": [this.data.id]
     }
-    console.log(this.archiveData);
+    // console.log(this.archiveData);
     this.svc.archivednote(this.archiveData).subscribe(
       (response) => {
-        console.log("success", response);
+        // console.log("success", response);
 
       },
-      (error) => { console.log("error", error); }
+      (error) => {
+        //  console.log("error", error); 
+        }
     )
   }
 
   changeColor(color) {
-    console.log(color, this.data.color)
+    // console.log(color, this.data.color)
     this.ColorData = {
       "color": color,
       "noteIdList": [this.data.id]
     }
-    console.log(this.ColorData)
+    // console.log(this.ColorData)
     this.svc.colornote(this.ColorData).subscribe(
       (response) => {
-        console.log("success", response);
+        // console.log("success", response);
       },
-      (error) => { console.log("error", error); }
+      (error) => {
+        //  console.log("error", error);
+         }
     )
 
   }
@@ -130,11 +145,13 @@ export class FootermenuComponent implements OnInit {
   getLabelsDashboard() {
     this.svc.getLabels().subscribe(
       (response) => {
-        console.log("success", response);
+        // console.log("success", response);
         this.label = response['data']['details'];
-        console.log(this.label)
+        // console.log(this.label)
       },
-      (error) => { console.log("error", error) }
+      (error) => {
+        //  console.log("error", error) 
+        }
     )
   }
 
@@ -148,7 +165,7 @@ export class FootermenuComponent implements OnInit {
 
     }
 
-    console.log(this.addlabeldata)
+    // console.log(this.addlabeldata)
     const httpOptions = {
       headers: new HttpHeaders({
 
@@ -161,12 +178,14 @@ export class FootermenuComponent implements OnInit {
         "isDeleted": this.data.isDeleted
       }, httpOptions).subscribe(
         (response) => {
-          console.log("success", response);
+          // console.log("success", response);
           this.labelresponse = response
-          console.log("label response", this.labelresponse)
+          // console.log("label response", this.labelresponse)
 
         },
-        (error) => { console.log("error", error); }
+        (error) => {
+          //  console.log("error", error); 
+          }
       )
   }
 
@@ -177,10 +196,14 @@ export class FootermenuComponent implements OnInit {
 
 
     }
-    console.log("selected label", this.addlabel);
+    // console.log("selected label", this.addlabel);
     this.svc.addingchecklistlabels('notes/' + this.data.id + '/addLabelToNotes/' + labels.id + '/add', this.addlabel).subscribe(
-      (Response) => { console.log("success", Response) },
-      (error) => { console.log("error", error) }
+      (Response) => {
+        //  console.log("success", Response) 
+        },
+      (error) => {
+        //  console.log("error", error) 
+    }
     )
 
 
@@ -191,8 +214,8 @@ export class FootermenuComponent implements OnInit {
   }
 
   delete() {
-    console.log(this.data.id);
-    console.log("deleted")
+    // console.log(this.data.id);
+    // console.log("deleted")
 
     this.deletevalue = !this.deletevalue
 
@@ -200,14 +223,16 @@ export class FootermenuComponent implements OnInit {
       "isDeleted": this.deletevalue,
       "noteIdList": [this.data.id]
     }
-    console.log(this.deleteData);
+    // console.log(this.deleteData);
     this.svc.trashnote(this.deleteData).subscribe(
       (response) => {
-        console.log("success", response);
+        // console.log("success", response);
         
-        console.log(this.data)
+        // console.log(this.data)
       },
-      (error) => { console.log("error", error); }
+      (error) => {
+        //  console.log("error", error); 
+        }
     )
   }
   openSnackBarReminder() {
@@ -220,18 +245,20 @@ const newdate = new Date();
 newdate.setHours(8);
 newdate.setMinutes(0);
 newdate.setSeconds(0);
-console.log(newdate);
+// console.log(newdate);
 this.remindData = {
   "reminder": [newdate], "noteIdList": [this.data.id]
 
 }
 this.svc.remindMe(this.remindData).subscribe(
   (response) => {
-    console.log("success", response);
+    // console.log("success", response);
     this.openSnackBarReminder()
 
   },
-  (error) => { console.log("error", error); }
+  (error) => {
+    //  console.log("error", error); 
+    }
 
 )
   }
@@ -242,18 +269,20 @@ this.svc.remindMe(this.remindData).subscribe(
    newdate.setHours(8)
    newdate.setMinutes(0);
 newdate.setSeconds(0);
-   console.log(newdate);
+  //  console.log(newdate);
    this.remindData = {
     "reminder": [newdate], "noteIdList": [this.data.id]
 
   }
   this.svc.remindMe(this.remindData).subscribe(
     (response) => {
-      console.log("success", response);
+      // console.log("success", response);
       this.openSnackBarReminder()
 
     },
-    (error) => { console.log("error", error); }
+    (error) => {
+      //  console.log("error", error);
+       }
 
   )
    
@@ -263,18 +292,20 @@ newdate.setSeconds(0);
   newdate.setHours(168)
   newdate.setMinutes(362);
   newdate.setSeconds(0);
-  console.log(newdate)
+  // console.log(newdate)
   this.remindData = {
     "reminder": [newdate], "noteIdList": [this.data.id]
 
   }
   this.svc.remindMe(this.remindData).subscribe(
     (response) => {
-      console.log("success", response);
+      // console.log("success", response);
       this.openSnackBarReminder()
 
     },
-    (error) => { console.log("error", error); }
+    (error) => {
+      //  console.log("error", error);
+       }
 
   )
  }

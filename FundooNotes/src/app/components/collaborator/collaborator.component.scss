@@ -18,7 +18,15 @@
     font-size: 18px;
     border: 0px solid;
     height: 33px;
+    margin-top: 10px;
 
+}
+.emailsizee{
+  font-size: 18px;
+  border: 0px solid;
+  height: 33px;
+  margin-top: 1px;
+  margin-left: 1px;
 }
 .dialog{
   padding-top: 10px;
@@ -34,4 +42,22 @@
   padding-top: 25px;
   
 
+}
+.iconlogo{
+  margin-right: 5px;
+}
+.ownerlogo{
+margin-top: -10px;
+margin-right: 5px;
+}
+.addcolab{
+  background-color: #e8eaed;
+  margin-right: 5px;
+  margin-top: 6px;
+}
+.iconcancel{
+  margin-bottom: 0px;
+}
+.setlabelwidth{
+  max-width: 200px;
 }

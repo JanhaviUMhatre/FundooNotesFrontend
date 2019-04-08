@@ -19,6 +19,7 @@
                     </div>
                   </button></div>
                <div class="description">{{note.description}}</div> 
+               <div fxLayout="row">
                <mat-chip-list >
                     <div *ngFor="let col of note.collaborators">
                         <div class="alignbutton">
@@ -26,7 +27,8 @@
                             </button></div>
                         </div>
               </mat-chip-list>
-              <mat-chip-list >
+              <mat-chip-list *ngIf="reminderNotes !=null" >
+
                     <mat-chip [removable]="removable">{{note.reminder |  date:'medium'}}
                            
                                 <mat-icon matChipRemove>cancel</mat-icon>
@@ -42,85 +44,11 @@
                     </mat-chip>
     </div>
                   </mat-chip-list>
+                </div>
                   <div class="alignment">
                       <app-footermenu [data]="note"></app-footermenu>
                     </div>
-               <!-- <div fxLayout="row" fxLayoutAlign="space-around start" > -->
-                    <!-- <div class="alignment">
-                            <button mat-icon-button matTooltip="Remind me" [matMenuTriggerFor]="menu" (click)="getcolorid(note)">
-                                    <mat-icon style="font-size: 15px" class="mat-18 changeColor">add_alert</mat-icon></button>
-                                    <mat-menu #menu="matMenu" [overlapTrigger]="false">
-                                           
-                                            
-                                        <mat-label class="label-align">Reminder:</mat-label>
-                                        <button mat-menu-item> Later Today : 8 PM
-                                          </button>
-                                          <button mat-menu-item> Tomorrow : 8 AM
-                                              </button>
-                                              <button mat-menu-item> Next Week :Monday, 8 AM
-                                                  </button>
-                                                  <button mat-menu-item [matMenuTriggerFor]="pickDate"> Pick date and time
-                                                      </button>
-                                                  <mat-menu #pickDate="matMenu">
-                                                          <div fxLayout="column" fxFlex="auto" fxLayoutAlign="space-around center" >
-                                                          <mat-form-field class="field-size">
-                                                                  <input matInput [matDatepicker]="picker" [formControl]="date" [style.fontSize.px]=12>
-                                                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                                  <mat-datepicker #picker></mat-datepicker>
-                                                                </mat-form-field>
-                                                              
-                                                                <mat-form-field class="field-size">
-                                                                    <mat-label>Time</mat-label>
-                                                                    <mat-select matInput [formControl]="time"  value="1:00:00" (click)="stopPropagation($event)">
-                                                                      <mat-option value="8:00:00">MORNING 8 AM</mat-option>
-                                                                      <mat-option value="1:00:00">AFTERNOON 1 PM</mat-option>
-                                                                      <mat-option value="6:00:00">EVENING 6 PM</mat-option>
-                                                                      <mat-option value="8:00:00">NIGHT 8 PM</mat-option>
-                                                                      
-                                                                    </mat-select>
-                                                                  </mat-form-field>
-                                                               
-                                                                <button mat-button (click)="reminder(note)">done</button></div>
-                                                        </mat-menu>
-                                                              
-                                                              
-                                          </mat-menu>  
-                                          <button mat-icon-button matTooltip="Collaborator" (click)="openDialogCollaborate(note.user,note.id)">
-                                                <mat-icon style="font-size: 20px" class="mat-18 changeColor">person_add_outlined
-                                                    </mat-icon></button>
-                          <button mat-icon-button matTooltip="Archive" (click)="archive(note)">
-                            <mat-icon style="font-size: 17px" class="mat-18 changeColor">archive</mat-icon></button>
-                            
-                            <button mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu" (click)="getcolorid(note)">
-                                            <mat-icon style="font-size: 17px" class="mat-18 changeColor">color_lens</mat-icon></button>
-                                            <button mat-icon-button matTooltip="more" [matMenuTriggerFor]="moreMenu" (click)="getcolorid(note)">
-                                                <mat-icon style="font-size: 17px" class="mat-18 changeColor">more_vert</mat-icon></button>
-                                                <mat-menu #moreMenu="matMenu" [overlapTrigger]="false">
-                                                        <button mat-menu-item [style.fontSize.px]=13 [matMenuTriggerFor]="labelMenu"> 
-                                                                add label
-                                                              </button> 
-                                                              <button mat-menu-item [style.fontSize.px]=13 (click)="delete(note)"> 
-                                                                    Delete note
-                                                                   </button> 
-                                                                   <button mat-menu-item [style.fontSize.px]=13 [routerLink]="['questions']" (click)="questionAnswer(note)"> 
-                                                                      Ask a question
-                                                                     </button>     
-                                                </mat-menu>
-                                                <mat-menu #labelMenu="matMenu" [overlapTrigger]="false">
-                                                        <mat-label class="field-size">add label : </mat-label>
-                                                        <mat-form-field   class="field-size">
-                                                           
-                                                                <input matInput [formControl]="labels" (click)="stopPropagation($event)">
-                                                                <button matSuffix mat-icon-button matTooltip="add label" (click)="addlabels(note)" (click)="newLabel()">
-    
-                                                                <mat-icon  style="font-size: 12px" class="mat-18 changeColor">check</mat-icon></button>
-                                                              </mat-form-field>
-                                                              <div *ngFor="let labels of label; let i = index">
-                                                                    <mat-checkbox class="field-size" value={{labels.label}} (click)="addinglabel(labels,note)" (click)=stopPropagation($event)>{{labels.label}}</mat-checkbox>
-                                                                  </div>
-                                                </mat-menu>
-        </div> -->
-      <!-- </div> -->
+              
     </div>
         </mat-card></div>
     </div>

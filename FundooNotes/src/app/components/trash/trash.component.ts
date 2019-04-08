@@ -17,7 +17,7 @@ import { NoteService } from 'src/app/services/notes/note.service';
 })
 export class TrashComponent implements OnInit {
   deleteData: { "isDeleted": any; "noteIdList": any[]; };
-
+  isActive=false;
   constructor(private svc :NoteService) { }
 data:any;
   ngOnInit() {

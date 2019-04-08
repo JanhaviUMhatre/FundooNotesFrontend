@@ -45,9 +45,11 @@ export class QuestionComponent implements OnInit {
       this.stars= $event.newValue
      console.log(this.stars);
      this.que.rating('questionAndAnswerNotes/rate/'+parentId,{"rate":this.stars}).subscribe(
-       (response)=>{console.log("success",response);
+       (response)=>{
+        //  console.log("success",response);
        },
-       (error)=>{console.log("error",error);
+       (error)=>{
+        //  console.log("error",error);
        }
      )
      
@@ -55,46 +57,50 @@ export class QuestionComponent implements OnInit {
   getNoteDetails() {
     this.que.getNotesDetails('notes/getNotesDetail/' + this.id).subscribe(
       (response) => {
-        console.log("success", response)
+        // console.log("success", response)
         for (let i of response['data']['data']) {
-          console.log(i['questionAndAnswerNotes'])
+          // console.log(i['questionAndAnswerNotes'])
           this.queans = i['questionAndAnswerNotes']
           this.questionasked = i['questionAndAnswerNotes'][0]
           for (let k of this.queans) {
             this.q = this.questionasked.message
             this.createdDate = k['createdDate']
             
-            console.log("--------", this.questionasked.message)
+            // console.log("--------", this.questionasked.message)
           }
           for (let j of this.queans) {
 
             this.user.push(j['user'])
-            console.log(this.user)
+            // console.log(this.user)
 
 
           }
         }
 
-        console.log("qqqqqqqqqqqqqqqq", this.queans)
+        // console.log("qqqqqqqqqqqqqqqq", this.queans)
         
       },
-      (error) => { console.log("error", error) }
+      (error) => {
+        //  console.log("error", error)
+         }
     )
   }
 
   getquestion() {
-    console.log(this.question)
+    // console.log(this.question)
     this.questiondata = {
       "message": this.question,
       "notesId": this.id
     }
-    console.log("from questions", this.questiondata)
+    // console.log("from questions", this.questiondata)
     this.que.addquestionans(this.questiondata).subscribe(
       (response) => {
-        console.log("successfully added question", response)
+        // console.log("successfully added question", response)
         this.getNoteDetails()
       },
-      (error) => { console.log("error", error) }
+      (error) => { 
+        // console.log("error", error)
+       }
     )
 
   }
@@ -102,25 +108,28 @@ export class QuestionComponent implements OnInit {
   showDiv(parentId) {
     this.flag = !this.flag
     this.parentId = parentId
-    console.log("parent id.....", this.parentId)
+    // console.log("parent id.....", this.parentId)
   }
   like(parentId){
     this.likes =! this.likes
-    console.log("parent id is here" , parentId)
+    // console.log("parent id is here" , parentId)
     this.model = {
       "like" : true,
       "parentId" : parentId
     }
-    console.log(this.likes,parentId)
+    // console.log(this.likes,parentId)
     this.que.likequestion('questionAndAnswerNotes/like/'+parentId, this.model).subscribe(
-      (response)=>{console.log("success",response)},
-      (error)=>{console.log("error",error);
+      (response)=>{
+        // console.log("success",response)
+      },
+      (error)=>{
+        // console.log("error",error);
       }
     )
   }
 
   replyMessage() {
-    console.log(this.message)
+    // console.log(this.message)
 
     this.messagedata = {
       "message": this.message,
@@ -130,15 +139,17 @@ export class QuestionComponent implements OnInit {
     console.log("from questions", this.messagedata)
     this.que.addmessage('questionAndAnswerNotes/reply/' + this.parentId, this.messagedata).subscribe(
       (response) => {
-        console.log("successfully added reply", response)
+        // console.log("successfully added reply", response)
         this.answer = response['data']['details'];
         for (let j of this.answer) {
-          console.log("new for", j['user']['imageUrl'])
+          // console.log("new for", j['user']['imageUrl'])
           this.profilee = j['user']['imageUrl']
           this.firstnamee = j['user']['firstName']
         }
       },
-      (error) => { console.log("error", error) }
+      (error) => {
+        //  console.log("error", error)
+         }
     )
 
   }

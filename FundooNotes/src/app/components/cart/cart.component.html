@@ -1,107 +1,7 @@
-<!-- <div fxLayout="column" fxLayoutAlign="space-around start" > -->
-    <div fxLayout="row" fxLayoutAlign="start center">
+    <div fxLayout="row" fxLayoutAlign="start center" >
       
         <button mat-raised-button class="fundoobutton">fundooNotes</button>
-        <!-- <mat-horizontal-stepper  #stepper>
-          <mat-step>
-            
-              <div fxLayout="row" fxLayoutAlign="space-between start">
-            <h2 class="mat-h2">Shopping cart</h2>
-            <p class="hidepara">hiddennnnnnnnnnnnnnn</p>
-           <p>price</p>
-           <p>validity</p>
-              </div>
-            <mat-divider></mat-divider>
-            <div fxLayout="row" fxLayoutAlign="space-between start">
-           <div class="boxinfo">
-           
-            <div class="sername"> $ {{price}} per month {{name}}</div>
-         </div>
-         <div fxLayout="column" fxLayoutAlign="start start" >
-            <div class="packdetails">{{name}} Pack Details</div>
-            <ul>
-              <li class="desclass">{{description}}</li>
-             
-            </ul>
-           
-            </div>
-            <h4 class="mat-h4">${{price}}</h4>
-            <h4 class="mat-h4">month</h4>
-          </div>
-         <mat-divider></mat-divider>
-        
-         <div class="placeorder">
-            <div fxLayout="column" fxLayoutAlign="center center" class="alignment">
-            <button mat-raised-button class="buttonpay">Proceed to checkout</button>
-                <p class="pricecolor">subtotal (1 item):${{price}}</p>
-              </div>
-         </div>
-          </mat-step>
-          <mat-step >
-            
-            <div fxLayout="column" fxLayoutAlign="start center" class="headings">
-              <h2 class="mat-h2">Review your order</h2>
-              <h5 class="mat-h5">By clicking on "Place your order and Pay" button,you agree to fundooNotes privacy and conditions</h5>
-            </div>
-            <div fxLayout="row" fxLayoutAlign="space-between center" >
-            <mat-card class="cardwidth" [class.mat-elevation-z3]="!isActive">
-                <div fxLayout="row" fxLayoutAlign="start start" >
-                  <mat-card class="innercard" [class.mat-elevation-z0]="!isActive">$ {{price}} per month
-                    <div class="servicename">{{name}}</div>
-                  </mat-card>
-                  <div fxLayout="column" fxLayoutAlign="start start" >
-                  <div class="packdetails">{{name}} Pack Details</div>
-                  <ul>
-                    <li>{{description}}</li>
-                   
-                  </ul>
-                 
-                  </div>
-                 
-                </div>
-                <div fxLayout="row" fxLayoutAlign="center center" >
-                <div fxLayout="column" fxLayoutAlign="center center" class="bottommenu">
-              <mat-label> Delivery Address</mat-label>
-              <textarea></textarea>
-              <h4 class="align">Payment Method : cash on delivery</h4>
-             
-                <button mat-raised-button class="buttonpay">place your order</button>
-                <p class="pricecolor">subtotal (1 item):${{price}}</p>
-            
-            </div>
-           
-          </div>
-            </mat-card>
-          </div>
-            
-          </mat-step>
-          <mat-step>
-            <div fxLayout="row" fxLayoutAlign="space-between start">
-              <h2 class="mat-h2">Order list</h2>
-            
-                </div>
-              <mat-divider></mat-divider>
-              <div fxLayout="row" fxLayoutAlign="space-between start">
-             <div class="boxinfo">
-             
-              <div class="sername"> $ {{price}} per month {{name}}</div>
-           </div>
-           <div fxLayout="column" fxLayoutAlign="start start" >
-              <div class="packdetails">{{name}} Pack Details</div>
-              <ul>
-                <li class="desclass">{{description}}</li>
-               
-              </ul>
-             
-              </div>
-              <div fxLayout="column">
-              <h4 class="mat-h4 pricecolor" >${{price}}</h4>
-              <h4 class="mat-h4 pricecolor" > per month</h4>
-              <p class="pendingcolor" > pending</p></div>
-            </div>
-           <mat-divider></mat-divider>
-          </mat-step>
-        </mat-horizontal-stepper> -->
+    
         <mat-progress-bar mode="determinate"  color="grey"></mat-progress-bar>
         <img src="../../../assets/Icons/baseline-shopping_cart-24px.svg" class=icononbar [ngClass]="{'changeicon': flag==true , 'changeicons': nextflag==true }">
       </div>
@@ -206,4 +106,3 @@
     </div>
    <mat-divider></mat-divider>
   </div>
-<!-- </div> -->

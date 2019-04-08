@@ -40,6 +40,16 @@
                         </button></div>
                     </div>
                   </mat-chip-list>
+                  <!-- <div *ngIf="note.collaborators != null"> -->
+                  <mat-chip-list >
+                    <mat-chip [removable]="removable">{{note.reminder |  date:'medium'}}
+                           
+                                <mat-icon matChipRemove>cancel</mat-icon>
+                          
+                    </mat-chip>
+
+                  </mat-chip-list>
+                <!-- </div> -->
                   <mat-chip-list>
 
                     <div *ngFor="let labels of note.noteLabels">
@@ -57,7 +67,9 @@
   <app-footermenu [data]="note"></app-footermenu>
 </div>
 </mat-card-actions>
+
 </mat-card>
+
 </div>
 </div></div></div></div></div></div>
                 

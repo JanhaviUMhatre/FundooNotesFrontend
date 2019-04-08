@@ -74,6 +74,7 @@ export class AddnoteComponent implements OnInit {
   itemData: { "itemName": any; "status": (url?: string, target?: string, features?: string, replace?: boolean) => Window; };
   addCheckList: any;
   newdate: Date;
+  dateData:any[]=[];
   constructor(private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer, private snackBar: MatSnackBar, private svc: NoteService
   ) {
@@ -102,16 +103,18 @@ export class AddnoteComponent implements OnInit {
     //console.log(this.word)
     this.svc.serachuser({ "searchWord": this.word }).subscribe(
       (Response) => {
-        console.log("success search", Response['data']['details'])
+        // console.log("success search", Response['data']['details'])
         this.emails = Response['data']['details'];
-        console.log("this is response", Response)
+        // console.log("this is response", Response)
         for (let val of Response['data']['details']) {
           this.firstName = val.firstName;
           this.lastName = val.lastName;
           this.userId = val.userId;
         }
       },
-      (error) => { console.log("error", error) }
+      (error) => {
+        //  console.log("error", error)
+         }
     )
   }
   opencollaborator() {
@@ -119,12 +122,12 @@ export class AddnoteComponent implements OnInit {
   }
   //change div
   showDiv() {
-    console.log("called div");
+    // console.log("called div");
     this.flag = !this.flag;
   }
   //pin/unpin
   pin() {
-    console.log("called pin");
+    // console.log("called pin");
     this.pinValue = !this.pinValue;
   }
   stopPropagation(event) {
@@ -133,7 +136,7 @@ export class AddnoteComponent implements OnInit {
   }
   //archive note
   archive() {
-    console.log("called archive");
+    // console.log("called archive");
     this.archiveValue = !this.archiveValue;
 
     this.openSnackBar();
@@ -156,7 +159,7 @@ export class AddnoteComponent implements OnInit {
       "reminder": [this.date.value]
 
     }
-    console.log(this.remindData)
+    // console.log(this.remindData)
     // this.svc.remindMe(this.remindData).subscribe(
     //   (response) => {console.log("success",response);
 
@@ -166,16 +169,17 @@ export class AddnoteComponent implements OnInit {
     // )
   }
   addinglabel(labels) {
-    console.log(labels)
+    // console.log(labels)
     this.addedlabel.push(labels)
-    console.log(this.addedlabel)
+    // console.log(this.addedlabel)
   }
   laterToday(){
     this.newdate = new Date();
     this.newdate.setHours(8);
     this.newdate.setMinutes(0);
     this.newdate.setSeconds(0);
-    console.log(this.newdate);}
+    console.log(this.newdate);
+  this.dateData.push(this.newdate)}
     tommorow(){
       this.newdate=new Date();
       this.newdate.setDate(1);
@@ -183,13 +187,15 @@ export class AddnoteComponent implements OnInit {
       this.newdate.setHours(8)
       this.newdate.setMinutes(0);
       this.newdate.setSeconds(0);
-      console.log( this.newdate);}
+      console.log( this.newdate);
+      this.dateData.push(this.newdate)}
       nextweek(){
         const newdate=new Date();
         newdate.setHours(168)
         newdate.setMinutes(362);
         newdate.setSeconds(0);
-        console.log(newdate)}
+        console.log(newdate)
+        this.dateData.push(this.newdate)}
   //main function to create note
   createNote() {
 
@@ -216,27 +222,29 @@ console.log(this.addCheckList);
       "isPined": this.pinValue,
       "isArchived": this.archiveValue,
       "color": this.color,
-      "reminder":  this.newdate,
-      //"collaberators":JSON.stringify([this.collaboratorData]),
-      "collaberators": JSON.stringify({
-        "firstName": this.firstName,
-        "lastName": this.lastName,
-        "email": this.word,
-        "userId": this.userId
-      }),
+      "reminder": this.dateData,
+      "collaberators":JSON.stringify([this.collaboratorData]),
+      // "collaberators": JSON.stringify({
+      //   "firstName": this.firstName,
+      //   "lastName": this.lastName,
+      //   "email": this.word,
+      //   "userId": this.userId
+      // }),
       "labelIdList": JSON.stringify(this.addedlabel),
       "checklist": JSON.stringify(this.itemDataarray)
     }
 
     if (this.noteData.title != null || this.noteData.description != null) {
-      console.log("note data", this.noteData);
+      // console.log("note data", this.noteData);
 
       this.svc.createnote(this.noteData).subscribe(
         (response) => {
-          console.log("success", response);
+          // console.log("success", response);
           this.child.getNoteData();
         },
-        (error) => { console.log("error", error); }
+        (error) => {
+          //  console.log("error", error); 
+      }
       );
     }
     else {
@@ -257,11 +265,13 @@ console.log(this.addCheckList);
   getLabelsDashboard() {
     this.svc.getLabels().subscribe(
       (response) => {
-        console.log("success", response);
+        // console.log("success", response);
         this.label = response['data']['details'];
-        console.log(this.label)
+        // console.log(this.label)
       },
-      (error) => { console.log("error", error) }
+      (error) => { 
+        // console.log("error", error)
+       }
     )
   }
 }

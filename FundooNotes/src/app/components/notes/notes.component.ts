@@ -95,6 +95,7 @@ export class NotesComponent implements OnInit {
   label: any;
   collaborators: any;
   ispinnedArray: any;
+  reminderNotes: any[];
 
   constructor(private que: QuestionService, private router: Router, private http: HttpClient, private snackBar: MatSnackBar, private view: ViewService, private ser: SearchService, public dialog: MatDialog, private svc: NoteService, private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
@@ -128,10 +129,14 @@ export class NotesComponent implements OnInit {
 
 
     }
-    console.log("selected label", this.addlabel);
+    // console.log("selected label", this.addlabel);
     this.svc.addingchecklistlabels('notes/' + note.id + '/addLabelToNotes/' + labels.id + '/add', this.addlabel).subscribe(
-      (Response) => { console.log("success", Response) },
-      (error) => { console.log("error", error) }
+      (Response) => {
+        //  console.log("success", Response)
+         },
+      (error) => {
+        //  console.log("error", error) 
+        }
     )
 
 
@@ -139,17 +144,19 @@ export class NotesComponent implements OnInit {
   getLabelsDashboard() {
     this.svc.getLabels().subscribe(
       (response) => {
-        console.log("success", response);
+        // console.log("success", response);
         this.label = response['data']['details'];
-        console.log(this.label)
+        // console.log(this.label)
       },
-      (error) => { console.log("error", error) }
+      (error) => { 
+        // console.log("error", error)
+       }
     )
   }
 
 
   submit() {
-    console.log(this.date.value, this.time.value)
+    // console.log(this.date.value, this.time.value)
   }
   //get notes data
   openSnackBar() {
@@ -181,12 +188,12 @@ export class NotesComponent implements OnInit {
   getNoteData() {
     this.svc.getNotes().subscribe(
       (response) => {
-        console.log("success get notes", response)
+        // console.log("success get notes", response)
         this.data = response['data']['data'];
         this.child.getNoteDatas()
 
         this.data.reverse();
-        console.log("in response", this.data)
+        // console.log("in response", this.data)
 
 
         this.cardArray = this.data.filter(function (e) {
@@ -199,9 +206,15 @@ export class NotesComponent implements OnInit {
         this.ispinnedArray = this.data.filter(function (e) {
           return (e.isDeleted === false && e.isArchived === false && e.isPined === true)
         });
-        console.log("cardsArray", this.cardArray)
+        // console.log("cardsArray", this.cardArray)
+
+        for(let i in this.cardArray){
+          this.reminderNotes=i['reminder']
+        }
       },
-      (error) => { console.log("error", error); }
+      (error) => { 
+        // console.log("error", error);
+       }
     )
 
   }

@@ -22,7 +22,7 @@ firstName:any;
 lastName:any;
   userId: any;
   baseUrl = environment.baseUrl;
-
+  isActive=false;
 // options:any[];
 // filteredOptions: Observable<string[]>;
 
@@ -31,7 +31,8 @@ lastName:any;
     private view:ViewService) { }
 
   ngOnInit() {
-
+   
+    this.geCollab()
   }
  
 serachEmail(str: string): void{
@@ -81,5 +82,9 @@ removecollaborator(){
     (Response)=>{(console.log("success",Response))},
     (error)=>{(console.log("error",error))}
   )
+    }
+
+    geCollab(){
+      console.log(this.data.collaborator)
     }
 }

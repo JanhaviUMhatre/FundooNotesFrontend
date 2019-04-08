@@ -5,7 +5,7 @@
           
                 <div fxLayout="row wrap" fxLayoutAlign="center center">
                         <div class="cards">
-                        <mat-card class="card-width" [ngStyle]="{'backgroundColor': note.color}" >
+                        <mat-card class="card-width"  [class.mat-elevation-z0]="!isActive" [ngStyle]="{'backgroundColor': note.color}" [class.mat-elevation-z0]="!isActive" >
                             <div fxLayout="column" fxLayoutAlign=" space-around center">
                         
                         

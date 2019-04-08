@@ -2,17 +2,31 @@
   
   <mat-label class="fontsizelabel dialog ">Collaborator</mat-label>
   <mat-divider  class="dialog"></mat-divider>
-<mat-label class="emailsize">{{data.email}}</mat-label>
-<div fxLayout="column" fxFlex=40>
-<mat-label>{{data.collaborator}}
-  <mat-icon (click)="removecollaborator()">cancel</mat-icon>
+  
+  <div fxLayout="row">
+  <button mat-mini-fab color="primary" [class.mat-elevation-z0]="!isActive" class="ownerlogo">
+    {{data.email | slice:0:1}}
+  </button>
+<mat-label class="emailsizee">{{data.email}}</mat-label>
+</div>
+<div *ngIf="data.collaborator != null">
+<div fxLayout="row" fxLayoutGap="20px">
+    <button mat-mini-fab color="primary" class="iconlogo" [class.mat-elevation-z0]="!isActive">{{data.collaborator | slice:0:1}}</button>
+<mat-label class="setlabelwidth">{{data.collaborator}}
+  <mat-icon (click)="removecollaborator()" class="iconcancel">cancel</mat-icon>
 </mat-label></div>
+</div>
+<div fxLayout="row">
+    <button mat-mini-fab class="addcolab" [class.mat-elevation-z0]="!isActive">
+        <img class="fundooIcon" src="../../../assets/Icons/outline-person_add-24px.svg">
+      </button>
 <input matInput placeholder="enter email" class="emailsize"  [ngModel]="word" (ngModelChange)="serachEmail($event)" [matAutocomplete]="auto">
 <mat-autocomplete #auto="matAutocomplete" >
     <mat-option *ngFor="let option of emails" [value]="option.email">
       {{option.email}}
     </mat-option>
   </mat-autocomplete> 
+</div>
   
 
   <div class="button-align" fxLayout="row wrap" fxLayoutAlign="end end">

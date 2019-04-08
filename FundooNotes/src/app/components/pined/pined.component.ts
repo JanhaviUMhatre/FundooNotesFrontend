@@ -86,6 +86,7 @@ today: number = Date.now();
 label:string;
   addlabel: any;
   myData: any;
+  reminderNotes: any;
   constructor(private que : QuestionService,private http: HttpClient,private snackBar: MatSnackBar,private view: ViewService,private ser: SearchService,public dialog: MatDialog,private svc :NoteService,private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
     ) {
@@ -110,7 +111,7 @@ label:string;
   }
  
   submit(){
-console.log(this.date.value,this.time.value)
+// console.log(this.date.value,this.time.value)
   }
   //get notes data
   openSnackBar() {
@@ -151,10 +152,14 @@ console.log(this.date.value,this.time.value)
         
       
     }
-console.log("selected label",this.addlabel);
+// console.log("selected label",this.addlabel);
 this.svc.addingchecklistlabels('notes/'+note.id+'/addLabelToNotes/'+labels.id+'/add',this.addlabel).subscribe(
-  (Response)=>{console.log("success",Response)},
-  (error)=>{console.log("error",error)}
+  (Response)=>{
+    // console.log("success",Response)
+  },
+  (error)=>{
+    // console.log("error",error)
+}
   )
 
 
@@ -162,18 +167,22 @@ this.svc.addingchecklistlabels('notes/'+note.id+'/addLabelToNotes/'+labels.id+'/
 
   getLabelsDashboard(){
     this.svc.getLabels().subscribe(
-        (response) => {console.log("success",response);
+        (response) => {
+          // console.log("success",response);
         this.label=response['data']['details'];
-        console.log(this.label)
+        // console.log(this.label)
     },
-        (error)=>{console.log("error",error)}
+        (error)=>{
+          // console.log("error",error)
+        }
     )
 }
 
   getNoteDatas(){
  
     this.svc.getNotes().subscribe(
-      (response) => {console.log("success get notes",response)
+      (response) => {
+        // console.log("success get notes",response)
       // var date = new Date()
     this.data = response['data']['data']; 
     // for(let i in this.data){
@@ -182,14 +191,20 @@ this.svc.addingchecklistlabels('notes/'+note.id+'/addLabelToNotes/'+labels.id+'/
     // }
    
     this.data.reverse();
-    console.log("in response",this.data)
+    // console.log("in response",this.data)
     
     this.cardArray =  this.data.filter(function(e) {
       return (e.isDeleted===false && e.isArchived===false)
     });
-    console.log("cardsArray",this.cardArray)
+    // console.log("cardsArray",this.cardArray)
+    for(let i of this.cardArray){
+      this.reminderNotes=i['reminder']
+      // console.log("-----------reminderdata",this.reminderNotes)
+    }
     },
-      (error) => {console.log("error",error);}
+      (error) => {
+        // console.log("error",error);
+      }
       )
       
   }
@@ -198,22 +213,25 @@ this.svc.addingchecklistlabels('notes/'+note.id+'/addLabelToNotes/'+labels.id+'/
 
   //pin/unpin notes
   pin(card){
-    console.log("called pin");
+    // console.log("called pin");
     this.pinValue=!this.pinValue;
 
-    console.log(card.id)
+    // console.log(card.id)
     this.pinData={
       "isPined":this.pinValue,
       "noteIdList":[card.id]
     }
-    console.log(this.pinData)
+    // console.log(this.pinData)
     this.svc.pinnote(this.pinData).subscribe(
-      (response) => {console.log("success",response);
+      (response) => {
+        // console.log("success",response);
       
-    console.log("pin response",response)
+    // console.log("pin response",response)
     this.getNoteDatas()
     },
-      (error) => {console.log("error",error);}
+      (error) => {
+        // console.log("error",error);
+      }
     )
   }
 
@@ -222,29 +240,32 @@ this.svc.addingchecklistlabels('notes/'+note.id+'/addLabelToNotes/'+labels.id+'/
 
     this.color = color;
     //card.color = color;
-    console.log(this.color,this.id)
+    // console.log(this.color,this.id)
     this.ColorData={
       "color":this.color,
       "noteIdList":[this.id]
     }
-    console.log(this.ColorData)
+    // console.log(this.ColorData)
     this.svc.colornote(this.ColorData).subscribe(
-      (response) => {console.log("success",response);
-    console.log(this.data)
+      (response) => {
+        // console.log("success",response);
+    // console.log(this.data)
     },
-      (error) => {console.log("error",error);}
+      (error) => {
+        // console.log("error",error);
+      }
     )
 
   }
   getcolorid(card){
    this.id = card.id
-console.log(this.id)
+// console.log(this.id)
   }
 
   //trash notes
   delete(card){
-   console.log(card.id);
-   console.log("deleted")
+  //  console.log(card.id);
+  //  console.log("deleted")
     
    this.deletevalue =! this.deletevalue
   
@@ -252,20 +273,23 @@ this.deleteData={
   "isDeleted":this.deletevalue,
   "noteIdList":[card.id]
 }
- console.log(this.deleteData);
+//  console.log(this.deleteData);
 this.svc.trashnote(this.deleteData).subscribe(
-  (response) => {console.log("success",response);
+  (response) => {
+    // console.log("success",response);
   this.openSnackBarDelete()
-console.log(this.data)
+// console.log(this.data)
 },
-  (error) => {console.log("error",error);}
+  (error) => {
+    // console.log("error",error);
+  }
 )
   }
 
   //archive notes
   archive(card){
-    console.log(card.id);
-   console.log("archived")
+    // console.log(card.id);
+  //  console.log("archived")
     
    this.archivevalue =! this.archivevalue
   
@@ -273,13 +297,16 @@ this.archiveData={
   "isArchived":this.archivevalue,
   "noteIdList":[card.id]
 }
- console.log(this.archiveData);
+//  console.log(this.archiveData);
 this.svc.archivednote(this.archiveData).subscribe(
-  (response) => {console.log("success",response);
+  (response) => {
+    // console.log("success",response);
   this.openSnackBar()
-console.log(this.data)
+// console.log(this.data)
 },
-  (error) => {console.log("error",error);}
+  (error) => {
+    // console.log("error",error);
+  }
 )
 this.updateNotes(card)
   }
@@ -290,12 +317,15 @@ this.updateNotes(card)
       "title": card.title,
       "description":card.description
     }
-    console.log("dataaaaa",this.updateData)
+    // console.log("dataaaaa",this.updateData)
     this.svc.updatednote(this.updateData).subscribe(
-      (response) => {console.log("success",response);
-    console.log(this.data)
+      (response) => {
+        // console.log("success",response);
+    // console.log(this.data)
     },
-      (error) => {console.log("error",error);}
+      (error) => {
+        // console.log("error",error);
+      }
     )
   }
   //dialog box
@@ -314,13 +344,13 @@ this.updateNotes(card)
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
       
     });
   }
  //add labels
   addlabels(card){
-    console.log("from addlabels",card.id);
+    // console.log("from addlabels",card.id);
     this.addlabeldata={
       
       "label": this.labels.value,
@@ -329,7 +359,7 @@ this.updateNotes(card)
     
   }
   
-  console.log(this.addlabeldata)
+  // console.log(this.addlabeldata)
   const httpOptions = {
     headers: new HttpHeaders({
      
@@ -339,11 +369,14 @@ this.updateNotes(card)
   this.http.post(this.baseUrl+'notes/'+card.id+'/noteLabels',
   {"label":this.labels.value,"userId": card.userId,
   "isDeleted": card.isDeleted},httpOptions).subscribe(
-    (response) => {console.log("success",response);
+    (response) => {
+      // console.log("success",response);
     this.labelresponse=response
-  console.log("label response",this.labelresponse)
+  // console.log("label response",this.labelresponse)
   },
-    (error) => {console.log("error",error);}
+    (error) => {
+      // console.log("error",error);
+    }
   )
   }
   newLabel(){
@@ -359,13 +392,16 @@ this.updateNotes(card)
       "reminder": [this.date.value+this.time.value], "noteIdList":[this.id]
       
     }
-    console.log(this.remindData)
+    // console.log(this.remindData)
     this.svc.remindMe(this.remindData).subscribe(
-      (response) => {console.log("success",response);
+      (response) => {
+        // console.log("success",response);
       this.openSnackBarReminder()
   
     },
-      (error) => {console.log("error",error);}
+      (error) => {
+        // console.log("error",error);
+      }
     
     )
   }
@@ -385,17 +421,21 @@ this.updateNotes(card)
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
       
     });
   }
   removecollaborator(noteId,userId){
 
-    console.log(noteId,userId)
+    // console.log(noteId,userId)
     this.svc.removeCollaborator(this.baseUrl+'notes/'+noteId+'/removeCollaboratorsNotes/'+userId,
     ).subscribe(
-      (Response)=>{(console.log("success",Response))},
-      (error)=>{(console.log("error",error))}
+      (Response)=>{
+        // console.log("success",Response)
+      },
+      (error)=>{
+        // console.log("error",error)
+    }
     )
       }
 
