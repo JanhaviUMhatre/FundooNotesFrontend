@@ -18,7 +18,8 @@ export class QuestionsComponent implements OnInit {
 getQueData(){
   this.svc.getDataque().subscribe(
     (response)=>{console.log("success",response)
-  this.data=response['data']},
+  this.data=response['data']
+this.data.reverse()},
     (error)=>{console.log("error",error)}
   )
 }
@@ -33,14 +34,16 @@ approve(user)
 {
   console.log(user.parentId)
 this.svc.approvenotes('questionAndAnswerNotes/approve/'+user.parentId,{"parentId":user.parentId}).subscribe(
-  (response)=>{console.log("success",response)},
+  (response)=>{console.log("success",response)
+this.getQueData()},
   (error)=>{console.log("error",error)}
 )
 }
 unapporove(user){
   console.log(user.parentId)
   this.svc.approvenotes('questionAndAnswerNotes/reject/'+user.parentId,{"parentId":user.parentId}).subscribe(
-    (response)=>{console.log("success",response)},
+    (response)=>{console.log("success",response)
+  this.getQueData()},
     (error)=>{console.log("error",error)}
   )
 }

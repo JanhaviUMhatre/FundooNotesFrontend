@@ -40,6 +40,15 @@ export class HttpService {
       }
       return this.http.get(this.baseUrl+'questionAndAnswerNotes/getUnApprovedAnswer',httpOptions)
     }
+    getDataorder(){
+      const httpOptions = {
+        headers: new HttpHeaders({
+         
+          'Authorization':localStorage.getItem('token')
+        })
+      }
+      return this.http.get(this.baseUrl+'productcarts/userCartList',httpOptions)
+    }
 
     approvenotes(url,userData){
       const httpOptions = {
@@ -59,5 +68,23 @@ export class HttpService {
         })
       }
       return this.http.post(this.baseUrl+url,userData,httpOptions)
+    }
+    cancelor(userData){
+      const httpOptions = {
+        headers: new HttpHeaders({
+         
+          'Authorization':localStorage.getItem('token')
+        })
+      }
+      return this.http.post(this.baseUrl+'productcarts/adminCancelOrder',userData,httpOptions)
+    }
+    completeor(userData){
+      const httpOptions = {
+        headers: new HttpHeaders({
+         
+          'Authorization':localStorage.getItem('token')
+        })
+      }
+      return this.http.post(this.baseUrl+'productcarts/adminCompleteOrder',userData,httpOptions)
     }
 }

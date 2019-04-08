@@ -8,6 +8,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {DataTableModule} from "angular-6-datatable";
 import { QuestionsComponent } from './components/questions/questions.component';
+import { OrdersComponent } from './components/orders/orders.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { QuestionsComponent } from './components/questions/questions.component';
     AppComponent,
     AdminLoginComponent,
     AdminDashboardComponent,
-    QuestionsComponent
+    QuestionsComponent,
+    OrdersComponent
    
   ],
   imports: [
@@ -40,6 +42,10 @@ import { QuestionsComponent } from './components/questions/questions.component';
     {
       path : 'admindashboard/questions',
       component :  QuestionsComponent
+    },
+    {
+      path : 'admindashboard/orders',
+      component :  OrdersComponent
     }
     
   ])
