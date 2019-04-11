@@ -16,37 +16,38 @@ import { environment } from 'src/environments/environment';
 })
 export class NewloginComponent implements OnInit {
   details: any;
-  user: LoginModel = new LoginModel(); //object of login model
-  data:any;
-  servicename:string;
+  user: LoginModel = new LoginModel();
+  data: any;
+  servicename: string;
   info: string;
   breakpoint: number;
   baseUrl = environment.baseUrl;
 
-  constructor(private view: ViewService,private snackBar: MatSnackBar,private cart: CartService,
-    // private Auth : AuthService,
-     private svc : UserServiceService,private router: Router,private formBuilder: FormBuilder,private http:HttpClient) { }
-     loginForm = this.formBuilder.group({
-      //confirm password validation
-    email : [this.user.email, [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9._]+@[a-zA-Z]+.[a-zA-Z]+$')]],
-    password : [this.user.password, [Validators.required, // password validation
-      Validators.minLength(6)]],
-      cartId: [localStorage.getItem('cartId')]
-    
-    });
+  constructor(private view: ViewService, private snackBar: MatSnackBar, private cart: CartService,
+
+    private svc: UserServiceService, private router: Router, private formBuilder: FormBuilder, private http: HttpClient) { }
+  loginForm = this.formBuilder.group({
+    email: [this.user.email, [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9._]+@[a-zA-Z]+.[a-zA-Z]+$')]],
+    password: [this.user.password, [Validators.required,
+    Validators.minLength(6)]],
+    cartId: [localStorage.getItem('cartId')]
+
+  });
   ngOnInit() {
     this.getJson()
     this.cart.cards.subscribe(info => this.info = info)
     this.breakpoint = (window.innerWidth <= 500) ? 1 : 2;
   }
-  getJson(){
-    this.http.get(this.baseUrl+'user/service').subscribe(
-      (Response)=>{console.log("success",Response);
-      this.details=Response['data']['data']
-      this.servicename=this.info['name']
-      console.log("-----------------",this.servicename)
+  getJson() {
+    this.http.get(this.baseUrl + 'user/service').subscribe(
+      (Response) => {
+        console.log("success", Response);
+        this.details = Response['data']['data']
+        this.servicename = this.info['name']
+        console.log("-----------------", this.servicename)
       },
-      (error)=>{console.log("error",error);
+      (error) => {
+        console.log("error", error);
       }
     )
   }
@@ -55,55 +56,54 @@ export class NewloginComponent implements OnInit {
     this.snackBar.open("you are logged in!!!!!", 'OK', {
       duration: 3000
     });
-  
+
   }
 
   openSnackBarError() {
     this.snackBar.open("invalid email or password!!!!!", 'OK', {
       duration: 3000
     });
-  
+
   }
-  // after submitting form html will call onSubmit method
   onSubmit() {
-   
+
     console.log(this.loginForm.value);
     this.svc.login(this.loginForm.value).subscribe(
-      (response) => {console.log("succsess",response);
-     localStorage.setItem('imageUrl', response['imageUrl'])
-      localStorage.setItem('token',response['id'])
-      localStorage.setItem('userId',response['userId'])
-      localStorage.setItem('email',response['email'])
-      this.openSnackBar();
-      this.router.navigate(['/dashboard']);
-      
-      
-    //this.Auth.setLoggedIn(true) 
-  },
-      (error) =>{ console.log("error",error);
-      this.openSnackBarError();
+      (response) => {
+        console.log("succsess", response);
+        localStorage.setItem('imageUrl', response['imageUrl'])
+        localStorage.setItem('token', response['id'])
+        localStorage.setItem('userId', response['userId'])
+        localStorage.setItem('email', response['email'])
+        this.openSnackBar();
+        this.router.navigate(['/dashboard']);
+
+
+      },
+      (error) => {
+        console.log("error", error);
+        this.openSnackBarError();
       }
-      
+
     )
-    
+
   }
 
   sendMessage(): void {
-    // send message to subscribers via observable subject
     this.view.sendMessage(this.data);
-}
-email = new FormControl('', [Validators.required, Validators.email,Validators.pattern('^[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+$')]);
-getErrorMessageEmail() {
-  return this.email.hasError('required') ? 'Not a valid email' : this.email.hasError('email') ? 'Not a valid email' :'';
-}
+  }
+  email = new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+$')]);
+  getErrorMessageEmail() {
+    return this.email.hasError('required') ? 'Not a valid email' : this.email.hasError('email') ? 'Not a valid email' : '';
+  }
 
-password = new FormControl('', [Validators.required,Validators.minLength(6)]);
-getErrorMessagePassword() {
-  return this.password.hasError('required') ? 'password should be of minimum 6 characters' : this.password.hasError('password') ? 'password should be of minimum 6 characters' :'';
-}
-onResize(event) {
-  this.breakpoint = (event.target.innerWidth <= 500) ? 1 : 2;
-}
+  password = new FormControl('', [Validators.required, Validators.minLength(6)]);
+  getErrorMessagePassword() {
+    return this.password.hasError('required') ? 'password should be of minimum 6 characters' : this.password.hasError('password') ? 'password should be of minimum 6 characters' : '';
+  }
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 500) ? 1 : 2;
+  }
 
 }
 

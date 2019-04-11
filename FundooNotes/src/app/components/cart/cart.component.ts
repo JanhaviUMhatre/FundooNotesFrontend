@@ -9,70 +9,63 @@ import { CartServiceService } from 'src/app/services/cart/cart-service.service';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-isActive=false;
-flag=false;
-nextflag=false;
+  isActive = false;
+  flag = false;
+  nextflag = false;
   info: string;
   price: any;
   name: any;
   description: any;
-  address= new FormControl('',[Validators.required])
+  address = new FormControl('', [Validators.required])
   cartId: string;
   placeorderData: { "cartId": string; "address": any; };
   status: any;
   cartpack: any;
-  constructor(private cart:CartService,private _formBuilder: FormBuilder,private cartser:CartServiceService) { }
+  constructor(private cart: CartService, private _formBuilder: FormBuilder, private cartser: CartServiceService) { }
 
   ngOnInit() {
-    
-    this.cart.cards.subscribe(info => this.info = info)
-   
-    
-    this.callmycart()
-  
-  }
-// getInfocard(){
-//   for(let k of this.info){
-//   // this.price=this.info['price']
-//   this.name=k['product'].name
-//   // this.description=this.info['description']
-//   this.status=k['status']
 
-// }
-//   //console.log("------------",this.info)
-// }
-checkout(){
-  this.flag=!this.flag
-}
-place(){
- 
-console.log(this.address.value)
-this.cartId=localStorage.getItem('cartId')
-this.placeorderData={"cartId":this.cartId,"address":this.address.value}
-this.cartser.placeorder(this.placeorderData).subscribe(
-  (response)=>{console.log("success",response);
-  this.nextflag=!this.nextflag
-  },
-  (error)=>{console.log("error",error);
+    this.cart.cards.subscribe(info => this.info = info)
+
+
+    this.callmycart()
   }
-)
-}
-callmycart(){
-  this.cartser.mycart().subscribe(
-      (Response)=>{console.log("success",Response);
-      this.cartpack=Response['data']
-      for(let i of Response['data']){
-          this.status=i.status
-          this.price=i.price
-          this.name=i.product.name
-          this.description=i.product.description
-          console.log("statusssss",this.status);
-          console.log("nameee",this.name);
-          
-      }
+  checkout() {
+    this.flag = !this.flag
+  }
+  place() {
+
+    console.log(this.address.value)
+    this.cartId = localStorage.getItem('cartId')
+    this.placeorderData = { "cartId": this.cartId, "address": this.address.value }
+    this.cartser.placeorder(this.placeorderData).subscribe(
+      (response) => {
+        console.log("success", response);
+        this.nextflag = !this.nextflag
       },
-      (error)=>{console.log("error",error);
+      (error) => {
+        console.log("error", error);
       }
-  )
-}
+    )
+  }
+  callmycart() {
+    this.cartser.mycart().subscribe(
+      (Response) => {
+        console.log("success", Response);
+        this.cartpack = Response['data']
+        for (let i of Response['data']) {
+          this.status = i.status
+          this.price = i.price
+          this.name = i.product.name
+          this.description = i.product.description
+          console.log("statusssss", this.status);
+          console.log("nameee", this.name);
+
+        }
+      },
+      (error) => {
+        console.log("error", error);
+      }
+    )
+  }
 }

@@ -1,7 +1,6 @@
-
 <div fxLayout="row wrap" fxFlex=70 fxLayoutAlign="space-evenly center">
     <div *ngFor="let note of data">
-          
+
         <div class="cards">
             <mat-card class="card-width" [ngStyle]="{'backgroundColor': note.color}"
                 [ngClass]="{'cardWidth': message=='column wrap'}" [class.mat-elevation-z0]="!isActive">
@@ -15,20 +14,16 @@
                                 <mat-icon style="font-size: 20px" class="mat-18 changeColor" svgIcon="unpinIcon">
                                 </mat-icon>
                             </div>
-                            <!-- <div *ngIf="note.isPined === true">
-                    <mat-icon style="font-size: 20px" class="mat-18 changeColor" svgIcon="pinIcon"></mat-icon>
-                </div> -->
+
                         </button>
                     </div>
                     <div class="description">{{note.description}}</div>
-                    <!-- <div class="description">{{note.description}}</div>  -->
                     <mat-chip-list>
                         <div *ngFor="let col of note.collaborators">
                             <div class="alignbutton">
                                 <button mat-mini-fab [ngStyle]="{'backgroundColor': note.color}"
                                     (click)="openDialogCollaborate(note.user,note.id,col.email,col.userId)"
                                     [class.mat-elevation-z2]="!isActive">{{col.email | slice:0:1}}
-                                    <!-- <mat-icon matChipRemove (click)="removecollaborator(note.id,col.userId)">cancel</mat-icon> -->
                                 </button></div>
                         </div>
                     </mat-chip-list>

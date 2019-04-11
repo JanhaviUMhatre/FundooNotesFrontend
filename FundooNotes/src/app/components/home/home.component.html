@@ -3,35 +3,31 @@
 </mat-toolbar>
 <mat-divider></mat-divider>
 
-<div fxLayout="row" fxLayoutAlign="center center" >
+<div fxLayout="row" fxLayoutAlign="center center">
   <mat-label class="labelclass">which fundooNotes service package do you want?</mat-label>
 </div>
-<div fxLayout="column" >
-<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="150px" fxLayoutAlign="space-around center" class="cards" >
-  <div *ngFor="let i of details">
- <div class="zoom" (click)="openDialoge()" (click)="sharevalues(i)">
-    <mat-card class="bottom"><mat-card ><mat-label class="label" >${{i.price}}/month</mat-label>
-<p class="paragraph">{{i.name}}</p>
-<ul>
- 
-  <li>{{i.description}}</li>
+<div fxLayout="column">
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="150px" fxLayoutAlign="space-around center" class="cards">
+    <div *ngFor="let i of details">
+      <div class="zoom" (click)="openDialoge()" (click)="sharevalues(i)">
+        <mat-card class="bottom">
+          <mat-card>
+            <mat-label class="label">${{i.price}}/month</mat-label>
+            <p class="paragraph">{{i.name}}</p>
+            <ul>
 
- 
+              <li>{{i.description}}</li>
 
 
-</ul>
-<div class="allign"  fxLayoutAlign="end center" >Add to cart</div>
-  </mat-card></mat-card></div>
-  <!-- <div class="zoom" (click)="openDialoge()"> <mat-card class="bottom"><mat-card ><mat-label class="label" >$ 3.99 per Month</mat-label>
-    <p class="paragraph">Basic</p>
-    <ul>
-      <li>Unlimited wall space</li>
-      <li>Nice interface</li>
-      <li>$ 3.99/month</li>
-      <li>Ability to add only title and description</li>
-    </ul>
-    <div class="allign">Add to cart</div>
-      </mat-card></mat-card></div> -->
-    </div></div>
-        <mat-label fxLayoutAlign="space-around end" class="signin" [routerLink]="'/login'">Sign in instead</mat-label>
+
+
+            </ul>
+            <div class="allign" fxLayoutAlign="end center">Add to cart</div>
+          </mat-card>
+        </mat-card>
       </div>
+
+    </div>
+  </div>
+  <mat-label fxLayoutAlign="space-around end" class="signin" [routerLink]="'/login'">Sign in instead</mat-label>
+</div>

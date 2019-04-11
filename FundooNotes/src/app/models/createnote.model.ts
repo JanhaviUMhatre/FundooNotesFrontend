@@ -1,11 +1,11 @@
 export class CreateNote {
     "title": String;
-    "description":string;
-    
+    "description": string;
+
 }
-export class addCheckList{
+export class addCheckList {
     itemName: string;
     status: string;
     isDeleted: boolean;
-    notesId:string; 
-    }
+    notesId: string;
+}

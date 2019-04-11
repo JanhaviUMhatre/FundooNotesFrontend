@@ -5,20 +5,17 @@ import { BehaviorSubject, Subject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ViewService {
-//pin
 
-private labelname = new BehaviorSubject("");
-labelName=this.labelname.asObservable();
+  private labelname = new BehaviorSubject("");
+  labelName = this.labelname.asObservable();
 
-private pinSource = new BehaviorSubject("false");
+  private pinSource = new BehaviorSubject("false");
   currentpin = this.pinSource.asObservable();
 
   private messageSource = new BehaviorSubject("row wrap");
-  //private collaboratoremail = new BehaviorSubject("default email");
   private labelSource = new BehaviorSubject(null);
   private loginSource = new Subject<any>();
   currentMessage = this.messageSource.asObservable();
-  //currentEmail = this.collaboratoremail.asObservable();
   currentlabel = this.labelSource.asObservable();
   currentlogin = this.loginSource.asObservable();
   constructor() { }
@@ -26,26 +23,23 @@ private pinSource = new BehaviorSubject("false");
   changeMessage(message: string) {
     this.messageSource.next(message)
   }
-  // changeEmail(word: string) {
-  //   this.messageSource.next(word)
-  // }
+
   changelabel(label: string) {
     this.labelSource.next(label)
   }
   sendMessage(data: string) {
     this.loginSource.next({ text: data });
-}
+  }
 
-  loginResponse(): Observable <any> {
-      return this.loginSource.asObservable();
+  loginResponse(): Observable<any> {
+    return this.loginSource.asObservable();
   };
 
-  //pin
   pinMessage(msgPin: string) {
     this.pinSource.next(msgPin)
   }
 
-  sendlabelname(namelabel:string){
+  sendlabelname(namelabel: string) {
     this.labelname.next(namelabel)
   }
 

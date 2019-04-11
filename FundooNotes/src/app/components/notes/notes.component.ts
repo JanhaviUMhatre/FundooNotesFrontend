@@ -75,7 +75,6 @@ export class NotesComponent implements OnInit {
   carddata = this.data;
   msgPin: any;
 
-  //PinIcon:any="unpinIcon"
   dataRefresher: any;
   @ViewChild(PinedComponent) child;
 
@@ -115,8 +114,7 @@ export class NotesComponent implements OnInit {
   ngOnInit() {
     this.getNoteData()
     this.view.currentMessage.subscribe(message => this.message = message)
-    //this.view.currentlabel.subscribe(label => this.label = label)
-    //this.view.currentEmail.subscribe(word => this.word = word)
+
     this.getLabelsDashboard()
 
 
@@ -129,14 +127,11 @@ export class NotesComponent implements OnInit {
 
 
     }
-    // console.log("selected label", this.addlabel);
     this.svc.addingchecklistlabels('notes/' + note.id + '/addLabelToNotes/' + labels.id + '/add', this.addlabel).subscribe(
       (Response) => {
-        //  console.log("success", Response)
-         },
+      },
       (error) => {
-        //  console.log("error", error) 
-        }
+      }
     )
 
 
@@ -144,21 +139,16 @@ export class NotesComponent implements OnInit {
   getLabelsDashboard() {
     this.svc.getLabels().subscribe(
       (response) => {
-        // console.log("success", response);
         this.label = response['data']['details'];
-        // console.log(this.label)
       },
-      (error) => { 
-        // console.log("error", error)
-       }
+      (error) => {
+      }
     )
   }
 
 
   submit() {
-    // console.log(this.date.value, this.time.value)
   }
-  //get notes data
   openSnackBar() {
     this.snackBar.open("archived!!", 'OK', {
       duration: 3000
@@ -188,12 +178,10 @@ export class NotesComponent implements OnInit {
   getNoteData() {
     this.svc.getNotes().subscribe(
       (response) => {
-        // console.log("success get notes", response)
         this.data = response['data']['data'];
         this.child.getNoteDatas()
 
         this.data.reverse();
-        // console.log("in response", this.data)
 
 
         this.cardArray = this.data.filter(function (e) {
@@ -206,22 +194,19 @@ export class NotesComponent implements OnInit {
         this.ispinnedArray = this.data.filter(function (e) {
           return (e.isDeleted === false && e.isArchived === false && e.isPined === true)
         });
-        // console.log("cardsArray", this.cardArray)
 
-        for(let i in this.cardArray){
-          this.reminderNotes=i['reminder']
+        for (let i in this.cardArray) {
+          this.reminderNotes = i['reminder']
         }
       },
-      (error) => { 
-        // console.log("error", error);
-       }
+      (error) => {
+      }
     )
 
   }
 
 
 
-  //pin/unpin notes
   pin(card) {
     console.log("called pin");
     this.pinValue = !this.pinValue;
@@ -245,35 +230,28 @@ export class NotesComponent implements OnInit {
     )
   }
 
-  //change color of notes
   changeColor(color) {
 
     this.color = color;
-    //card.color = color;
     console.log(this.color, this.id)
     this.ColorData = {
       "color": this.color,
       "noteIdList": [this.id]
     }
-    console.log(this.ColorData)
     this.svc.colornote(this.ColorData).subscribe(
       (response) => {
-        console.log("success", response);
-        console.log(this.data)
       },
-      (error) => { console.log("error", error); }
+      (error) => { }
     )
 
   }
   getcolorid(card) {
     this.id = card.id
-    console.log(this.id)
   }
 
   //trash notes
   delete(card) {
-    console.log(card.id);
-    console.log("deleted")
+
 
     this.deletevalue = !this.deletevalue
 
@@ -284,19 +262,16 @@ export class NotesComponent implements OnInit {
     console.log(this.deleteData);
     this.svc.trashnote(this.deleteData).subscribe(
       (response) => {
-        console.log("success", response);
         this.openSnackBarDelete()
         this.getNoteData()
-        console.log(this.data)
       },
-      (error) => { console.log("error", error); }
+      (error) => { }
     )
   }
 
   //archive notes
   archive(card) {
-    console.log(card.id);
-    console.log("archived")
+
 
     this.archivevalue = !this.archivevalue
 
@@ -304,15 +279,14 @@ export class NotesComponent implements OnInit {
       "isArchived": this.archivevalue,
       "noteIdList": [card.id]
     }
-    console.log(this.archiveData);
     this.svc.archivednote(this.archiveData).subscribe(
       (response) => {
-        console.log("success", response);
+
         this.openSnackBar()
         this.getNoteData()
-        console.log(this.data)
+
       },
-      (error) => { console.log("error", error); }
+      (error) => { }
     )
     this.updateNotes(card)
   }
@@ -323,13 +297,10 @@ export class NotesComponent implements OnInit {
       "title": card.title,
       "description": card.description
     }
-    console.log("dataaaaa", this.updateData)
     this.svc.updatednote(this.updateData).subscribe(
       (response) => {
-        console.log("success", response);
-        console.log(this.data)
       },
-      (error) => { console.log("error", error); }
+      (error) => { }
     )
   }
   questionAnswer(card) {
@@ -339,7 +310,7 @@ export class NotesComponent implements OnInit {
   }
   //dialog box
   openDialog(card, labels, reminder): void {
-    
+
     const dialogRef = this.dialog.open(LabelsComponent,
       {
         data: {
@@ -351,13 +322,12 @@ export class NotesComponent implements OnInit {
           userId: card.userId,
           label: labels.label,
           reminder: reminder,
-        dataInfo:card.collaborators
+          dataInfo: card.collaborators
 
         }
       });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
 
     });
   }
@@ -377,13 +347,11 @@ export class NotesComponent implements OnInit {
       });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
 
     });
   }
   //add labels
   addlabels(card) {
-    console.log("from addlabels", card.id);
     this.addlabeldata = {
 
       "label": this.labels.value,
@@ -392,25 +360,22 @@ export class NotesComponent implements OnInit {
 
     }
 
-    console.log(this.addlabeldata)
     const httpOptions = {
       headers: new HttpHeaders({
 
         'Authorization': localStorage.getItem('token')
       })
     }
-    this.http.post(+this.baseUrl+'notes/' + card.id + '/noteLabels',
+    this.http.post(+this.baseUrl + 'notes/' + card.id + '/noteLabels',
       {
         "label": this.labels.value, "userId": card.userId,
         "isDeleted": card.isDeleted
       }, httpOptions).subscribe(
         (response) => {
-          console.log("success", response);
           this.labelresponse = response
-          console.log("label response", this.labelresponse)
           this.getNoteData()
         },
-        (error) => { console.log("error", error); }
+        (error) => { }
       )
   }
   newLabel() {
@@ -419,32 +384,28 @@ export class NotesComponent implements OnInit {
 
   stopPropagation(event) {
     event.stopPropagation();
-    // console.log("Clicked!");
   }
   removecollaborator(noteId, userId) {
 
     console.log(noteId, userId)
     this.svc.removeCollaborator(this.baseUrl + 'notes/' + noteId + '/removeCollaboratorsNotes/' + userId,
     ).subscribe(
-      (Response) => { (console.log("success", Response)) },
-      (error) => { (console.log("error", error)) }
+      (Response) => { },
+      (error) => { }
     )
   }
   reminder(card) {
     var newdate = this.date.value.toLocaleDateString() + " " + this.time.value
-    console.log(newdate)
     this.remindData = {
       "reminder": [this.date.value], "noteIdList": [this.id]
 
     }
-    console.log(this.remindData)
     this.svc.remindMe(this.remindData).subscribe(
       (response) => {
-        console.log("success", response);
         this.openSnackBarReminder()
 
       },
-      (error) => { console.log("error", error); }
+      (error) => { }
 
     )
 
@@ -455,10 +416,9 @@ export class NotesComponent implements OnInit {
       "noteId": note.id, "lableId": labels.id
     }).subscribe(
       (response) => {
-        console.log("success", response);
         this.getNoteData()
       },
-      (error) => { console.log("error", error) }
+      (error) => { }
     )
   }
   questions() {

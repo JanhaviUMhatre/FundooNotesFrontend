@@ -36,14 +36,14 @@ export class QuestionService {
   getNotesDetails(url) {
     return this.user.getForm(this.baseUrl + url)
   }
-  addmessage(url,userData){
-    return this.user.PostForm(this.baseUrl+url,userData)
-  
+  addmessage(url, userData) {
+    return this.user.PostForm(this.baseUrl + url, userData)
+
   }
-  rating(url,userData){
-    return this.user.PostForm(this.baseUrl+url,userData)
+  rating(url, userData) {
+    return this.user.PostForm(this.baseUrl + url, userData)
   }
-  likequestion(url,userData){
-    return this.user.postMethodJSON(this.baseUrl+url,userData)
+  likequestion(url, userData) {
+    return this.user.postMethodJSON(this.baseUrl + url, userData)
   }
 }

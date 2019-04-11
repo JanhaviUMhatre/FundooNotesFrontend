@@ -1,55 +1,50 @@
 <div fxLayout="column" fxFlex="100" fxLayoutAlign="center center">
 
   <app-pined></app-pined>
-  <!-- <app-demo ></app-demo> -->
 
   <mat-label>others</mat-label>
   <div fxLayout={{message}} fxFlex="100" fxLayoutAlign="center center">
 
-    <!-- <div fxLayout={{message}} fxFlex="100" fxLayoutAlign=" center center" > -->
     <div *ngFor="let note of cardArray | search:Search; let i = index">
       <div *ngIf="note.isArchived===false">
         <div *ngIf="note.isDeleted===false">
-          <!-- <div *ngIf="note.isPined===false"> -->
           <div fxLayout="row wrap" fxLayoutAlign="center center">
             <div class="cards">
               <mat-card class="card-width" [ngStyle]="{'backgroundColor': note.color}"
                 [ngClass]="{'cardWidth': message=='column wrap'}" [class.mat-elevation-z0]="!isActive">
                 <div fxLayout="column">
                   <div fxLayout="row" fxLayoutAlign="space-between center">
-                    <div class="title" [style.fontSize.px]=19 (click)="openDialog(note,note.noteLabels,note.reminder)"> {{note.title}}
+                    <div class="title" [style.fontSize.px]=19 (click)="openDialog(note,note.noteLabels,note.reminder)">
+                      {{note.title}}
                     </div>
                     <button class="pinIcon" mat-icon-button matTooltip="Pin/Unpin Note" (click)="pin(note)">
                       <div *ngIf="note.isPined===false">
                         <mat-icon style="font-size: 20px" class="mat-18 changeColor" svgIcon="unpinIcon"></mat-icon>
                       </div>
-                      <!-- <div *ngIf="note.isPined === true">
-                  <mat-icon style="font-size: 20px" class="mat-18 changeColor" svgIcon="pinIcon"></mat-icon>
-              </div> -->
+
                     </button>
                   </div>
                   <div class="description">{{note.description}}</div>
-                  <!-- <div class="description">{{note.description}}</div>  -->
                   <mat-chip-list>
                     <div *ngFor="let col of note.collaborators">
                       <div class="alignbutton">
                         <button mat-mini-fab [ngStyle]="{'backgroundColor': note.color}"
                           (click)="openDialogCollaborate(note.user,note.id,col.email,col.userId)"
                           [class.mat-elevation-z2]="!isActive">{{col.email.slice(0,1).toUpperCase()}}
-                          <!-- <mat-icon matChipRemove (click)="removecollaborator(note.id,col.userId)">cancel</mat-icon> -->
                         </button></div>
                     </div>
                   </mat-chip-list>
-                  <div *ngIf="note.reminder != ' '" class="reminderchip">
-                  <mat-chip-list>
-                    <mat-chip   [removable]="removable">{{note.reminder |  date:'medium'}}
-                           
-                                <mat-icon matChipRemove>cancel</mat-icon>
-                          
-                    </mat-chip>
+                  <div *ngIf="note.reminder != undefined &&  note.reminder !=null && note.reminder != ''"
+                    class="reminderchip">
+                    <mat-chip-list>
+                      <mat-chip [removable]="removable">{{note.reminder |  date:'medium'}}
 
-                  </mat-chip-list>
-                </div>
+                        <mat-icon matChipRemove>cancel</mat-icon>
+
+                      </mat-chip>
+
+                    </mat-chip-list>
+                  </div>
                   <mat-chip-list>
 
                     <div *ngFor="let labels of note.noteLabels">
@@ -61,16 +56,19 @@
                       </mat-chip>
                     </div>
                   </mat-chip-list>
-           </div>     
-<mat-card-actions>
-<div class="alignment" >
-  <app-footermenu [data]="note"></app-footermenu>
-</div>
-</mat-card-actions>
+                </div>
+                <mat-card-actions>
+                  <div class="alignment">
+                    <app-footermenu [data]="note"></app-footermenu>
+                  </div>
+                </mat-card-actions>
 
-</mat-card>
+              </mat-card>
 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-</div></div></div></div></div></div>
-                
-             

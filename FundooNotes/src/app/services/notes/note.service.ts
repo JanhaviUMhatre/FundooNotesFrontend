@@ -25,7 +25,7 @@ export class NoteService {
 
 
   constructor(private user: HttpService) { }
- 
+
 
   createnote(userData) {
     console.log(userData);
@@ -91,9 +91,9 @@ export class NoteService {
     return this.user.PostForm(this.baseUrl + url, userData)
   }
 
-  getLabelNote(labelname){
- 
-    return this.user.PostForm(this.baseUrl+'notes/getNotesListByLabel/'+labelname,labelname)
-    
+  getLabelNote(labelname) {
+
+    return this.user.PostForm(this.baseUrl + 'notes/getNotesListByLabel/' + labelname, labelname)
+
   }
 }

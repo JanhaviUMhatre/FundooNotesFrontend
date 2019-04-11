@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes , RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -24,150 +24,150 @@ import { PackagecardComponent } from './components/packagecard/packagecard.compo
 import { CartComponent } from './components/cart/cart.component';
 import { PinedComponent } from './components/pined/pined.component';
 const routes: Routes = [
-    {
-        path : 'registration',
-        component : RegistrationComponent
+  {
+    path: 'registration',
+    component: RegistrationComponent
+  },
+  {
+    path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'newlogin',
+    component: NewloginComponent
+  },
+  {
+    path: 'newregister',
+    component: NewregisterComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
+  },
+  {
+    path: 'packagecard',
+    component: PackagecardComponent
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'addlabel',
+        component: AddlabelComponent
       },
       {
-        path : '',
-        component : HomeComponent
+        path: '',
+        component: AddnoteComponent
       },
       {
-        path : 'home',
-        component : HomeComponent
+        path: 'cart',
+        component: CartComponent
       },
       {
-        path : 'login',
-        component : LoginComponent
+        path: 'addNote',
+        component: AddnoteComponent
       },
       {
-        path : 'newlogin',
-        component : NewloginComponent
+        path: 'notes',
+        component: NotesComponent
       },
       {
-        path : 'newregister',
-        component : NewregisterComponent
+        path: 'pined',
+        component: PinedComponent
       },
       {
-        path : 'profile',
-        component : ProfileComponent
+        path: 'search',
+        component: SearchbarComponent
+      },
+
+      {
+        path: 'trash',
+        component: TrashComponent
       },
       {
-        path : 'packagecard',
-        component : PackagecardComponent
+        path: 'archive',
+        component: ArchiveComponent,
+
       },
       {
-        path : 'dashboard',
-        component : DashboardComponent,
-        canActivate : [AuthGuard],
-        children:[
-          {
-            path:'addlabel',
-            component:AddlabelComponent
-          },
-          {
-            path: '',
-            component:AddnoteComponent
-          },
-          {
-            path:'cart',
-            component:CartComponent
-          },
-          {
-            path:'addNote',
-            component:AddnoteComponent
-          },
-          {
-            path:'notes',
-            component:NotesComponent
-          },
-          {
-            path:'pined',
-            component:PinedComponent
-          },
-          {
-            path:'search',
-            component:SearchbarComponent
-          },
-          
-          {
-            path:'trash',
-            component:TrashComponent
-          },
-          {
-            path:'archive',
-            component:ArchiveComponent,
-            
-          },
-          {
-            path:'reminder',
-            component:RemindersComponent
-          },
-          {
-            path: 'questions',
-            component:QuestionComponent
-          },
-          
-          {
-            path: 'addNote/questions',
-            component:QuestionComponent
-          },
-          {
-            path: 'archive/questions',
-            component:QuestionComponent
-          },
-          {
-            path: 'trash/questions',
-            component:QuestionComponent
-          },
-          {
-            path: 'reminder/questions',
-            component:QuestionComponent
-          },
-         
-          ]
+        path: 'reminder',
+        component: RemindersComponent
       },
       {
         path: 'questions',
-        component:QuestionComponent
+        component: QuestionComponent
       },
-      
+
       {
-        path : 'demo',
-        component : DemoComponent
-      },
-     
-      {
-        path : 'resetpassword/:token',
-        component : ResetPasswordComponent
+        path: 'addNote/questions',
+        component: QuestionComponent
       },
       {
-        path : 'reset',
-        component : ResetComponent
+        path: 'archive/questions',
+        component: QuestionComponent
       },
       {
-        path:'footer',
-        component:FootermenuComponent
+        path: 'trash/questions',
+        component: QuestionComponent
       },
-    
+      {
+        path: 'reminder/questions',
+        component: QuestionComponent
+      },
+
+    ]
+  },
+  {
+    path: 'questions',
+    component: QuestionComponent
+  },
+
+  {
+    path: 'demo',
+    component: DemoComponent
+  },
+
+  {
+    path: 'resetpassword/:token',
+    component: ResetPasswordComponent
+  },
+  {
+    path: 'reset',
+    component: ResetComponent
+  },
+  {
+    path: 'footer',
+    component: FootermenuComponent
+  },
+
 ];
 @NgModule({
-    imports:[RouterModule.forRoot(routes)],
-    //exports:[RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  //exports:[RouterModule]
 })
 
 export class AppRoutingModule { }
-export const routingComponents = [RegistrationComponent, 
-  LoginComponent, 
-  ResetPasswordComponent, 
-  ResetComponent, 
+export const routingComponents = [RegistrationComponent,
+  LoginComponent,
+  ResetPasswordComponent,
+  ResetComponent,
   DashboardComponent,
   ProfileComponent,
-FootermenuComponent,
-ArchiveComponent,
-TrashComponent,
-NotesComponent,
-RemindersComponent,
-AddlabelComponent,
-SearchbarComponent,
-AddnoteComponent]
+  FootermenuComponent,
+  ArchiveComponent,
+  TrashComponent,
+  NotesComponent,
+  RemindersComponent,
+  AddlabelComponent,
+  SearchbarComponent,
+  AddnoteComponent]

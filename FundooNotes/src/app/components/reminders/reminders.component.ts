@@ -7,20 +7,19 @@ import { NoteService } from 'src/app/services/notes/note.service';
   styleUrls: ['./reminders.component.scss']
 })
 export class RemindersComponent implements OnInit {
-data:any;
-isActive=false;
-  constructor(private svc :NoteService) { }
+  data: any;
+  isActive = false;
+  constructor(private svc: NoteService) { }
 
   ngOnInit() {
     this.getReminder();
   }
-getReminder(){
-  this.svc.getReminderNotes().subscribe(
-    (response)=>{console.log("success",response)
-  this.data=response['data']['data']
-  
-console.log(this.data)},
-  (error)=>{console.log("error",error)}
-  )
-}
+  getReminder() {
+    this.svc.getReminderNotes().subscribe(
+      (response) => {
+        this.data = response['data']['data']
+      },
+      (error) => { }
+    )
+  }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PackageselectComponent } from '../packageselect/packageselect.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { HttpClient } from '@angular/common/http'; 
+import { HttpClient } from '@angular/common/http';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { CartServiceService } from 'src/app/services/cart/cart-service.service';
 import { environment } from 'src/environments/environment';
@@ -16,52 +16,43 @@ export class HomeComponent implements OnInit {
   productId: any;
   baseUrl = environment.baseUrl;
   productdetails: any;
-  constructor(public dialog: MatDialog,private http: HttpClient,private cart:CartService,private carts:CartServiceService) { }
+  constructor(public dialog: MatDialog, private http: HttpClient, private cart: CartService, private carts: CartServiceService) { }
 
   ngOnInit() {
 
     this.getJson();
   }
-  openDialoge(){
-    
-      const dialogRef = this.dialog.open(PackageselectComponent,
-        {
-        
-         
-        });
-  
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-  
-      });
-    
+  openDialoge() {
+    const dialogRef = this.dialog.open(PackageselectComponent,{  });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
+
   }
-  getJson(){
-    this.http.get(this.baseUrl+'user/service').subscribe(
-      (Response)=>{console.log("success",Response);
-      this.details=Response['data']['data']
+  getJson() {
+    this.http.get(this.baseUrl + 'user/service').subscribe(
+      (Response) => {
+        this.details = Response['data']['data']
       },
-      (error)=>{console.log("error",error);
+      (error) => {
       }
     )
   }
 
-  sharevalues(card){
-    
-    console.log(card['id']);
-    this.productId=card['id'];
-    console.log("product id -------------",card['id']);
-    this.carts.addtocart({"productId":this.productId}).subscribe(
-      (response)=>{console.log("success home",response);
-      this.productdetails=response['data']['details']['product']
-      console.log("productdetails....",this.productdetails)
-      localStorage.setItem("serviceType",this.productdetails['name'])
-      this.cart.sendinfocard(this.productdetails)
-      localStorage.setItem("cartId",response['data']['details']['id'])
+  sharevalues(card) {
+
+    this.productId = card['id'];
+    this.carts.addtocart({ "productId": this.productId }).subscribe(
+      (response) => {
+        this.productdetails = response['data']['details']['product']
+        localStorage.setItem("serviceType", this.productdetails['name'])
+        this.cart.sendinfocard(this.productdetails)
+        localStorage.setItem("cartId", response['data']['details']['id'])
       },
-      (error)=>{console.log("error",error);
+      (error) => {
       }
     )
-    
+
   }
 }

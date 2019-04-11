@@ -23,11 +23,11 @@ export class PackagecardComponent implements OnInit {
   }
   getJson(){
     this.http.get(this.baseUrl+'user/service').subscribe(
-      (Response)=>{console.log("success",Response);
+      (Response)=>{
       this.details=Response['data']['data']
       this.cartid=this.info['id']
       },
-      (error)=>{console.log("error",error);
+      (error)=>{
       }
     )
   }

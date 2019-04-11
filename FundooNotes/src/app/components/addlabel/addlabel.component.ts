@@ -8,24 +8,22 @@ import { NoteService } from 'src/app/services/notes/note.service';
   styleUrls: ['./addlabel.component.scss']
 })
 export class AddlabelComponent implements OnInit {
-  namelabel:string
+  namelabel: string
   data: any;
-  constructor(private view: ViewService,private note:NoteService) { }
+  constructor(private view: ViewService, private note: NoteService) { }
 
   ngOnInit() {
-      this.view.labelName.subscribe(namelabel => this.namelabel=namelabel)
-      this.getlabelnotes()
+    this.view.labelName.subscribe(namelabel => this.namelabel = namelabel)
+    this.getlabelnotes()
   }
-getlabelnotes(){
-  console.log("from new component",this.namelabel)
-  this.note.getLabelNote(this.namelabel).subscribe(
-    (response)=>{console.log("success",response);
-    this.data=response['data']['data']
-    },
-    (error)=>{
-      console.log("error",error);
-      
-    }
-  )
-}
+  getlabelnotes() {
+    this.note.getLabelNote(this.namelabel).subscribe(
+      (response) => {
+        this.data = response['data']['data']
+      },
+      (error) => {
+
+      }
+    )
+  }
 }

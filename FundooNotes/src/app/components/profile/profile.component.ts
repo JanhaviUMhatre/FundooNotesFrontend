@@ -15,18 +15,17 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  // fileToUpload= new FormControl('')
   selectedFile: any
   fileToUpload: File = null;
-  flag=false;
+  flag = false;
   profileForm: FormGroup;
   error: string;
-  fileUpload = {status: '', message: '', filePath: ''};
+  fileUpload = { status: '', message: '', filePath: '' };
 
   imageChangedEvent: any = '';
   croppedImage: any = '';
 
-  constructor(private router: Router,private fb: FormBuilder,private svc : UserServiceService,private http : HttpClient,
+  constructor(private router: Router, private fb: FormBuilder, private svc: UserServiceService, private http: HttpClient,
     public dialogRef: MatDialogRef<DashboardComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
   baseUrl = environment.baseUrl;
@@ -36,53 +35,32 @@ export class ProfileComponent implements OnInit {
       imageUrl: ['']
     });
   }
-  
+
   onNoClick(): void {
     this.dialogRef.close();
   }
 
 
-// onSelectedFile(event) {
-//   this.imageChangedEvent = event;   // getting cropped img value
-
-//   if (event.target.files.length > 0) {
-//     const file = event.target.files[0];
-//     console.log("fileee",file)
- 
-//     this.svc.NEWupload(file).subscribe(
-//       (response) => {console.log("success",response)
-//       this.selectedFile=response['status'].imageUrl;
-//       localStorage.setItem('imageUrl',this.selectedFile)
-//       console.log("file",this.selectedFile)
-//       //this.router.navigate(['/dashboard']);
-//     },
-      
-//       (error)=> {console.log("error",error)}
-//     )
-//   }
-// }
-onSelectedFile(event){
-  this.imageChangedEvent = event;
-  this.flag=!this.flag
-}
-imageCropped(event: ImageCroppedEvent) {
-  this.croppedImage = event.file}
-
-  onSubmit(croppedImage) {
-    console.log(croppedImage)
-    this.svc.NEWupload(croppedImage).subscribe(
-            (response) => {console.log("success",response)
-            this.selectedFile=response['status'].imageUrl;
-            localStorage.setItem('imageUrl',this.selectedFile)
-            console.log("file",this.selectedFile)
-            this.onNoClick()
-            //this.router.navigate(['/dashboard']);
-          },
-            
-            (error)=> {console.log("error",error)}
-          )
-        }
+  onSelectedFile(event) {
+    this.imageChangedEvent = event;
+    this.flag = !this.flag
+  }
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.file
   }
 
-  
+  onSubmit(croppedImage) {
+    this.svc.NEWupload(croppedImage).subscribe(
+      (response) => {
+        this.selectedFile = response['status'].imageUrl;
+        localStorage.setItem('imageUrl', this.selectedFile)
+        this.onNoClick()
+      },
+
+      (error) => { }
+    )
+  }
+}
+
+
 

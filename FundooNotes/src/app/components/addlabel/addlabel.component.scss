@@ -8,7 +8,6 @@
     margin-bottom: 15px;
    height: 120px;
 }
-//$mat-card-border-radius: 11px !default;
 
 .mat-card {
 
@@ -22,12 +21,7 @@
 .changeColor{
     color: rgb(54, 54, 54);
 }
-// .alignment{
-//     padding-top: 5px;
- 
-//     padding-right: 10px;
-    
-// }
+
 .alignment{
 display:none !important;}
 mat-card:hover{
@@ -54,14 +48,7 @@ mat-card:hover{
        overflow: hidden;
 
    }
-//    button{ display:none}
-// mat-card:hover{
 
-//   button{
-//      display:block;
-    
-//   }
-// }
    .label-align{
     margin-left: 10px;
     

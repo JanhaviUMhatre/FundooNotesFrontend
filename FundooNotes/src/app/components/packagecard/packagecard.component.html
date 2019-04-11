@@ -1,19 +1,23 @@
-<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="150px" fxFlexOffset="35px"  class="cards" >
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="150px" fxFlexOffset="35px" class="cards">
   <div *ngFor="let i of details">
-    
- <div class="zoom"  (click)="openDialoge()"> <mat-card class="bottom" [ngClass]="{'bottomselected': i.id==cartid}">
-   <mat-card ><mat-label class="label" >${{i.price}}/month</mat-label>
-<p class="paragraph">{{i.name}}</p>
-<ul>
 
- 
-  
-    <li>{{i.description}}</li>
-  
+    <div class="zoom" (click)="openDialoge()">
+      <mat-card class="bottom" [ngClass]="{'bottomselected': i.id==cartid}">
+        <mat-card>
+          <mat-label class="label">${{i.price}}/month</mat-label>
+          <p class="paragraph">{{i.name}}</p>
+          <ul>
 
 
-</ul>
-<!-- <div class="allign"  fxLayoutAlign="end center" >selected</div> -->
-  </mat-card></mat-card></div>
- 
-    </div></div>
+
+            <li>{{i.description}}</li>
+
+
+
+          </ul>
+        </mat-card>
+      </mat-card>
+    </div>
+
+  </div>
+</div>

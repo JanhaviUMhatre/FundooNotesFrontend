@@ -17,9 +17,9 @@ import { SearchService } from 'src/app/services/search/search.service';
   styleUrls: ['./searchbar.component.scss']
 })
 export class SearchbarComponent implements OnInit {
-  data:any;
+  data: any;
   Search: any;
-  constructor(private svc :NoteService,private ser : SearchService) { }
+  constructor(private svc: NoteService, private ser: SearchService) { }
 
   ngOnInit() {
     this.ser.currentMessage.subscribe(message => {
@@ -27,16 +27,15 @@ export class SearchbarComponent implements OnInit {
     })
     this.getNoteData()
   }
-  getNoteData(){
+  getNoteData() {
     this.svc.getNotes().subscribe(
-      (response) => {console.log("success get notes",response)
-    this.data = response['data']['data']; 
-    console.log(this.data)
+      (response) => {
+        this.data = response['data']['data'];
 
-    },
-      (error) => {console.log("error",error);}
-      )
-      
+      },
+      (error) => { }
+    )
+
   }
 
 }

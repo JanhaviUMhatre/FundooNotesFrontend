@@ -1,9 +1,9 @@
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { NgModule } from '@angular/core';
-import {MatCardModule} from '@angular/material/card';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 
@@ -11,9 +11,9 @@ import {
   MatAutocompleteModule,
   MatBadgeModule,
   MatBottomSheetModule,
-  
+
   MatButtonToggleModule,
-  
+
   MatDatepickerModule,
   MatDialogModule,
   MatDividerModule,
@@ -49,53 +49,53 @@ import { PackageselectComponent } from './components/packageselect/packageselect
 
 
 @NgModule({
-  imports: [MatButtonModule,MatSidenavModule, MatCheckboxModule,MatCardModule,MatChipsModule,MatFormFieldModule,FlexLayoutModule],
-  
-    exports: [MatButtonModule, MatCheckboxModule,MatCardModule,MatChipsModule,MatFormFieldModule,
-      
-      MatAutocompleteModule,
-      FlexLayoutModule,
-      MatBadgeModule,
-      MatSidenavModule,
-      MatBottomSheetModule,
-      MatButtonModule,
-      MatButtonToggleModule,
-      MatCardModule,
-      MatCheckboxModule,
-      MatChipsModule,
-      MatStepperModule,
-      MatDatepickerModule,
-      MatDialogModule,
-      MatDividerModule,
-      MatExpansionModule,
-      MatGridListModule,
-      MatIconModule,
-      MatInputModule,
-      MatListModule,
-      MatMenuModule,
-      MatNativeDateModule,
-      MatPaginatorModule,
-      MatProgressBarModule,
-      MatProgressSpinnerModule,
-      MatRadioModule,
-      MatRippleModule,
-      MatSelectModule,
-      MatSidenavModule,
-      MatSliderModule,
-      MatSlideToggleModule,
-      MatSnackBarModule,
-      MatSortModule,
-      MatTableModule,
-      MatTabsModule,
-      MatToolbarModule,
-      MatTooltipModule,
-      MatTreeModule,
-      ],
-      entryComponents: [
-        LabelsComponent,
-        PackageselectComponent
-      ]
- 
-    
+  imports: [MatButtonModule, MatSidenavModule, MatCheckboxModule, MatCardModule, MatChipsModule, MatFormFieldModule, FlexLayoutModule],
+
+  exports: [MatButtonModule, MatCheckboxModule, MatCardModule, MatChipsModule, MatFormFieldModule,
+
+    MatAutocompleteModule,
+    FlexLayoutModule,
+    MatBadgeModule,
+    MatSidenavModule,
+    MatBottomSheetModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatTreeModule,
+  ],
+  entryComponents: [
+    LabelsComponent,
+    PackageselectComponent
+  ]
+
+
 })
 export class MaterialModule { }

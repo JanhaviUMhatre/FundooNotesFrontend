@@ -14,77 +14,78 @@ import { ViewService } from 'src/app/services/viewservice/view.service';
   styleUrls: ['./collaborator.component.scss']
 })
 export class CollaboratorComponent implements OnInit {
-email = new FormControl('');
-collaboratordata:any;
-emails:any;
-public word: string = "";
-firstName:any;
-lastName:any;
+  email = new FormControl('');
+  collaboratordata: any;
+  emails: any;
+  public word: string = "";
+  firstName: any;
+  lastName: any;
   userId: any;
   baseUrl = environment.baseUrl;
-  isActive=false;
-// options:any[];
-// filteredOptions: Observable<string[]>;
+  isActive = false;
+
 
   constructor(public dialogRef: MatDialogRef<DashboardComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,private svc:NoteService,
-    private view:ViewService) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, private svc: NoteService,
+    private view: ViewService) { }
 
   ngOnInit() {
-   
+
     this.geCollab()
   }
- 
-serachEmail(str: string): void{
-  this.word = str;
-//console.log(this.word)
-  this.svc.serachuser({"searchWord":this.word}).subscribe(
-    (Response)=>{console.log("success search",Response['data']['details'])
-    this.emails = Response['data']['details'];
-    console.log("this is response",Response)
-    for(let val of Response['data']['details']){
-      this.firstName=val.firstName;
-      this.lastName=val.lastName;
-      this.userId=val.userId;
-    }
-  },
-    (error)=>{console.log("error",error)}
-  )
-}
-onNoClick(): void {
-  this.dialogRef.close();
-}
 
-addcollaborator(){
-this.collaboratordata={
-"id":this.data.noteId,
-	
-"firstName":this.firstName,
- "lastName":this.lastName,
- "email":this.word,
-"userId":this.userId
-}
-console.log(this.collaboratordata)
-this.svc.addCollaborator(this.baseUrl+'notes/'+this.data.noteId+'/AddcollaboratorsNotes',this.collaboratordata).subscribe(
-  (Response)=>{console.log("success",Response)
-
-
-},
-  (error)=>{console.log("error",error)
+  serachEmail(str: string): void {
+    this.word = str;
+    this.svc.serachuser({ "searchWord": this.word }).subscribe(
+      (Response) => {
+        console.log("success search", Response['data']['details'])
+        this.emails = Response['data']['details'];
+        console.log("this is response", Response)
+        for (let val of Response['data']['details']) {
+          this.firstName = val.firstName;
+          this.lastName = val.lastName;
+          this.userId = val.userId;
+        }
+      },
+      (error) => { console.log("error", error) }
+    )
   }
-)
-this.dialogRef.close();
-}
-removecollaborator(){
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 
-  this.svc.removeCollaborator(this.baseUrl+'notes/'+this.data.noteId+'/removeCollaboratorsNotes/'+this.data.colUserid,
-  ).subscribe(
-    (Response)=>{(console.log("success",Response))},
-    (error)=>{(console.log("error",error))}
-  )
-    }
+  addcollaborator() {
+    this.collaboratordata = {
+      "id": this.data.noteId,
 
-    geCollab(){
-      console.log(this.data.collaborator)
+      "firstName": this.firstName,
+      "lastName": this.lastName,
+      "email": this.word,
+      "userId": this.userId
     }
+    console.log(this.collaboratordata)
+    this.svc.addCollaborator(this.baseUrl + 'notes/' + this.data.noteId + '/AddcollaboratorsNotes', this.collaboratordata).subscribe(
+      (Response) => {
+        console.log("success", Response)
+
+
+      },
+      (error) => {
+        console.log("error", error)
+      }
+    )
+    this.dialogRef.close();
+  }
+  removecollaborator() {
+
+    this.svc.removeCollaborator(this.baseUrl + 'notes/' + this.data.noteId + '/removeCollaboratorsNotes/' + this.data.colUserid,
+    ).subscribe(
+      (Response) => { (console.log("success", Response)) },
+      (error) => { (console.log("error", error)) }
+    )
+  }
+
+  geCollab() {
+    console.log(this.data.collaborator)
+  }
 }

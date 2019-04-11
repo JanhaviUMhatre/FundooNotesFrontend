@@ -9,17 +9,17 @@ export class CartService {
   baseUrl = environment.baseUrl;
   private cardinfo = new BehaviorSubject('');
   cards = this.cardinfo.asObservable();
-  
+
   constructor(private user: HttpService) { }
 
 
   sendinfocard(info: any) {
     this.cardinfo.next(info)
   }
-  getservice(){
-    return this.user.getFormData(this.baseUrl+'user/service/')
+  getservice() {
+    return this.user.getFormData(this.baseUrl + 'user/service/')
   }
-  addtocart(userData){
-    return this.user.PostNormalMethod(this.baseUrl+'productcarts/addToCart',userData)
+  addtocart(userData) {
+    return this.user.PostNormalMethod(this.baseUrl + 'productcarts/addToCart', userData)
   }
 }

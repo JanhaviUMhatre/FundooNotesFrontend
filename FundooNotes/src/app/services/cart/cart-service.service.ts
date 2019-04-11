@@ -9,13 +9,13 @@ export class CartServiceService {
   baseUrl = environment.baseUrl;
   constructor(private user: HttpService) { }
 
-  addtocart(userData){
-    return this.user.PostNormalMethod(this.baseUrl+'productcarts/addToCart',userData)
+  addtocart(userData) {
+    return this.user.PostNormalMethod(this.baseUrl + 'productcarts/addToCart', userData)
   }
-  placeorder(userData){
-    return this.user.postMethodJSON(this.baseUrl+'productcarts/placeOrder',userData)
+  placeorder(userData) {
+    return this.user.postMethodJSON(this.baseUrl + 'productcarts/placeOrder', userData)
   }
-  mycart(){
-    return this.user.getForm(this.baseUrl+'productcarts/myCart')
+  mycart() {
+    return this.user.getForm(this.baseUrl + 'productcarts/myCart')
   }
 }

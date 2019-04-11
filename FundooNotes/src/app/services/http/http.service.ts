@@ -16,40 +16,40 @@ export class HttpService {
 
   public registerUser(RegisterModel): Observable<any> {
     return this.http.post<RegisterModel>(
-      this.baseUrl+'user/userSignUp',
+      this.baseUrl + 'user/userSignUp',
       RegisterModel
     );
   }
   public login(LoginModel): Observable<any> {
     return this.http.post<LoginModel>(
-      this.baseUrl+'user/login',
+      this.baseUrl + 'user/login',
       LoginModel
     );
   }
   public forgotPassword(ForgotPassword): Observable<any> {
     return this.http.post<ForgotPassword>(
-      this.baseUrl+'user/reset-password',
+      this.baseUrl + 'user/reset-password',
       ForgotPassword
     );
   }
 
-  public postMethod(url:any,data:any){
+  public postMethod(url: any, data: any) {
     const httpOptions = {
       headers: new HttpHeaders({
-        
-        'Authorization':localStorage.getItem('token')
+
+        'Authorization': localStorage.getItem('token')
       })
     }
-    return this.http.post(url,data,httpOptions)
+    return this.http.post(url, data, httpOptions)
   }
-  public postMethodJSON(url:any,data:any){
+  public postMethodJSON(url: any, data: any) {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type' : 'application/json',
-        'Authorization':localStorage.getItem('token')
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
       })
     }
-    return this.http.post(url,data,httpOptions)
+    return this.http.post(url, data, httpOptions)
   }
 
 
@@ -63,46 +63,45 @@ export class HttpService {
     return formBody.join('&');
   }
 
-  public PostForm(url:any,data:any){
+  public PostForm(url: any, data: any) {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type' : 'application/x-www-form-urlencoded',
-        'Authorization':localStorage.getItem('token')
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': localStorage.getItem('token')
       })
     }
-    return this.http.post(url,this.getEncodData(data),httpOptions)
+    return this.http.post(url, this.getEncodData(data), httpOptions)
   }
-  public DeleteForm(url:any){
+  public DeleteForm(url: any) {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Authorization':localStorage.getItem('token')
+        'Authorization': localStorage.getItem('token')
       })
     }
-   return this.http.delete(url,httpOptions);
+    return this.http.delete(url, httpOptions);
   }
 
-  public getForm(url:any){
+  public getForm(url: any) {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Authorization':localStorage.getItem('token')
+        'Authorization': localStorage.getItem('token')
       })
     }
-    return this.http.get<any>(url,httpOptions)
+    return this.http.get<any>(url, httpOptions)
   }
-  public getFormData(url:any){
+  public getFormData(url: any) {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Authorization':localStorage.getItem('token')
+        'Authorization': localStorage.getItem('token')
       })
     }
-    return this.http.get(url,httpOptions)
+    return this.http.get(url, httpOptions)
   }
-  public PostNormalMethod(url:any,data:any){
-    return this.http.post(url,data)
+  public PostNormalMethod(url: any, data: any) {
+    return this.http.post(url, data)
 
   }
-  public loggIn()
-  {
+  public loggIn() {
     return !!localStorage.getItem("token");
   }
 }

@@ -7,15 +7,15 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
-import { AppRoutingModule,routingComponents } from './app-routing.module';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { from } from 'rxjs';
 import { MatCardModule } from '@angular/material';
 import { MatIconModule } from "@angular/material/icon";
 
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
@@ -54,59 +54,58 @@ import { CartComponent } from './components/cart/cart.component';
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    //FlexLayoutModule,
     RegistrationComponent,
-   
+
     ResetPasswordComponent,
-   
+
     ResetComponent,
-   
+
     AddnoteComponent,
-   
+
     LabelsComponent,
-   
+
     FootermenuComponent,
-   
+
     NotesComponent,
-   
+
     SearchPipe,
-   
+
     SearchbarComponent,
-   
+
     AddlabelComponent,
-   
+
     TrashComponent,
-   
+
     ArchiveComponent,
-   
+
     ProfileComponent,
-   
+
     RemindersComponent,
-   
+
     PinedComponent,
-   
+
     CollaboratorComponent,
-   
+
     DemoComponent,
-   
+
     QuestionComponent,
-   
+
     HomeComponent,
-   
+
     PackageselectComponent,
-   
+
     NewloginComponent,
-   
+
     NewregisterComponent,
-   
+
     PackagecardComponent,
-   
+
     CartComponent,
   ],
   imports: [AppRoutingModule,
     FroalaEditorModule.forRoot(),
-     FroalaViewModule.forRoot(),
-     RatingModule,
+    FroalaViewModule.forRoot(),
+    RatingModule,
     BrowserModule,
     MatSnackBarModule,
     HttpClientModule,
@@ -119,9 +118,9 @@ import { CartComponent } from './components/cart/cart.component';
     RouterModule,
     ImageCropperModule
   ],
-  entryComponents:[
+  entryComponents: [
     CollaboratorComponent
-      ],
+  ],
   providers: [UserServiceService],
   bootstrap: [AppComponent]
 })

@@ -1,57 +1,33 @@
-<form [formGroup] = "profileForm" >
-<div fxLayout="row" fxLayoutAlign="start start">
-<h1 class="mat-h1 colorheading">File Upload</h1>
-</div>
+<form [formGroup]="profileForm">
+  <div fxLayout="row" fxLayoutAlign="start start">
+    <h1 class="mat-h1 colorheading">File Upload</h1>
+  </div>
 
-<mat-divider></mat-divider>
-<div fxLayout="column" fxLayoutAlign="space-around center">
-    
-  
-<!-- <div class="row"> -->
-  <!-- <div class="col-md-6"> -->
-    <!-- <div *ngIf="fileUpload.status==='error'">
-        <div [innerHTML]="fileUpload.message"></div>
-    </div> -->
-    <!-- <div *ngIf="fileUpload.status==='progress'">
-        <div class="progress" style="height: 20px;margin-bottom:20px;">
-          <div class="progress-bar" role="progressbar" [style.width.%]="fileUpload.message" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{fileUpload.message}}%</div>
-        </div>
-    </div> -->
- 
-    
-      <!-- <div class="form-group selectbutton" >
-        <input type="file" name="imageUrl" (change)="onSelectedFile($event)" class="addimage" >
-       
-      </div> -->
-     
-      <div class="form-group selectbutton" >
+  <mat-divider></mat-divider>
+  <div fxLayout="column" fxLayoutAlign="space-around center">
+
+
+
+
+    <div class="form-group selectbutton">
       <label class="fileContainer">
-         <img src="../../../assets/images/profilechange.png" *ngIf="flag==false" class="imageopacity">
-          <input type="file" name="imageUrl" (change)="onSelectedFile($event)" class="addimage"/>
+        <img src="../../../assets/images/profilechange.png" *ngIf="flag==false" class="imageopacity">
+        <input type="file" name="imageUrl" (change)="onSelectedFile($event)" class="addimage" />
       </label>
     </div>
-      <image-cropper *ngIf="flag==true"
-    [imageChangedEvent]="imageChangedEvent"
-    (imageCropped)="imageCropped($event)" >
-  
-  </image-cropper>
-  
+    <image-cropper *ngIf="flag==true" [imageChangedEvent]="imageChangedEvent" (imageCropped)="imageCropped($event)">
 
-    
-  <!-- <img [src]="croppedImage" /> -->
-<!-- 
-    <div *ngIf="fileUpload.status==='success'">
-      <img src="fileUpload.filePath" height="200px" />
+    </image-cropper>
+
+
+
+
+
+
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="buttonalign">
+      <button mat-raised-button (click)="onSubmit(croppedImage)" class="uploadcolor">Upload</button>
+      <button mat-raised-button (click)="onNoClick()" class="cancelcolor">cancel</button>
+
     </div>
-    <p>{{ error }}</p> -->
-  <!-- </div> -->
-<!-- </div> -->
-
-
-<div fxLayout="row" fxLayoutAlign="space-between center" class="buttonalign">
-<button mat-raised-button (click)="onSubmit(croppedImage)" class="uploadcolor">Upload</button>
-<button mat-raised-button (click)="onNoClick()" class="cancelcolor">cancel</button>
-
-</div>
-</div>
+  </div>
 </form>

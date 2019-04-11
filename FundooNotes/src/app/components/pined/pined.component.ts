@@ -12,7 +12,7 @@ import { Component, OnInit, EventEmitter, Output, Input, ViewChild } from '@angu
 import { NoteService } from 'src/app/services/notes/note.service';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from '@angular/platform-browser';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { LabelsComponent } from '../labels/labels.component';
 import { FormControl } from '@angular/forms';
 import { SearchService } from 'src/app/services/search/search.service';
@@ -29,30 +29,30 @@ import { QuestionService } from 'src/app/services/question/question.service';
   styleUrls: ['./pined.component.scss']
 })
 export class PinedComponent implements OnInit {
-  
+
 
   data: any;
   cardArray: any;
   baseUrl = environment.baseUrl;
 
-  deletevalue=false;
+  deletevalue = false;
 
-  color : any;
-  flagnote :any;
-  footerData : any;
-  labelresponse:any;
+  color: any;
+  flagnote: any;
+  footerData: any;
+  labelresponse: any;
   @Output() getId = new EventEmitter();
   deleteData: { "isDeleted": boolean; "noteIdList": any[]; };
-  archivevalue=false;
+  archivevalue = false;
   archiveData: { "isArchived": boolean; "noteIdList": any[]; };
-  pinValue=true;
-  id:any;
+  pinValue = true;
+  id: any;
   //
 
-  date=new FormControl('');
-  time=new FormControl('');
-  remindData:any;
-  updateData:any;
+  date = new FormControl('');
+  time = new FormControl('');
+  remindData: any;
+  updateData: any;
   pinData: { "isPined": boolean; "noteIdList": any[]; };
   colorCode: Array<Object> = [
     { name: "white", colorCode: "#fff" },
@@ -69,51 +69,49 @@ export class PinedComponent implements OnInit {
     { name: "gray", colorCode: "#e7e9ec" }
   ]
   ColorData: { "color": boolean; "noteIdList": any[]; };
- carddata=this.data;
- //PinIcon:any="unpinIcon"
- dataRefresher: any;
- @Input() arrayCards;
- @Input() Search;
- selectable = true;
- isActive=false;
+  carddata = this.data;
+  dataRefresher: any;
+  @Input() arrayCards;
+  @Input() Search;
+  selectable = true;
+  isActive = false;
   removable = true;
- menuid:any;
-newArray:any[];
-today: number = Date.now();
-  message: string="row wrap";
+  menuid: any;
+  newArray: any[];
+  today: number = Date.now();
+  message: string = "row wrap";
   addlabeldata: { "label": any; "userId": any; "isDeleted": any; };
   labels = new FormControl('')
-label:string;
+  label: string;
   addlabel: any;
   myData: any;
   reminderNotes: any;
-  constructor(private que : QuestionService,private http: HttpClient,private snackBar: MatSnackBar,private view: ViewService,private ser: SearchService,public dialog: MatDialog,private svc :NoteService,private matIconRegistry: MatIconRegistry,
+  constructor(private que: QuestionService, private http: HttpClient, private snackBar: MatSnackBar, private view: ViewService, private ser: SearchService, public dialog: MatDialog, private svc: NoteService, private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
-    ) {
-      this.matIconRegistry.addSvgIcon(
-        "unpinIcon",
-        this.domSanitizer.bypassSecurityTrustResourceUrl("../../assets/Icons/unpinIcon.svg"),
-      
-      );
-      this.matIconRegistry.addSvgIcon(
-        "pinIcon",
-        this.domSanitizer.bypassSecurityTrustResourceUrl("../../assets/Icons/pinIcon.svg"),
-      
-      );
-   } 
+  ) {
+    this.matIconRegistry.addSvgIcon(
+      "unpinIcon",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../../assets/Icons/unpinIcon.svg"),
+
+    );
+    this.matIconRegistry.addSvgIcon(
+      "pinIcon",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../../assets/Icons/pinIcon.svg"),
+
+    );
+  }
 
   ngOnInit() {
-   this.getNoteDatas()
+    this.getNoteDatas()
     this.getLabelsDashboard()
     this.view.currentMessage.subscribe(message => this.message = message)
     this.view.currentlabel.subscribe(label => this.label = label)
-   
+
   }
- 
-  submit(){
-// console.log(this.date.value,this.time.value)
+
+  submit() {
   }
-  //get notes data
+
   openSnackBar() {
     this.snackBar.open("archived!!", 'OK', {
       duration: 3000
@@ -140,305 +138,252 @@ label:string;
       duration: 3000
     });
   }
-  questionAnswer(card){
+  questionAnswer(card) {
     this.que.changeMessage(card.title)
     this.que.changeMessageD(card.description)
     this.que.changeMessageArray(card.id)
-      }
-  addinglabel(labels,note){
-    this.addlabel={
-      "noteId":note.id,
-      "lableId":labels.id
-        
-      
+  }
+  addinglabel(labels, note) {
+    this.addlabel = {
+      "noteId": note.id,
+      "lableId": labels.id
+
+
     }
-// console.log("selected label",this.addlabel);
-this.svc.addingchecklistlabels('notes/'+note.id+'/addLabelToNotes/'+labels.id+'/add',this.addlabel).subscribe(
-  (Response)=>{
-    // console.log("success",Response)
-  },
-  (error)=>{
-    // console.log("error",error)
-}
-  )
+    this.svc.addingchecklistlabels('notes/' + note.id + '/addLabelToNotes/' + labels.id + '/add', this.addlabel).subscribe(
+      (Response) => {
+      },
+      (error) => {
+      }
+    )
 
 
   }
 
-  getLabelsDashboard(){
+  getLabelsDashboard() {
     this.svc.getLabels().subscribe(
-        (response) => {
-          // console.log("success",response);
-        this.label=response['data']['details'];
-        // console.log(this.label)
-    },
-        (error)=>{
-          // console.log("error",error)
-        }
+      (response) => {
+        this.label = response['data']['details'];
+      },
+      (error) => {
+      }
     )
-}
+  }
 
-  getNoteDatas(){
- 
+  getNoteDatas() {
+
     this.svc.getNotes().subscribe(
       (response) => {
-        // console.log("success get notes",response)
-      // var date = new Date()
-    this.data = response['data']['data']; 
-    // for(let i in this.data){
-    // var date = new Date(i['reminder'].toLocaleDateString());
-    // console.log("dateeee",date)
-    // }
-   
-    this.data.reverse();
-    // console.log("in response",this.data)
-    
-    this.cardArray =  this.data.filter(function(e) {
-      return (e.isDeleted===false && e.isArchived===false)
-    });
-    // console.log("cardsArray",this.cardArray)
-    for(let i of this.cardArray){
-      this.reminderNotes=i['reminder']
-      //  console.log("-----------reminderdata",this.reminderNotes)
-    }
-    },
+
+        this.data = response['data']['data'];
+
+
+        this.data.reverse();
+
+        this.cardArray = this.data.filter(function (e) {
+          return (e.isDeleted === false && e.isArchived === false)
+        });
+        for (let i of this.cardArray) {
+          this.reminderNotes = i['reminder']
+        }
+      },
       (error) => {
-        // console.log("error",error);
       }
-      )
-      
+    )
+
   }
-  
 
 
-  //pin/unpin notes
-  pin(card){
-    // console.log("called pin");
-    this.pinValue=!this.pinValue;
 
-    // console.log(card.id)
-    this.pinData={
-      "isPined":this.pinValue,
-      "noteIdList":[card.id]
+  pin(card) {
+
+    this.pinValue = !this.pinValue;
+
+
+    this.pinData = {
+      "isPined": this.pinValue,
+      "noteIdList": [card.id]
     }
-    // console.log(this.pinData)
+
     this.svc.pinnote(this.pinData).subscribe(
       (response) => {
-        // console.log("success",response);
-      
-    // console.log("pin response",response)
-    this.getNoteDatas()
-    },
+
+        this.getNoteDatas()
+      },
       (error) => {
-        // console.log("error",error);
       }
     )
   }
 
-  //change color of notes
   changeColor(color) {
 
     this.color = color;
-    //card.color = color;
-    // console.log(this.color,this.id)
-    this.ColorData={
-      "color":this.color,
-      "noteIdList":[this.id]
+
+    this.ColorData = {
+      "color": this.color,
+      "noteIdList": [this.id]
     }
-    // console.log(this.ColorData)
     this.svc.colornote(this.ColorData).subscribe(
       (response) => {
-        // console.log("success",response);
-    // console.log(this.data)
-    },
+
+      },
       (error) => {
-        // console.log("error",error);
       }
     )
 
   }
-  getcolorid(card){
-   this.id = card.id
-// console.log(this.id)
+  getcolorid(card) {
+    this.id = card.id
   }
 
-  //trash notes
-  delete(card){
-  //  console.log(card.id);
-  //  console.log("deleted")
-    
-   this.deletevalue =! this.deletevalue
-  
-this.deleteData={
-  "isDeleted":this.deletevalue,
-  "noteIdList":[card.id]
-}
-//  console.log(this.deleteData);
-this.svc.trashnote(this.deleteData).subscribe(
-  (response) => {
-    // console.log("success",response);
-  this.openSnackBarDelete()
-// console.log(this.data)
-},
-  (error) => {
-    // console.log("error",error);
-  }
-)
-  }
+  delete(card) {
 
-  //archive notes
-  archive(card){
-    // console.log(card.id);
-  //  console.log("archived")
-    
-   this.archivevalue =! this.archivevalue
-  
-this.archiveData={
-  "isArchived":this.archivevalue,
-  "noteIdList":[card.id]
-}
-//  console.log(this.archiveData);
-this.svc.archivednote(this.archiveData).subscribe(
-  (response) => {
-    // console.log("success",response);
-  this.openSnackBar()
-// console.log(this.data)
-},
-  (error) => {
-    // console.log("error",error);
-  }
-)
-this.updateNotes(card)
-  }
 
-  updateNotes(card){
-    this.updateData={
-      "noteId":card.id,
-      "title": card.title,
-      "description":card.description
+    this.deletevalue = !this.deletevalue
+
+    this.deleteData = {
+      "isDeleted": this.deletevalue,
+      "noteIdList": [card.id]
     }
-    // console.log("dataaaaa",this.updateData)
+    this.svc.trashnote(this.deleteData).subscribe(
+      (response) => {
+        this.openSnackBarDelete()
+      },
+      (error) => {
+      }
+    )
+  }
+
+  archive(card) {
+
+
+    this.archivevalue = !this.archivevalue
+
+    this.archiveData = {
+      "isArchived": this.archivevalue,
+      "noteIdList": [card.id]
+    }
+    this.svc.archivednote(this.archiveData).subscribe(
+      (response) => {
+        this.openSnackBar()
+      },
+      (error) => {
+      }
+    )
+    this.updateNotes(card)
+  }
+
+  updateNotes(card) {
+    this.updateData = {
+      "noteId": card.id,
+      "title": card.title,
+      "description": card.description
+    }
     this.svc.updatednote(this.updateData).subscribe(
       (response) => {
-        // console.log("success",response);
-    // console.log(this.data)
-    },
+
+      },
       (error) => {
-        // console.log("error",error);
       }
     )
   }
-  //dialog box
-  openDialog(card,reminder): void {
+  openDialog(card, reminder): void {
     const dialogRef = this.dialog.open(LabelsComponent,
-     {
-     data : {
-       id:card.id,
-       title:card.title,
-       description:card.description,
-       color:card.color,
-       isDeleted:card.isDeleted,
-       userId:card.userId,
-       reminder:reminder
-      
-     }
-    });
+      {
+        data: {
+          id: card.id,
+          title: card.title,
+          description: card.description,
+          color: card.color,
+          isDeleted: card.isDeleted,
+          userId: card.userId,
+          reminder: reminder
+
+        }
+      });
 
     dialogRef.afterClosed().subscribe(result => {
-      // console.log('The dialog was closed');
-      
+
     });
   }
- //add labels
-  addlabels(card){
-    // console.log("from addlabels",card.id);
-    this.addlabeldata={
-      
+  addlabels(card) {
+    this.addlabeldata = {
+
       "label": this.labels.value,
       "userId": card.userId,
       "isDeleted": card.isDeleted
-    
-  }
-  
-  // console.log(this.addlabeldata)
-  const httpOptions = {
-    headers: new HttpHeaders({
-     
-      'Authorization':localStorage.getItem('token')
-    })
-  }
-  this.http.post(this.baseUrl+'notes/'+card.id+'/noteLabels',
-  {"label":this.labels.value,"userId": card.userId,
-  "isDeleted": card.isDeleted},httpOptions).subscribe(
-    (response) => {
-      // console.log("success",response);
-    this.labelresponse=response
-  // console.log("label response",this.labelresponse)
-  },
-    (error) => {
-      // console.log("error",error);
+
     }
-  )
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+
+        'Authorization': localStorage.getItem('token')
+      })
+    }
+    this.http.post(this.baseUrl + 'notes/' + card.id + '/noteLabels',
+      {
+        "label": this.labels.value, "userId": card.userId,
+        "isDeleted": card.isDeleted
+      }, httpOptions).subscribe(
+        (response) => {
+          this.labelresponse = response
+        },
+        (error) => {
+        }
+      )
   }
-  newLabel(){
+  newLabel() {
     this.view.changelabel(this.labelresponse)
   }
 
-  stopPropagation(event){
+  stopPropagation(event) {
     event.stopPropagation();
-    // console.log("Clicked!");
   }
-  reminder(){
-    this.remindData={
-      "reminder": [this.date.value+this.time.value], "noteIdList":[this.id]
-      
+  reminder() {
+    this.remindData = {
+      "reminder": [this.date.value + this.time.value], "noteIdList": [this.id]
+
     }
-    // console.log(this.remindData)
     this.svc.remindMe(this.remindData).subscribe(
       (response) => {
-        // console.log("success",response);
-      this.openSnackBarReminder()
-  
-    },
+        this.openSnackBarReminder()
+
+      },
       (error) => {
-        // console.log("error",error);
       }
-    
+
     )
   }
-  openDialogCollaborate(userInfo,noteId,colemail,colUserid): void {
+  openDialogCollaborate(userInfo, noteId, colemail, colUserid): void {
     const dialogRef = this.dialog.open(CollaboratorComponent,
-     {
-     data : {
-       noteId:noteId,
-      email:userInfo.email,
-      id:userInfo.id,
-      firstName:userInfo.firstName,
-      lastName:userInfo.lastName,
-      userId:userInfo.userId,
-      collaborator:colemail,
-      colUserid:colUserid
-     }
-    });
+      {
+        data: {
+          noteId: noteId,
+          email: userInfo.email,
+          id: userInfo.id,
+          firstName: userInfo.firstName,
+          lastName: userInfo.lastName,
+          userId: userInfo.userId,
+          collaborator: colemail,
+          colUserid: colUserid
+        }
+      });
 
     dialogRef.afterClosed().subscribe(result => {
-      // console.log('The dialog was closed');
-      
+
     });
   }
-  removecollaborator(noteId,userId){
+  removecollaborator(noteId, userId) {
 
-    // console.log(noteId,userId)
-    this.svc.removeCollaborator(this.baseUrl+'notes/'+noteId+'/removeCollaboratorsNotes/'+userId,
+    this.svc.removeCollaborator(this.baseUrl + 'notes/' + noteId + '/removeCollaboratorsNotes/' + userId,
     ).subscribe(
-      (Response)=>{
-        // console.log("success",Response)
+      (Response) => {
       },
-      (error)=>{
-        // console.log("error",error)
-    }
-    )
+      (error) => {
       }
+    )
+  }
 
 
 }

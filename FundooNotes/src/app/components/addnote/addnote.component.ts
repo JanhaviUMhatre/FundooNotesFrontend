@@ -33,7 +33,6 @@ export class AddnoteComponent implements OnInit {
   archiveValue = false;
   pinnedIconSrc = "../../assets/Icons/pinIcon.svg";
   unpinnedIconSrc = "../../assets/Icons/unpinIcon.svg";
-  //color code array
   colorCode: Array<Object> = [
     { name: "white", colorCode: "#fff" },
     { name: "red", colorCode: "#fc8981" },
@@ -52,10 +51,8 @@ export class AddnoteComponent implements OnInit {
   notificationIcon = "../../assets/Icons/notification.svg";
   noteData: any;
 
-  //note : CreateNote =new CreateNote;
   date = new FormControl('');
   time = new FormControl('');
-  // item = new FormControl('')
   title = new FormControl('')
   description = new FormControl('')
   remindData: { "reminder": any[]; };
@@ -74,7 +71,7 @@ export class AddnoteComponent implements OnInit {
   itemData: { "itemName": any; "status": (url?: string, target?: string, features?: string, replace?: boolean) => Window; };
   addCheckList: any;
   newdate: Date;
-  dateData:any[]=[];
+  dateData: any[] = [];
   constructor(private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer, private snackBar: MatSnackBar, private svc: NoteService
   ) {
@@ -91,7 +88,6 @@ export class AddnoteComponent implements OnInit {
   }
   @ViewChild(NotesComponent) child;
   ngOnInit() {
-    // this. createNote();
     this.getLabelsDashboard()
     this.email = localStorage.getItem('email')
   }
@@ -100,12 +96,9 @@ export class AddnoteComponent implements OnInit {
   }
   serachEmail(str: string): void {
     this.word = str;
-    //console.log(this.word)
     this.svc.serachuser({ "searchWord": this.word }).subscribe(
       (Response) => {
-        // console.log("success search", Response['data']['details'])
         this.emails = Response['data']['details'];
-        // console.log("this is response", Response)
         for (let val of Response['data']['details']) {
           this.firstName = val.firstName;
           this.lastName = val.lastName;
@@ -113,30 +106,22 @@ export class AddnoteComponent implements OnInit {
         }
       },
       (error) => {
-        //  console.log("error", error)
-         }
+      }
     )
   }
   opencollaborator() {
     this.colab = !this.colab
   }
-  //change div
   showDiv() {
-    // console.log("called div");
     this.flag = !this.flag;
   }
-  //pin/unpin
   pin() {
-    // console.log("called pin");
     this.pinValue = !this.pinValue;
   }
   stopPropagation(event) {
     event.stopPropagation();
-    // console.log("Clicked!");
   }
-  //archive note
   archive() {
-    // console.log("called archive");
     this.archiveValue = !this.archiveValue;
 
     this.openSnackBar();
@@ -159,47 +144,39 @@ export class AddnoteComponent implements OnInit {
       "reminder": [this.date.value]
 
     }
-    // console.log(this.remindData)
-    // this.svc.remindMe(this.remindData).subscribe(
-    //   (response) => {console.log("success",response);
 
-    // },
-    //   (error) => {console.log("error",error);}
-
-    // )
   }
   addinglabel(labels) {
-    // console.log(labels)
     this.addedlabel.push(labels)
-    // console.log(this.addedlabel)
   }
-  laterToday(){
+  laterToday() {
     this.newdate = new Date();
     this.newdate.setHours(8);
     this.newdate.setMinutes(0);
     this.newdate.setSeconds(0);
     console.log(this.newdate);
-  this.dateData.push(this.newdate)}
-    tommorow(){
-      this.newdate=new Date();
-      this.newdate.setDate(1);
-      this.newdate.setMonth(3)
-      this.newdate.setHours(8)
-      this.newdate.setMinutes(0);
-      this.newdate.setSeconds(0);
-      console.log( this.newdate);
-      this.dateData.push(this.newdate)}
-      nextweek(){
-        const newdate=new Date();
-        newdate.setHours(168)
-        newdate.setMinutes(362);
-        newdate.setSeconds(0);
-        console.log(newdate)
-        this.dateData.push(this.newdate)}
-  //main function to create note
+    this.dateData.push(this.newdate)
+  }
+  tommorow() {
+    this.newdate = new Date();
+    this.newdate.setDate(1);
+    this.newdate.setMonth(3)
+    this.newdate.setHours(8)
+    this.newdate.setMinutes(0);
+    this.newdate.setSeconds(0);
+    console.log(this.newdate);
+    this.dateData.push(this.newdate)
+  }
+  nextweek() {
+    const newdate = new Date();
+    newdate.setHours(168)
+    newdate.setMinutes(362);
+    newdate.setSeconds(0);
+    console.log(newdate)
+    this.dateData.push(this.newdate)
+  }
   createNote() {
 
-    // console.log(token,userId);
     this.collaboratorData = {
       "firstName": this.firstName,
       "lastName": this.lastName,
@@ -209,12 +186,11 @@ export class AddnoteComponent implements OnInit {
     }
 
     this.addCheckList = new addCheckList();
-this.addCheckList.itemName = this.item;
-this.addCheckList.status = "open";
+    this.addCheckList.itemName = this.item;
+    this.addCheckList.status = "open";
 
-console.log(this.addCheckList);
+    console.log(this.addCheckList);
     this.itemDataarray.push(this.addCheckList)
-    //this.collab=JSON.stringify(this.collaboratorData)
     console.log("collaboration data", this.collaboratorData)
     this.noteData = {
       "title": this.title.value,
@@ -223,7 +199,6 @@ console.log(this.addCheckList);
       "isArchived": this.archiveValue,
       "color": this.color,
       "reminder": this.dateData,
-      // "collaberators":JSON.stringify([this.collaboratorData]),
       "collaberators": JSON.stringify({
         "firstName": this.firstName,
         "lastName": this.lastName,
@@ -235,16 +210,13 @@ console.log(this.addCheckList);
     }
 
     if (this.noteData.title != null || this.noteData.description != null) {
-      // console.log("note data", this.noteData);
 
       this.svc.createnote(this.noteData).subscribe(
         (response) => {
-          // console.log("success", response);
           this.child.getNoteData();
         },
         (error) => {
-          //  console.log("error", error); 
-      }
+        }
       );
     }
     else {
@@ -253,25 +225,22 @@ console.log(this.addCheckList);
     this.flag = !this.flag;
 
   }
-  //color
+
   changeColor(color) {
 
     this.color = color;
 
   }
-  addtochecklist($event){
-    this.item=$event
+  addtochecklist($event) {
+    this.item = $event
   }
   getLabelsDashboard() {
     this.svc.getLabels().subscribe(
       (response) => {
-        // console.log("success", response);
         this.label = response['data']['details'];
-        // console.log(this.label)
       },
-      (error) => { 
-        // console.log("error", error)
-       }
+      (error) => {
+      }
     )
   }
 }
