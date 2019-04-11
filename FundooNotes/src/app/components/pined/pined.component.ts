@@ -199,7 +199,7 @@ this.svc.addingchecklistlabels('notes/'+note.id+'/addLabelToNotes/'+labels.id+'/
     // console.log("cardsArray",this.cardArray)
     for(let i of this.cardArray){
       this.reminderNotes=i['reminder']
-      // console.log("-----------reminderdata",this.reminderNotes)
+      //  console.log("-----------reminderdata",this.reminderNotes)
     }
     },
       (error) => {
@@ -329,7 +329,7 @@ this.updateNotes(card)
     )
   }
   //dialog box
-  openDialog(card): void {
+  openDialog(card,reminder): void {
     const dialogRef = this.dialog.open(LabelsComponent,
      {
      data : {
@@ -339,6 +339,7 @@ this.updateNotes(card)
        color:card.color,
        isDeleted:card.isDeleted,
        userId:card.userId,
+       reminder:reminder
       
      }
     });

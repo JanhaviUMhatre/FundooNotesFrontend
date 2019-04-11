@@ -41,6 +41,9 @@ export class DashboardComponent implements OnInit {
     labelId: any;
     labelName: any;
     responsedetailscart: any;
+    email=localStorage.getItem("email");
+    firstname=localStorage.getItem("firstname");
+    lastname=localStorage.getItem("lastname");
    
   constructor(private cart:CartService,private cartser:CartServiceService, private view: ViewService ,private svc :NoteService,public dialog: MatDialog,private router: Router,private ser : SearchService) { }
 
@@ -56,7 +59,7 @@ export class DashboardComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+    //   console.log('The dialog was closed');
       
     });
   }
@@ -80,7 +83,7 @@ else{
     });
 
     dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
+        // console.log('The dialog was closed');
         
     });
 }
@@ -101,27 +104,34 @@ signout(){
 
 getLabelsDashboard(){
     this.svc.getLabels().subscribe(
-        (response) => {console.log("success",response);
+        (response) => {
+            // console.log("success",response);
         this.label=response['data']['details'];
-        console.log(this.label)
+        // console.log(this.label)
     },
-        (error)=>{console.log("error",error)}
+        (error)=>{
+            // console.log("error",error)
+        }
     )
 }
 getIdlabel(labels){
     this.labelId = labels.id
     this.labelName = labels.label
-    console.log(this.labelId)
+    // console.log(this.labelId)
 
 }
 deletelabelforever(labels){
     this.svc.deletelabels(this.baseUrl+'noteLabels/'+labels.id+'/deleteNoteLabel').subscribe(
-        (response)=>{console.log("success",response)},
-        (error)=>{console.log("error",error)}
+        (response)=>{
+            // console.log("success",response)
+        },
+        (error)=>{
+            // console.log("error",error)
+        }
     )
 }
 labelname(name){
-    console.log("selected label",name)
+    // console.log("selected label",name)
     this.view.sendlabelname(name)
 }
 changesearch(){
@@ -129,14 +139,16 @@ changesearch(){
   }
   callmycart(){
       this.cartser.mycart().subscribe(
-          (Response)=>{console.log("success",Response);
+          (Response)=>{
+            //   console.log("success",Response);
           this.responsedetailscart=Response['data']
           this.cart.sendinfocard(this.responsedetailscart)
-          console.log("-----==----",this.responsedetailscart);
+        //   console.log("-----==----",this.responsedetailscart);
           
          
           },
-          (error)=>{console.log("error",error);
+          (error)=>{
+            //   console.log("error",error);
           }
       )
   }

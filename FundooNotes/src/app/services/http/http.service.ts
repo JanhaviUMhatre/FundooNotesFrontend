@@ -78,7 +78,7 @@ export class HttpService {
         'Authorization':localStorage.getItem('token')
       })
     }
-   return this.http.delete(url,httpOptions)
+   return this.http.delete(url,httpOptions);
   }
 
   public getForm(url:any){

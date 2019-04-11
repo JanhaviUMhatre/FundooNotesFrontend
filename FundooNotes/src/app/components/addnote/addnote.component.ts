@@ -223,13 +223,13 @@ console.log(this.addCheckList);
       "isArchived": this.archiveValue,
       "color": this.color,
       "reminder": this.dateData,
-      "collaberators":JSON.stringify([this.collaboratorData]),
-      // "collaberators": JSON.stringify({
-      //   "firstName": this.firstName,
-      //   "lastName": this.lastName,
-      //   "email": this.word,
-      //   "userId": this.userId
-      // }),
+      // "collaberators":JSON.stringify([this.collaboratorData]),
+      "collaberators": JSON.stringify({
+        "firstName": this.firstName,
+        "lastName": this.lastName,
+        "email": this.word,
+        "userId": this.userId
+      }),
       "labelIdList": JSON.stringify(this.addedlabel),
       "checklist": JSON.stringify(this.itemDataarray)
     }

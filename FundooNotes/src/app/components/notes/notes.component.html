@@ -17,7 +17,7 @@
                 [ngClass]="{'cardWidth': message=='column wrap'}" [class.mat-elevation-z0]="!isActive">
                 <div fxLayout="column">
                   <div fxLayout="row" fxLayoutAlign="space-between center">
-                    <div class="title" [style.fontSize.px]=19 (click)="openDialog(note,note.noteLabels)"> {{note.title}}
+                    <div class="title" [style.fontSize.px]=19 (click)="openDialog(note,note.noteLabels,note.reminder)"> {{note.title}}
                     </div>
                     <button class="pinIcon" mat-icon-button matTooltip="Pin/Unpin Note" (click)="pin(note)">
                       <div *ngIf="note.isPined===false">
@@ -35,21 +35,21 @@
                       <div class="alignbutton">
                         <button mat-mini-fab [ngStyle]="{'backgroundColor': note.color}"
                           (click)="openDialogCollaborate(note.user,note.id,col.email,col.userId)"
-                          [class.mat-elevation-z2]="!isActive">{{col.email | slice:0:1}}
+                          [class.mat-elevation-z2]="!isActive">{{col.email.slice(0,1).toUpperCase()}}
                           <!-- <mat-icon matChipRemove (click)="removecollaborator(note.id,col.userId)">cancel</mat-icon> -->
                         </button></div>
                     </div>
                   </mat-chip-list>
-                  <!-- <div *ngIf="note.collaborators != null"> -->
-                  <mat-chip-list >
-                    <mat-chip [removable]="removable">{{note.reminder |  date:'medium'}}
+                  <div *ngIf="note.reminder != ' '" class="reminderchip">
+                  <mat-chip-list>
+                    <mat-chip   [removable]="removable">{{note.reminder |  date:'medium'}}
                            
                                 <mat-icon matChipRemove>cancel</mat-icon>
                           
                     </mat-chip>
 
                   </mat-chip-list>
-                <!-- </div> -->
+                </div>
                   <mat-chip-list>
 
                     <div *ngFor="let labels of note.noteLabels">

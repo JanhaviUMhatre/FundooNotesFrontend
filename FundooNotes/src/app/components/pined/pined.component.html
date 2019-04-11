@@ -9,9 +9,11 @@
                     <div fxLayout="row wrap" fxLayoutAlign="center center" >
                             <div class="cards" >
                             <mat-card class="card-width" [ngStyle]="{'backgroundColor': note.color}" [ngClass]="{'cardWidth': message=='column wrap'}" [class.mat-elevation-z0]="!isActive">
+                             
                                 <div fxLayout="column" >                       
                             <div fxLayout="row" fxLayoutAlign="space-between center" >
-               <div class="title" [style.fontSize.px]=19 (click)="openDialog(note)"> {{note.title}}</div>        
+                                
+               <div class="title" [style.fontSize.px]=19 (click)="openDialog(note,note.reminder)"> {{note.title}}</div>        
                <button class="pinIcon" mat-icon-button matTooltip="Pin/Unpin Note" (click)="pin(note)">
                   
                     <div *ngIf="note.isPined === true">
@@ -23,19 +25,11 @@
                <mat-chip-list >
                     <div *ngFor="let col of note.collaborators">
                         <div class="alignbutton">
-                            <button  mat-mini-fab [class.mat-elevation-z2]="!isActive" [ngStyle]="{'backgroundColor': note.color}" (click)="openDialogCollaborate(note.user,note.id,col.email,col.userId)">{{col.email | slice:0:1}}
+                            <button  mat-mini-fab [class.mat-elevation-z2]="!isActive" [ngStyle]="{'backgroundColor': note.color}" (click)="openDialogCollaborate(note.user,note.id,col.email,col.userId)">{{col.email.slice(0,1).toUpperCase()}}
                             </button></div>
                         </div>
               </mat-chip-list>
-              <mat-chip-list *ngIf="reminderNotes !=null" >
-
-                    <mat-chip [removable]="removable">{{note.reminder |  date:'medium'}}
-                           
-                                <mat-icon matChipRemove>cancel</mat-icon>
-                          
-                    </mat-chip>
-
-                  </mat-chip-list>
+             
                <mat-chip-list >
     
             <div *ngFor="let labels of note.noteLabels">
@@ -45,10 +39,22 @@
     </div>
                   </mat-chip-list>
                 </div>
+                <div *ngIf="note.reminder != ' '" class="reminderchip"> 
+                    <mat-chip-list class="reminderchip">
+      
+                          <mat-chip [removable]="removable">{{note.reminder |  date:'medium'}}
+                                 
+                                      <mat-icon matChipRemove>cancel</mat-icon>
+                                
+                          </mat-chip>
+      
+                        </mat-chip-list></div>
+           
+                <mat-card-actions>
                   <div class="alignment">
                       <app-footermenu [data]="note"></app-footermenu>
                     </div>
-              
+              </mat-card-actions>
     </div>
         </mat-card></div>
     </div>

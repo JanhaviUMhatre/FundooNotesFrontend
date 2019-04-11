@@ -1,11 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatIconRegistry } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatIconRegistry, MatSnackBar, MatDialog } from '@angular/material';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { NoteService } from 'src/app/services/notes/note.service';
 import { FormControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from 'src/environments/environment';
+import { CollaboratorComponent } from '../collaborator/collaborator.component';
 
 @Component({
   selector: 'app-labels',
@@ -23,7 +24,7 @@ title = new FormControl(this.data.title)
 description = new FormControl(this.data.description)
 labels = new FormControl('')
 baseUrl = environment.baseUrl;
-
+listItem = true;
   archiveData: { "isArchived": boolean; "noteIdList": any[]; };
   id: any;
   color: any;
@@ -31,7 +32,11 @@ baseUrl = environment.baseUrl;
   pinValue= false;
   pinData: { "isPined": boolean; "noteIdList": any[]; };
   addlabeldata:any;
-  constructor(private http: HttpClient,public dialogRef: MatDialogRef<DashboardComponent>,
+  label: any;
+  remindData: { "reminder": Date[]; "noteIdList": any[]; };
+  collaborator: any;
+  colUserid: any;
+  constructor(public dialog: MatDialog,private snackBar: MatSnackBar,private http: HttpClient,public dialogRef: MatDialogRef<DashboardComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,private svc :NoteService,
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
@@ -58,6 +63,7 @@ baseUrl = environment.baseUrl;
       { name: "gray", colorCode: "#e7e9ec" }
     ]
   ngOnInit() {
+    this.getLabelsDashboard() 
   }
 //close dialog box
   onNoClick(): void {
@@ -141,7 +147,35 @@ console.log(this.data)
     )
 
   }
+  openDialogCollaborate(): void {
+    console.log("///////////",this.data)
+    // for(let i of collaborator){
+    //   this.collaborator=i.email
+    //   this.colUserid=i.userId
+    // }
 
+    const dialogRef = this.dialog.open(CollaboratorComponent,
+      {
+        data: {
+          noteId: this.data.id,
+          email: this.data.email,
+          id: this.data.id,
+          // firstName: this.data.user.firstName,
+          // lastName: this.data.user.lastName,
+          // userId: this.data.userId,
+          collaborator:this.collaborator,
+          colUserid: this.colUserid
+
+        }
+        
+      }
+      );
+// console.log("data send--------",this.data)
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log('The dialog was closed');
+
+    });
+  }
   getcolorid(data){
    this.id = data
 console.log(data)
@@ -191,4 +225,94 @@ console.log(this.data)
     )
     this.dialogRef.close();
   }
+  getLabelsDashboard() {
+    this.svc.getLabels().subscribe(
+      (response) => {
+        console.log("success", response);
+        this.label = response['data']['details'];
+        // console.log(this.label)
+      },
+      (error) => { 
+        // console.log("error", error)
+       }
+    )
+  }
+  stopPropagation(event) {
+    event.stopPropagation();
+    // console.log("Clicked!");
+  }
+  openSnackBarReminder() {
+    this.snackBar.open("reminder added!!", 'OK', {
+      duration: 3000
+    });
+  }
+  laterToday(){
+    const newdate = new Date();
+    newdate.setHours(8);
+    newdate.setMinutes(0);
+    newdate.setSeconds(0);
+    // console.log(newdate);
+    this.remindData = {
+      "reminder": [newdate], "noteIdList": [this.data.id]
+    
+    }
+    this.svc.remindMe(this.remindData).subscribe(
+      (response) => {
+        // console.log("success", response);
+        this.openSnackBarReminder()
+    
+      },
+      (error) => {
+        //  console.log("error", error); 
+        }
+    
+    )
+      }
+      tommorow(){
+        const newdate=new Date();
+        newdate.setDate(1);
+        newdate.setMonth(3)
+        newdate.setHours(8)
+        newdate.setMinutes(0);
+     newdate.setSeconds(0);
+       //  console.log(newdate);
+        this.remindData = {
+         "reminder": [newdate], "noteIdList": [this.data.id]
+     
+       }
+       this.svc.remindMe(this.remindData).subscribe(
+         (response) => {
+           // console.log("success", response);
+           this.openSnackBarReminder()
+     
+         },
+         (error) => {
+           //  console.log("error", error);
+            }
+     
+       )
+        
+      }
+      nextweek(){
+       const newdate=new Date();
+       newdate.setHours(168)
+       newdate.setMinutes(362);
+       newdate.setSeconds(0);
+       // console.log(newdate)
+       this.remindData = {
+         "reminder": [newdate], "noteIdList": [this.data.id]
+     
+       }
+       this.svc.remindMe(this.remindData).subscribe(
+         (response) => {
+           // console.log("success", response);
+           this.openSnackBarReminder()
+     
+         },
+         (error) => {
+           //  console.log("error", error);
+            }
+     
+       )
+      }
 }

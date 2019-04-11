@@ -338,7 +338,8 @@ export class NotesComponent implements OnInit {
     this.que.changeMessageArray(card.id)
   }
   //dialog box
-  openDialog(card, labels): void {
+  openDialog(card, labels, reminder): void {
+    
     const dialogRef = this.dialog.open(LabelsComponent,
       {
         data: {
@@ -348,7 +349,9 @@ export class NotesComponent implements OnInit {
           color: card.color,
           isDeleted: card.isDeleted,
           userId: card.userId,
-          label: labels.label
+          label: labels.label,
+          reminder: reminder,
+        dataInfo:card.collaborators
 
         }
       });
