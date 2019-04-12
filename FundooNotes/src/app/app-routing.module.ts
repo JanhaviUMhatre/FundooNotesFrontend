@@ -22,6 +22,7 @@ import { NewregisterComponent } from './components/newregister/newregister.compo
 import { PackagecardComponent } from './components/packagecard/packagecard.component';
 import { CartComponent } from './components/cart/cart.component';
 import { PinedComponent } from './components/pined/pined.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 const routes: Routes = [
   {
     path: 'registration',
@@ -54,6 +55,12 @@ const routes: Routes = [
   {
     path: 'packagecard',
     component: PackagecardComponent
+  },
+  {
+    path: '404', component: NotFoundComponent
+  },
+  {
+    path: '**', redirectTo: '/404'
   },
   {
     path: 'dashboard',
