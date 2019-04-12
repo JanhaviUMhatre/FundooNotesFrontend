@@ -66,7 +66,8 @@ const routes: Routes = [
         path: 'addlabel',
         component: AddlabelComponent
       },
-   
+      
+
       {
         path: '',
         component: AddnoteComponent
@@ -145,6 +146,9 @@ const routes: Routes = [
     path: 'footer',
     component: FootermenuComponent
   },
+  {
+    path: '**', component: NotFoundComponent
+  }
 
 ];
 @NgModule({
