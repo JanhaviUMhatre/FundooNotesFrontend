@@ -56,12 +56,7 @@ const routes: Routes = [
     path: 'packagecard',
     component: PackagecardComponent
   },
-  {
-    path: '404', component: NotFoundComponent
-  },
-  {
-    path: '**', redirectTo: '/404'
-  },
+ 
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -71,6 +66,7 @@ const routes: Routes = [
         path: 'addlabel',
         component: AddlabelComponent
       },
+   
       {
         path: '',
         component: AddnoteComponent
