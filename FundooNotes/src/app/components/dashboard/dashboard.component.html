@@ -34,14 +34,14 @@
     <div class="account">
 
       <div [matMenuTriggerFor]="menu">
-        <img src="http://34.213.106.173/{{data}}" class="accountButton" *ngIf="flagsearch===true">
+        <img src="{{imageUrl}}{{data}}" class="accountButton" *ngIf="flagsearch===true">
       </div>
     </div>
     <mat-menu #menu="matMenu" [overlapTrigger]="false">
       <div fxLayout="column">
         <div fxLayout="row wrap">
           <div>
-            <img src="http://34.213.106.173/{{data}}" class="profileButton" (click)="openDialog()">
+            <img src="{{imageUrl}}{{data}}" class="profileButton" (click)="openDialog()">
           </div>
           <div class="username">
             <div fxLayout="column wrap" fxLayoutAlign="center center">

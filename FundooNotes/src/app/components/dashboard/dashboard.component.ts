@@ -31,6 +31,7 @@ import { CartService } from 'src/app/services/cart/cart.service';
 export class DashboardComponent implements OnInit {
     showFiller = false;
     baseUrl = environment.baseUrl;
+    imageUrl=environment.imageUrl;
     flagsearch = true;
     Search: any;
     label: any;
