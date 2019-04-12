@@ -1,80 +1,80 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand">Admin Login</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['questions']">show questions</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['orders']">show orders</a>
+      </li>
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" >Admin Login</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" >Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" [routerLink]="['questions']">show questions</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" [routerLink]="['orders']">show orders</a>
-                </li>
-               
-              </ul>
-              <div class="alignbutton">
-              <button class="btn btn-outline-success my-2 my-sm-0 " type="submit" (click)="logout()">Logout</button>
-            </div>
-            </div>
-          </nav>
-      <div class="container">  
-  
-        <div class="services-count">   
-        <div class="row">
-                
-          <div class="col-sm-6" style="background-color:rgb(255, 255, 217);">
-            
-            <h3>Basic</h3>
-            <h4>{{basic}}</h4>
-          </div>
-          <div class="col-sm-6" style="background-color:rgb(252, 224, 229);">
-                <h3>Advance</h3>
-                <h4>{{advance}}</h4>
-          </div>
-        </div>
-        </div>
+    </ul>
+    <div class="alignbutton">
+      <button class="btn btn-outline-success my-2 my-sm-0 " type="submit" (click)="logout()">Logout</button>
+    </div>
+  </div>
+</nav>
+<div class="container">
+
+  <div class="services-count">
+    <div class="row">
+
+      <div class="col-sm-6" style="background-color:rgb(255, 255, 217);">
+
+        <h3>Basic</h3>
+        <h4>{{basic}}</h4>
       </div>
+      <div class="col-sm-6" style="background-color:rgb(252, 224, 229);">
+        <h3>Advance</h3>
+        <h4>{{advance}}</h4>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="container-fluid">
-        <div class="table-width">
-<table #dataTable class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="10">
-        <thead>
+  <div class="table-width">
+    <table #dataTable class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="10">
+      <thead>
         <tr>
-            <th style="width: 20%">
-                <mfDefaultSorter by="firstname">Firstname</mfDefaultSorter>
-            </th>
-            <th style="width: 20%">
-                <mfDefaultSorter by="lastname">Lastname</mfDefaultSorter>
-            </th>
-            <th style="width: 40%">
-                <mfDefaultSorter by="email">Email</mfDefaultSorter>
-            </th>
-            <th style="width: 30%">
-                <mfDefaultSorter by="service">Service</mfDefaultSorter>
-            </th>
-           
+          <th style="width: 20%">
+            <mfDefaultSorter by="firstname">Firstname</mfDefaultSorter>
+          </th>
+          <th style="width: 20%">
+            <mfDefaultSorter by="lastname">Lastname</mfDefaultSorter>
+          </th>
+          <th style="width: 40%">
+            <mfDefaultSorter by="email">Email</mfDefaultSorter>
+          </th>
+          <th style="width: 30%">
+            <mfDefaultSorter by="service">Service</mfDefaultSorter>
+          </th>
+
         </tr>
-        </thead>
-        <tbody>
+      </thead>
+      <tbody>
         <tr *ngFor="let user of mf.data">
-            <td>{{user.firstName}}</td>
-            <td>{{user.lastName}}</td>
-            <td >{{user.email}}</td>
-            <td>{{user.service}}</td>
+          <td>{{user.firstName}}</td>
+          <td>{{user.lastName}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.service}}</td>
         </tr>
-        </tbody>
-        <tfoot>
+      </tbody>
+      <tfoot>
         <tr>
-            <td colspan="4">
-                <mfBootstrapPaginator></mfBootstrapPaginator>
-            </td>
+          <td colspan="4">
+            <mfBootstrapPaginator></mfBootstrapPaginator>
+          </td>
         </tr>
-        </tfoot>
+      </tfoot>
     </table>
-</div>    
+  </div>
 </div>

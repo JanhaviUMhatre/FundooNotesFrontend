@@ -21,34 +21,31 @@ import * as $ from 'jquery';
   styleUrls: ['./admin-login.component.scss']
 })
 export class AdminLoginComponent implements OnInit {
-user : LoginModel = new LoginModel();  // login model
-errorMsg : '';  //error message
-  constructor(private formBuilder : FormBuilder, private svc : HttpService,
+  user: LoginModel = new LoginModel();  // login model
+  errorMsg: '';  //error message
+  constructor(private formBuilder: FormBuilder, private svc: HttpService,
     private router: Router
-    ) { }
-// taking form values using formBuilder
+  ) { }
+  // taking form values using formBuilder
   loginForm = this.formBuilder.group({
-    email : [this.user.email,[Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+$')]],
-    password : ['']
+    email: [this.user.email, [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+$')]],
+    password: ['']
   });
-  ngOnInit() { 
-    // $(document).ready(function(){
-    //   $('button').click(function(){
-    //     alert("admin login successful")
-    //   })
-    // });
+  ngOnInit() {
+
   }
-login(){
-  console.log(this.loginForm.value)
-      this.svc.login(this.loginForm.value).subscribe(
-        (response)=> {console.log("success",response);
-        localStorage.setItem("token",response['id'])
+  login() {
+
+    this.svc.login(this.loginForm.value).subscribe(
+      (response) => {
+        localStorage.setItem("token", response['id'])
         this.router.navigate(['/admindashboard']);
       },
-        (error) => {this.errorMsg = error.statusText
+      (error) => {
+      this.errorMsg = error.statusText
       }
-        )
-      
-}
+    )
+
+  }
 
 }

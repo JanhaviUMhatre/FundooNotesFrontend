@@ -20,45 +20,37 @@ declare var $;
   styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent implements OnInit {
-  @ViewChild('dataTable') table;  // for jquery dataTable
- data: any[];
-basic :number;
-advance :number;
-// userList=[];
+  @ViewChild('dataTable') table;
+  data: any[];
+  basic: number;
+  advance: number;
 
-  constructor(private svc : HttpService) { }
-// jquery for dataTable
+
+  constructor(private svc: HttpService) { }
+
   ngOnInit() {
     this.getData()
     $(document).ready(function () {
-      // $('#dtBasicExample').DataTable();
+
       $('.dataTables_length').addClass('bs-select');
-      });
-    
+    });
+
   }
   getData() {
-    
+
     this.svc.getUserData().subscribe((response) => {
-      
-      console.log(response['data'].data);
       this.data = response['data'].data;
       var service = 'basic';
       var srvc = 'advance';
-      //counting basic service registrations
       this.basic = this.data.filter((obj) => obj.service === service).length;
-       //counting advance service registrations
       this.advance = this.data.filter((obj) => obj.service === srvc).length;
-      console.log(this.basic);
-      console.log(this.advance);
-      
-  
     },
-    (error)=> {console.log("error",error)}  )
+      (error) => { })
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('token')
   }
-  }
+}
 
 

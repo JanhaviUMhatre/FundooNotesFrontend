@@ -4,7 +4,7 @@ import { AdminDetails } from '../models/details.model';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { environment } from 'src/environments/environment' 
+import { environment } from 'src/environments/environment'
 
 
 @Injectable({
@@ -13,78 +13,78 @@ import { environment } from 'src/environments/environment'
 export class HttpService {
   baseUrl = environment.baseUrl;
   constructor(private http: HttpClient) { }
-  login(userData){
+  login(userData) {
     return this.http.post<any>(
-      this.baseUrl+'user/adminLogin',userData).pipe(catchError(this.errorHandler))
-    }
+      this.baseUrl + 'user/adminLogin', userData).pipe(catchError(this.errorHandler))
+  }
 
-    getUserData() : Observable<AdminDetails[]> {
-      return this.http.get<AdminDetails[]>(
-        this.baseUrl+'user/getAdminUserList'
-        ,{responseType:"json"}
-      )
-    }
-   errorHandler(error : HttpErrorResponse){
-        return throwError(error);
-   }
-    getData(){
-      
-      return this.http.get(this.baseUrl+'user/getAdminUserList')
-    }
-    getDataque(){
-      const httpOptions = {
-        headers: new HttpHeaders({
-         
-          'Authorization':localStorage.getItem('token')
-        })
-      }
-      return this.http.get(this.baseUrl+'questionAndAnswerNotes/getUnApprovedAnswer',httpOptions)
-    }
-    getDataorder(){
-      const httpOptions = {
-        headers: new HttpHeaders({
-         
-          'Authorization':localStorage.getItem('token')
-        })
-      }
-      return this.http.get(this.baseUrl+'productcarts/userCartList',httpOptions)
-    }
+  getUserData(): Observable<AdminDetails[]> {
+    return this.http.get<AdminDetails[]>(
+      this.baseUrl + 'user/getAdminUserList'
+      , { responseType: "json" }
+    )
+  }
+  errorHandler(error: HttpErrorResponse) {
+    return throwError(error);
+  }
+  getData() {
 
-    approvenotes(url,userData){
-      const httpOptions = {
-        headers: new HttpHeaders({
-         
-          'Authorization':localStorage.getItem('token')
-        })
-      }
-      return this.http.post(this.baseUrl+url,userData,httpOptions)
-    }
+    return this.http.get(this.baseUrl + 'user/getAdminUserList')
+  }
+  getDataque() {
+    const httpOptions = {
+      headers: new HttpHeaders({
 
-    unapprovenotes(url,userData){
-      const httpOptions = {
-        headers: new HttpHeaders({
-         
-          'Authorization':localStorage.getItem('token')
-        })
-      }
-      return this.http.post(this.baseUrl+url,userData,httpOptions)
+        'Authorization': localStorage.getItem('token')
+      })
     }
-    cancelor(userData){
-      const httpOptions = {
-        headers: new HttpHeaders({
-         
-          'Authorization':localStorage.getItem('token')
-        })
-      }
-      return this.http.post(this.baseUrl+'productcarts/adminCancelOrder',userData,httpOptions)
+    return this.http.get(this.baseUrl + 'questionAndAnswerNotes/getUnApprovedAnswer', httpOptions)
+  }
+  getDataorder() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+
+        'Authorization': localStorage.getItem('token')
+      })
     }
-    completeor(userData){
-      const httpOptions = {
-        headers: new HttpHeaders({
-         
-          'Authorization':localStorage.getItem('token')
-        })
-      }
-      return this.http.post(this.baseUrl+'productcarts/adminCompleteOrder',userData,httpOptions)
+    return this.http.get(this.baseUrl + 'productcarts/userCartList', httpOptions)
+  }
+
+  approvenotes(url, userData) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+
+        'Authorization': localStorage.getItem('token')
+      })
     }
+    return this.http.post(this.baseUrl + url, userData, httpOptions)
+  }
+
+  unapprovenotes(url, userData) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+
+        'Authorization': localStorage.getItem('token')
+      })
+    }
+    return this.http.post(this.baseUrl + url, userData, httpOptions)
+  }
+  cancelor(userData) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+
+        'Authorization': localStorage.getItem('token')
+      })
+    }
+    return this.http.post(this.baseUrl + 'productcarts/adminCancelOrder', userData, httpOptions)
+  }
+  completeor(userData) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+
+        'Authorization': localStorage.getItem('token')
+      })
+    }
+    return this.http.post(this.baseUrl + 'productcarts/adminCompleteOrder', userData, httpOptions)
+  }
 }

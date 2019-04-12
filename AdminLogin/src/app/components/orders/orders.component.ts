@@ -9,48 +9,48 @@ import { HttpService } from 'src/app/service/http.service';
 })
 export class OrdersComponent implements OnInit {
   data: any;
- 
 
-  constructor(private svc : HttpService,private router: Router) { }
+
+  constructor(private svc: HttpService, private router: Router) { }
 
   ngOnInit() {
     this.getOrderData()
   }
-  gotohome(){
+  gotohome() {
     this.router.navigate(['/admindashboard']);
   }
-  logout(){
+  logout() {
     localStorage.removeItem('token')
     this.router.navigate(['/login']);
   }
-  getOrderData(){
+  getOrderData() {
     this.svc.getDataorder().subscribe(
-      (response)=>{console.log("success",response)
-    this.data=response['data']
-    
-    console.log("--------data",this.data);
-   
-   
-  
-},
-      (error)=>{console.log("error",error)}
+      (response) => {
+        this.data = response['data']
+
+
+
+
+
+      },
+      (error) => { }
     )
   }
 
-  cancelorder(cartId){
-this.svc.cancelor({"cartId":cartId}).subscribe(
-  (response)=>{console.log("success",response);
-  },
-  (error)=>{console.log("error",error);
-  }
-)
-  }
-  completelorder(cartId){
-    this.svc.cancelor({"cartId":cartId}).subscribe(
-      (response)=>{console.log("success",response);
+  cancelorder(cartId) {
+    this.svc.cancelor({ "cartId": cartId }).subscribe(
+      (response) => {
       },
-      (error)=>{console.log("error",error);
+      (error) => {
       }
     )
+  }
+  completelorder(cartId) {
+    this.svc.cancelor({ "cartId": cartId }).subscribe(
+      (response) => {
+      },
+      (error) => {
       }
+    )
+  }
 }
