@@ -38,16 +38,14 @@ export class CollaboratorComponent implements OnInit {
     this.word = str;
     this.svc.serachuser({ "searchWord": this.word }).subscribe(
       (Response) => {
-        console.log("success search", Response['data']['details'])
         this.emails = Response['data']['details'];
-        console.log("this is response", Response)
         for (let val of Response['data']['details']) {
           this.firstName = val.firstName;
           this.lastName = val.lastName;
           this.userId = val.userId;
         }
       },
-      (error) => { console.log("error", error) }
+      (error) => { }
     )
   }
   onNoClick(): void {
@@ -63,15 +61,15 @@ export class CollaboratorComponent implements OnInit {
       "email": this.word,
       "userId": this.userId
     }
-    console.log(this.collaboratordata)
+
     this.svc.addCollaborator(this.baseUrl + 'notes/' + this.data.noteId + '/AddcollaboratorsNotes', this.collaboratordata).subscribe(
       (Response) => {
-        console.log("success", Response)
+
 
 
       },
       (error) => {
-        console.log("error", error)
+
       }
     )
     this.dialogRef.close();
@@ -80,12 +78,12 @@ export class CollaboratorComponent implements OnInit {
 
     this.svc.removeCollaborator(this.baseUrl + 'notes/' + this.data.noteId + '/removeCollaboratorsNotes/' + this.data.colUserid,
     ).subscribe(
-      (Response) => { (console.log("success", Response)) },
-      (error) => { (console.log("error", error)) }
+      (Response) => { },
+      (error) => { }
     )
   }
 
   geCollab() {
-    console.log(this.data.collaborator)
+
   }
 }

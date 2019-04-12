@@ -34,7 +34,6 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { RemindersComponent } from './components/reminders/reminders.component';
 import { PinedComponent } from './components/pined/pined.component';
 import { CollaboratorComponent } from './components/collaborator/collaborator.component';
-import { DemoComponent } from './components/demo/demo.component';
 import { QuestionComponent } from './components/question/question.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { AuthGuard } from './auth.guard'
@@ -55,51 +54,27 @@ import { CartComponent } from './components/cart/cart.component';
     LoginComponent,
     DashboardComponent,
     RegistrationComponent,
-
     ResetPasswordComponent,
-
     ResetComponent,
-
     AddnoteComponent,
-
     LabelsComponent,
-
     FootermenuComponent,
-
     NotesComponent,
-
     SearchPipe,
-
     SearchbarComponent,
-
     AddlabelComponent,
-
     TrashComponent,
-
     ArchiveComponent,
-
     ProfileComponent,
-
     RemindersComponent,
-
     PinedComponent,
-
     CollaboratorComponent,
-
-    DemoComponent,
-
     QuestionComponent,
-
     HomeComponent,
-
     PackageselectComponent,
-
     NewloginComponent,
-
     NewregisterComponent,
-
     PackagecardComponent,
-
     CartComponent,
   ],
   imports: [AppRoutingModule,

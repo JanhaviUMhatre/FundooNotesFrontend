@@ -28,7 +28,6 @@ export class NoteService {
 
 
   createnote(userData) {
-    console.log(userData);
     return this.user.PostForm(this.baseUrl + 'notes/addNotes', userData)
   }
 

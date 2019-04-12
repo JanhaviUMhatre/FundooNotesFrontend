@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {  Output, EventEmitter } from '@angular/core';
+import { Output, EventEmitter } from '@angular/core';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { environment } from 'src/environments/environment';
 
@@ -19,29 +19,28 @@ export class NewregisterComponent implements OnInit {
   servicename: any;
   baseUrl = environment.baseUrl;
 
-  constructor(private http: HttpClient, private cart:CartService) { }
+  constructor(private http: HttpClient, private cart: CartService) { }
 
   ngOnInit() {
     this.getJson()
     this.cart.cards.subscribe(info => this.info = info)
   }
 
-    getJson(){
-      this.http.get(this.baseUrl+'user/service').subscribe(
-        (Response)=>{console.log("success",Response);
-        this.details=Response['data']['data']
-        this.cartid=this.info['id']
-        this.servicename=this.info['name']
-        },
-        (error)=>{console.log("error",error);
-        }
-      )
+  getJson() {
+    this.http.get(this.baseUrl + 'user/service').subscribe(
+      (Response) => {
+        this.details = Response['data']['data']
+        this.cartid = this.info['id']
+        this.servicename = this.info['name']
+      },
+      (error) => {
+      }
+    )
 
   }
-  selectservice(service){
-console.log("this is service",service)
-this.servicemessage=service;
-this.messageEvent.emit(this.servicemessage)
+  selectservice(service) {
+    this.servicemessage = service;
+    this.messageEvent.emit(this.servicemessage)
 
   }
 }

@@ -23,7 +23,6 @@ import { ViewService } from 'src/app/services/viewservice/view.service';
 import { MatSnackBar } from '@angular/material';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { CollaboratorComponent } from '../collaborator/collaborator.component';
-import { DemoComponent } from '../demo/demo.component';
 import { PinedComponent } from '../pined/pined.component';
 import { QuestionService } from 'src/app/services/question/question.service';
 import { FootermenuComponent } from '../footermenu/footermenu.component';
@@ -208,32 +207,26 @@ export class NotesComponent implements OnInit {
 
 
   pin(card) {
-    console.log("called pin");
     this.pinValue = !this.pinValue;
     this.msgPin = this.pinValue;
 
-    console.log(card.id)
     this.pinData = {
       "isPined": this.pinValue,
       "noteIdList": [card.id]
     }
-    console.log(this.pinData)
     this.svc.pinnote(this.pinData).subscribe(
       (response) => {
-        console.log("success", response);
         this.view.pinMessage(this.msgPin)
         this.child.getNoteDatas()
         this.getNoteData()
-        console.log("pin response", response)
       },
-      (error) => { console.log("error", error); }
+      (error) => { }
     )
   }
 
   changeColor(color) {
 
     this.color = color;
-    console.log(this.color, this.id)
     this.ColorData = {
       "color": this.color,
       "noteIdList": [this.id]
@@ -259,7 +252,6 @@ export class NotesComponent implements OnInit {
       "isDeleted": this.deletevalue,
       "noteIdList": [card.id]
     }
-    console.log(this.deleteData);
     this.svc.trashnote(this.deleteData).subscribe(
       (response) => {
         this.openSnackBarDelete()
@@ -387,7 +379,6 @@ export class NotesComponent implements OnInit {
   }
   removecollaborator(noteId, userId) {
 
-    console.log(noteId, userId)
     this.svc.removeCollaborator(this.baseUrl + 'notes/' + noteId + '/removeCollaboratorsNotes/' + userId,
     ).subscribe(
       (Response) => { },

@@ -35,36 +35,31 @@ export class CartComponent implements OnInit {
   }
   place() {
 
-    console.log(this.address.value)
     this.cartId = localStorage.getItem('cartId')
     this.placeorderData = { "cartId": this.cartId, "address": this.address.value }
     this.cartser.placeorder(this.placeorderData).subscribe(
       (response) => {
-        console.log("success", response);
+
         this.nextflag = !this.nextflag
       },
       (error) => {
-        console.log("error", error);
       }
     )
   }
   callmycart() {
     this.cartser.mycart().subscribe(
       (Response) => {
-        console.log("success", Response);
         this.cartpack = Response['data']
         for (let i of Response['data']) {
           this.status = i.status
           this.price = i.price
           this.name = i.product.name
           this.description = i.product.description
-          console.log("statusssss", this.status);
-          console.log("nameee", this.name);
+
 
         }
       },
       (error) => {
-        console.log("error", error);
       }
     )
   }

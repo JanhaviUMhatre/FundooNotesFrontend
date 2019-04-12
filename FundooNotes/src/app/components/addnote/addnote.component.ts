@@ -154,7 +154,6 @@ export class AddnoteComponent implements OnInit {
     this.newdate.setHours(8);
     this.newdate.setMinutes(0);
     this.newdate.setSeconds(0);
-    console.log(this.newdate);
     this.dateData.push(this.newdate)
   }
   tommorow() {
@@ -164,7 +163,6 @@ export class AddnoteComponent implements OnInit {
     this.newdate.setHours(8)
     this.newdate.setMinutes(0);
     this.newdate.setSeconds(0);
-    console.log(this.newdate);
     this.dateData.push(this.newdate)
   }
   nextweek() {
@@ -172,7 +170,6 @@ export class AddnoteComponent implements OnInit {
     newdate.setHours(168)
     newdate.setMinutes(362);
     newdate.setSeconds(0);
-    console.log(newdate)
     this.dateData.push(this.newdate)
   }
   createNote() {
@@ -189,9 +186,7 @@ export class AddnoteComponent implements OnInit {
     this.addCheckList.itemName = this.item;
     this.addCheckList.status = "open";
 
-    console.log(this.addCheckList);
     this.itemDataarray.push(this.addCheckList)
-    console.log("collaboration data", this.collaboratorData)
     this.noteData = {
       "title": this.title.value,
       "description": this.description.value,

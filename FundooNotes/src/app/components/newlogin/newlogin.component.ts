@@ -41,13 +41,13 @@ export class NewloginComponent implements OnInit {
   getJson() {
     this.http.get(this.baseUrl + 'user/service').subscribe(
       (Response) => {
-        console.log("success", Response);
+
         this.details = Response['data']['data']
         this.servicename = this.info['name']
-        console.log("-----------------", this.servicename)
+
       },
       (error) => {
-        console.log("error", error);
+
       }
     )
   }
@@ -67,10 +67,9 @@ export class NewloginComponent implements OnInit {
   }
   onSubmit() {
 
-    console.log(this.loginForm.value);
+
     this.svc.login(this.loginForm.value).subscribe(
       (response) => {
-        console.log("succsess", response);
         localStorage.setItem('imageUrl', response['imageUrl'])
         localStorage.setItem('token', response['id'])
         localStorage.setItem('userId', response['userId'])
@@ -81,7 +80,7 @@ export class NewloginComponent implements OnInit {
 
       },
       (error) => {
-        console.log("error", error);
+
         this.openSnackBarError();
       }
 

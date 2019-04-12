@@ -50,31 +50,25 @@ export class ArchiveComponent implements OnInit {
   getArchiveNoteData() {
     this.svc.getArchiveNotes().subscribe(
       (response) => {
-        console.log("success get trash notes", response)
         this.data = response['data']['data'];
-        console.log(this.data)
 
 
       },
-      (error) => { console.log("error", error); }
+      (error) => { }
     )
 
   }
   archive(card) {
-    console.log(card.isArchived)
     card.isArchived = !card.isArchived
-    console.log(card.isArchived);
     this.archiveData = {
       "isArchived": card.isArchived,
       "noteIdList": [card.id]
     }
-    console.log(this.archiveData);
     this.svc.archivednote(this.archiveData).subscribe(
       (response) => {
-        console.log("success", response);
-        console.log(this.data)
+
       },
-      (error) => { console.log("error", error); }
+      (error) => { }
     )
   }
   openDialogCollaborate(userInfo, noteId, colemail, colUserid): void {
@@ -93,7 +87,6 @@ export class ArchiveComponent implements OnInit {
       });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
 
     });
   }
@@ -112,7 +105,6 @@ export class ArchiveComponent implements OnInit {
       });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
 
     });
   }
@@ -120,19 +112,17 @@ export class ArchiveComponent implements OnInit {
   getLabelsDashboard() {
     this.svc.getLabels().subscribe(
       (response) => {
-        console.log("success", response);
         this.label = response['data']['details'];
-        console.log(this.label)
       },
-      (error) => { console.log("error", error) }
+      (error) => { }
     )
   }
   deletelabelforever(labels, note) {
     this.svc.deletenoteLabels('notes/' + note.id + '/addLabelToNotes/' + labels.id + '/remove', {
       "noteId": note.id, "lableId": labels.id
     }).subscribe(
-      (response) => { console.log("success", response) },
-      (error) => { console.log("error", error) }
+      (response) => { },
+      (error) => { }
     )
   }
 }

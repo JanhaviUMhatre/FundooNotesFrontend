@@ -70,8 +70,6 @@ export class LabelsComponent implements OnInit {
   }
 
   delete(data) {
-    console.log(data);
-    console.log("deleted")
 
     this.deletevalue = !this.deletevalue
 
@@ -109,7 +107,7 @@ export class LabelsComponent implements OnInit {
       "isArchived": this.archivevalue,
       "noteIdList": [data]
     }
-    console.log(this.archiveData);
+
     this.svc.archivednote(this.archiveData).subscribe(
       (response) => {
       },
@@ -122,7 +120,7 @@ export class LabelsComponent implements OnInit {
   changeColor(color) {
 
     this.color = color;
-    console.log(this.color, this.id)
+
     this.ColorData = {
       "color": this.color,
       "noteIdList": [this.id]
